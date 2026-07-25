@@ -10,14 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const isOpen = navigation.classList.toggle("open");
 
     menuButton.setAttribute("aria-expanded", String(isOpen));
-    menuButton.textContent = isOpen ? "✕" : "☰";
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Κλείσιμο μενού" : "Άνοιγμα μενού"
+    );
   });
 
   navigation.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navigation.classList.remove("open");
       menuButton.setAttribute("aria-expanded", "false");
-      menuButton.textContent = "☰";
+      menuButton.setAttribute("aria-label", "Άνοιγμα μενού");
     });
   });
 });
