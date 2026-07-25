@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const platform = card.getAttribute("data-platform");
     const url = BOOKING_CONFIG[platform];
 
-    if (url === "" || url == null) {
+    if (url === "" || url === null) {
       /* Hide cards whose URL has not been configured yet */
       card.style.display = "none";
     } else {
@@ -81,14 +81,22 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  /* Auto-detect type if not set */
+  /* Auto-detect type by parsing the hostname, not by substring matching */
   let type = (BOOKING_CONFIG.videoType || "").trim().toLowerCase();
   if (!type) {
-    if (rawUrl.includes("youtube.com") || rawUrl.includes("youtu.be")) {
-      type = "youtube";
-    } else if (rawUrl.includes("vimeo.com")) {
-      type = "vimeo";
-    } else {
+    try {
+      const parsed = new URL(rawUrl);
+      const host   = parsed.hostname.toLowerCase();
+      if (host === "www.youtube.com" || host === "youtube.com" ||
+          host === "youtu.be") {
+        type = "youtube";
+      } else if (host === "player.vimeo.com" || host === "vimeo.com") {
+        type = "vimeo";
+      } else {
+        type = "mp4";
+      }
+    } catch (_) {
+      /* Relative URL or invalid — treat as mp4 / native */
       type = "mp4";
     }
   }
