@@ -958,24 +958,85 @@
     
     
     
-    <section class="section reviews-section" aria-labelledby="reviews-title">
+    <section class="section reviews-section" aria-labelledby="reviews-title" id="reviews">
       <div class="container reviews-layout">
-        <div>
+        <div class="review-section-intro">
           <p class="section-label">Αξιολογήσεις</p>
-          <h2 id="reviews-title">Οι εμπειρίες των επισκεπτών μας</h2>
-          <p class="reviews-intro">
-            Οι πραγματικές αξιολογήσεις από Google, Booking.com ή Airbnb
-            μπορούν να προστεθούν εδώ μόλις μας δώσετε τα σχετικά links.
+          <h2 id="reviews-title">Μοιραστείτε την εμπειρία σας</h2>
+          <p>
+            Η γνώμη σας είναι πολύτιμη. Υποβάλετε την κριτική σας
+            και, μετά από έλεγχο, θα εμφανιστεί στη σελίδα μας.
+          </p>
+          <p style="margin-top: 14px; font-size: 0.9rem;">
+            Έχετε κριτικές στο Google ή Booking.com;
+            Επικοινωνήστε μαζί μας για να τις συνδέσουμε.
           </p>
         </div>
 
-        <div class="review-placeholder">
-          <div class="review-stars" aria-label="Θέση για αξιολογήσεις">★★★★★</div>
-          <strong>Προσθέστε πραγματικές κριτικές</strong>
-          <p>
-            Δεν δημοσιεύουμε κατασκευασμένες αξιολογήσεις. Η ενότητα είναι
-            έτοιμη να συνδεθεί με τα πραγματικά προφίλ του καταλύματος.
-          </p>
+        <div class="review-form-wrapper">
+          <div class="review-form-notice" role="note">
+            <span aria-hidden="true">ℹ️</span>
+            <p>
+              Οι κριτικές <strong>δεν δημοσιεύονται αυτόματα</strong>.
+              Κάθε αξιολόγηση ελέγχεται από τη διαχείριση πριν εμφανιστεί δημόσια.
+            </p>
+          </div>
+
+          <form class="review-form" id="reviewForm" novalidate>
+            <div class="review-form-field">
+              <label for="reviewName">Το όνομά σας *</label>
+              <input
+                type="text"
+                id="reviewName"
+                name="name"
+                required
+                placeholder="π.χ. Μαρία Π."
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="review-form-field">
+              <label>Βαθμολογία *</label>
+              <div class="star-rating" role="group" aria-label="Επιλέξτε βαθμολογία από 1 έως 5 αστέρια">
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5" title="5 αστέρια — Εξαιρετικό">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4" title="4 αστέρια — Πολύ καλό">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3" title="3 αστέρια — Καλό">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2" title="2 αστέρια — Μέτριο">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1" title="1 αστέρι — Απογοητευτικό">★</label>
+              </div>
+            </div>
+
+            <div class="review-form-field">
+              <label for="reviewText">Η κριτική σας *</label>
+              <textarea
+                id="reviewText"
+                name="review"
+                required
+                placeholder="Μοιραστείτε την εμπειρία σας από τη διαμονή σας…"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="button button-primary review-form-submit"
+            >
+              Υποβολή κριτικής
+            </button>
+          </form>
+
+          <div class="review-form-success" id="reviewSuccess" hidden>
+            <span class="success-icon" aria-hidden="true">✓</span>
+            <strong>Ευχαριστούμε!</strong>
+            <p>
+              Η κριτική σας παραλήφθηκε και θα εμφανιστεί αφού
+              ελεγχθεί από τη διαχείριση.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -1017,6 +1078,76 @@
             <p>Οργανώστε εύκολα κοντινές επισκέψεις σε χωριά και αξιοθέατα.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+
+    <!-- ── External booking platforms ────────────────────────────── -->
+    <section class="section book-online-section" id="book-online" aria-labelledby="book-online-title">
+      <div class="container">
+        <div class="center-heading">
+          <p class="section-label">Κράτηση Online</p>
+          <h2 id="book-online-title">Κλείστε το δωμάτιό σας</h2>
+          <p>
+            Βρείτε μας στις κορυφαίες πλατφόρμες κράτησης ή επικοινωνήστε
+            απευθείας για τις καλύτερες τιμές και προσωπική εξυπηρέτηση.
+          </p>
+        </div>
+
+        <div class="booking-platforms">
+
+          <a
+            class="platform-card"
+            data-platform="bookingCom"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Κρατήστε μέσω Booking.com (ανοίγει σε νέα καρτέλα)"
+          >
+            <span class="platform-icon" aria-hidden="true">🏨</span>
+            <div>
+              <strong>Booking.com</strong>
+              <span>Κρατήστε μέσω Booking.com</span>
+            </div>
+            <span class="platform-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a
+            class="platform-card"
+            data-platform="airbnb"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Κρατήστε μέσω Airbnb (ανοίγει σε νέα καρτέλα)"
+          >
+            <span class="platform-icon" aria-hidden="true">🏠</span>
+            <div>
+              <strong>Airbnb</strong>
+              <span>Κρατήστε μέσω Airbnb</span>
+            </div>
+            <span class="platform-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a
+            class="platform-card platform-card-direct"
+            data-platform="direct"
+            href="#booking"
+            aria-label="Άμεση κράτηση μέσω WhatsApp"
+          >
+            <span class="platform-icon" aria-hidden="true">💬</span>
+            <div>
+              <strong>Άμεση κράτηση</strong>
+              <span>Επικοινωνήστε απευθείας — χαμηλότερες τιμές</span>
+            </div>
+            <span class="platform-arrow" aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+        <p class="booking-platforms-note">
+          Τα links για Booking.com και Airbnb ενεργοποιούνται μόλις
+          ρυθμιστούν στο <code>booking-config.js</code>.
+        </p>
       </div>
     </section>
 
@@ -1363,6 +1494,8 @@
   <script src="script.js"></script>
   <script src="premium-gallery.js"></script>
   <script src="premium-features.js"></script>
+  <script src="booking-config.js"></script>
+  <script src="review-form.js"></script>
 
 </body>
 </html>
