@@ -61,11 +61,38 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lightbox) close();
   });
 
-  /* Keyboard: Escape / arrows */
+  /* Keyboard: Escape / arrows / focus trap */
+  const focusableInLightbox = [lbClose, lbPrev, lbNext];
+
   document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("is-open")) return;
-    if (e.key === "Escape")     { e.preventDefault(); close(); }
-    if (e.key === "ArrowLeft")  { e.preventDefault(); prev();  }
-    if (e.key === "ArrowRight") { e.preventDefault(); next();  }
+    if (e.key === "Escape")     { e.preventDefault(); close(); return; }
+    if (e.key === "ArrowLeft")  { e.preventDefault(); prev();  return; }
+    if (e.key === "ArrowRight") { e.preventDefault(); next();  return; }
+
+    /* Focus trap: keep Tab/Shift+Tab inside the lightbox */
+    if (e.key === "Tab") {
+      const first = focusableInLightbox[0];
+      const last  = focusableInLightbox[focusableInLightbox.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    }
   });
+
+  /* Touch swipe on mobile */
+  let touchStartX = 0;
+
+  lightbox.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  lightbox.addEventListener("touchend", (e) => {
+    const delta = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(delta) > 48) {
+      if (delta > 0) next(); else prev();
+    }
+  }, { passive: true });
 });

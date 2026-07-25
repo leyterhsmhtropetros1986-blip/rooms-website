@@ -1,5 +1,13 @@
 /* Final homepage polish — loaded last to consolidate homepage presentation */
 
+/* ── Heading rendering ──────────────────────────────────────── */
+
+h1,
+h2,
+h3 {
+  text-rendering: optimizeLegibility;
+}
+
 .skip-link {
   position: absolute;
   top: 14px;
@@ -425,7 +433,9 @@
   height: 100%;
   padding: 0;
   border: 0;
+  border-radius: 14px;
   background: transparent;
+  overflow: hidden;
 }
 
 /* ── Amenity icon badges ────────────────────────────────────── */
@@ -644,6 +654,40 @@
 .lightbox-close:focus-visible,
 .lightbox-nav:focus-visible {
   outline-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Active nav link (set by scroll-spy) ───────────────────── */
+
+.navigation a[aria-current="page"] {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.navigation a[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Room card elevated hover ───────────────────────────────── */
+
+.featured-room:hover {
+  transform: translateY(-12px);
+}
+
+/* ── Gallery will-change for smoother hover ─────────────────── */
+
+.gallery-item img {
+  will-change: transform;
+}
+
+/* ── Footer column link hover ───────────────────────────────── */
+
+.footer-column a {
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ── Reduced-motion ─────────────────────────────────────────── */
