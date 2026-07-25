@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const isOpen = navigation.classList.toggle("open");
 
     menuButton.setAttribute("aria-expanded", String(isOpen));
-    menuButton.textContent = isOpen ? "✕" : "☰";
+    menuButton.classList.toggle("is-open", isOpen);
   });
 
   navigation.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navigation.classList.remove("open");
       menuButton.setAttribute("aria-expanded", "false");
-      menuButton.textContent = "☰";
+      menuButton.classList.remove("is-open");
     });
   });
 });
