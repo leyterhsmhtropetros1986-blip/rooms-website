@@ -2,22 +2,24 @@
 (function () {
   "use strict";
 
-  const lightbox      = document.getElementById("lightbox");
-  const lbImage       = document.getElementById("lightboxImage");
-  const lbCaption     = document.getElementById("lightboxCaption");
-  const lbCounter     = document.getElementById("lightboxCounter");
-  const lbClose       = document.getElementById("lightboxClose");
-  const lbPrev        = document.getElementById("lightboxPrev");
-  const lbNext        = document.getElementById("lightboxNext");
+  var lightbox      = document.getElementById("lightbox");
+  var lbImage       = document.getElementById("lightboxImage");
+  var lbCaption     = document.getElementById("lightboxCaption");
+  var lbCounter     = document.getElementById("lightboxCounter");
+  var lbClose       = document.getElementById("lightboxClose");
+  var lbPrev        = document.getElementById("lightboxPrev");
+  var lbNext        = document.getElementById("lightboxNext");
 
   if (!lightbox || !lbImage) return;
 
-  const items   = Array.from(document.querySelectorAll(".gallery-item"));
-  let current   = 0;
+  var items   = Array.from(document.querySelectorAll(".gallery-item"));
+  if (items.length === 0) return;
+
+  var current = 0;
 
   function show(index) {
     current = (index + items.length) % items.length;
-    const img = items[current].querySelector("img");
+    var img = items[current].querySelector("img");
     if (!img) return;
 
     lbImage.src           = img.src;

@@ -3,6 +3,7 @@
   "use strict";
 
   var WHATSAPP_NUMBER = "306936960328";
+  var MS_PER_DAY      = 86400000;
 
   var form       = document.getElementById("bookingForm");
   var arrival    = document.getElementById("arrivalDate");
@@ -27,7 +28,7 @@
 
     var a = new Date(arrival.value);
     var d = new Date(departure.value);
-    var nights = Math.round((d - a) / 86400000);
+    var nights = Math.round((d - a) / MS_PER_DAY);
 
     if (nights <= 0) {
       summary.textContent = "Η ημερομηνία αναχώρησης πρέπει να είναι μετά την άφιξη.";
@@ -59,6 +60,13 @@
 
   departure.addEventListener("change", updateSummary);
 
+  /* ── Format ISO date string (YYYY-MM-DD) as DD/MM/YYYY ─────────── */
+  function fmtDate(iso) {
+    var parts = iso ? iso.split("-") : [];
+    if (parts.length !== 3) return iso;
+    return parts[2] + "/" + parts[1] + "/" + parts[0];
+  }
+
   /* ── Form submission → WhatsApp message ────────────────────────── */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -72,7 +80,7 @@
 
     var a      = new Date(arrival.value);
     var d      = new Date(departure.value);
-    var nights = Math.round((d - a) / 86400000);
+    var nights = Math.round((d - a) / MS_PER_DAY);
 
     if (nights <= 0) {
       summary.textContent = "Η ημερομηνία αναχώρησης πρέπει να είναι μετά την άφιξη.";
@@ -87,20 +95,15 @@
     var children = document.getElementById("childGuests");
     var room     = document.getElementById("roomType");
 
-    var fmtDate = function (iso) {
-      var parts = iso.split("-");
-      return parts[2] + "/" + parts[1] + "/" + parts[0];
-    };
-
     var lines = [
       "Καλησπέρα! Θα ήθελα να ρωτήσω για διαθεσιμότητα.",
       "",
-      "📅 Άφιξη: "        + fmtDate(arrival.value),
-      "📅 Αναχώρηση: "    + fmtDate(departure.value),
+      "📅 Άφιξη: "           + fmtDate(arrival.value),
+      "📅 Αναχώρηση: "       + fmtDate(departure.value),
       "🌙 Διανυκτερεύσεις: " + nights,
-      "👤 Ενήλικες: "      + (adults   ? adults.value   : "—"),
-      "👶 Παιδιά: "        + (children ? children.value : "—"),
-      "🛏️ Δωμάτιο: "      + (room     ? room.value     : "—"),
+      "👤 Ενήλικες: "        + (adults   ? adults.value   : "—"),
+      "👶 Παιδιά: "          + (children ? children.value : "—"),
+      "🛏️ Δωμάτιο: "        + (room     ? room.value     : "—"),
     ];
 
     var message = encodeURIComponent(lines.join("\n"));
