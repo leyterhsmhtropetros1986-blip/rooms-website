@@ -51,7 +51,10 @@ const LANG = {
     // Booking form
     "book.label":          "Άμεσο αίτημα",
     "book.title":          "Ελέγξτε διαθεσιμότητα",
-    "book.desc":           "Συμπληρώστε τις ημερομηνίες σας και στείλτε έτοιμο αίτημα μέσω WhatsApp.",
+    "book.desc":           "Συμπληρώστε τα στοιχεία σας και στείλτε αίτημα διαθεσιμότητας.",
+    "book.name":           "Ονοματεπώνυμο",
+    "book.email":          "Email",
+    "book.phone":          "Τηλέφωνο",
     "book.arrival":        "Άφιξη",
     "book.departure":      "Αναχώρηση",
     "book.adults":         "Ενήλικες",
@@ -385,7 +388,10 @@ const LANG = {
     // Booking form
     "book.label":        "Direct enquiry",
     "book.title":        "Check availability",
-    "book.desc":         "Fill in your dates and send a ready-made enquiry via WhatsApp.",
+    "book.desc":         "Fill in your details and send an availability request.",
+    "book.name":         "Full name",
+    "book.email":        "Email",
+    "book.phone":        "Phone",
     "book.arrival":      "Arrival",
     "book.departure":    "Departure",
     "book.adults":       "Adults",

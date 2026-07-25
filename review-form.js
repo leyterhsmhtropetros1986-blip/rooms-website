@@ -1,39 +1,46 @@
 /**
- * Review Form Handler
- * ====================
- * Handles the guest review submission form.
- *
- * Current behaviour (frontend-only):
- *   - Validates name, star rating, and review text.
- *   - On submit, opens a mailto: link so the review is sent to the
- *     property email address as a temporary measure.
- *   - Hides the form and shows a success message.
- *
- * BACKEND WORK REQUIRED:
- *   To properly handle review submissions you need:
- *     1. A server-side endpoint (e.g. POST /api/reviews) that stores the
- *        review in a database with status = "pending".
- *     2. An admin interface to approve or reject pending reviews
- *        (see admin/index.html).
- *     3. Replace the mailto fallback below with a fetch() call to that
- *        endpoint and remove REVIEW_RECIPIENT_EMAIL.
- *
- * Environment variable needed (backend):
- *   REVIEW_RECIPIENT_EMAIL — the email address that receives raw review
- *   submissions until a database is set up.
+ * Review form + approved reviews rendering
  */
 
-/* Temporary fallback: email address that receives review submissions.
-   Replace with a real backend endpoint as documented above. */
-const REVIEW_RECIPIENT_EMAIL = "info@example.gr";
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('reviewForm');
+  const success = document.getElementById('reviewSuccess');
+  const approvedList = document.getElementById('approvedReviewsList');
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form    = document.getElementById("reviewForm");
-  const success = document.getElementById("reviewSuccess");
+  function renderApprovedReviews(items) {
+    if (!approvedList) return;
+    if (!items.length) {
+      approvedList.innerHTML = '';
+      return;
+    }
+
+    approvedList.innerHTML =
+      '<h3 style="margin-bottom:10px; font-size:1rem;">Εγκεκριμένες κριτικές</h3>' +
+      items.map(function (item) {
+        return (
+          '<article style="padding:12px; border:1px solid #ddd; border-radius:10px; margin-bottom:10px; background:#fff;">' +
+            '<strong>' + item.guest_name + '</strong> ' +
+            '<span aria-label="rating">' + '★'.repeat(Math.max(1, Number(item.rating) || 1)) + '</span>' +
+            '<p style="margin-top:8px;">' + item.review_text + '</p>' +
+          '</article>'
+        );
+      }).join('');
+  }
+
+  async function loadApprovedReviews() {
+    try {
+      const response = await fetch('/api/public/reviews');
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) return;
+      renderApprovedReviews(data.reviews || []);
+    } catch (_) {
+      /* ignore public fetch errors */
+    }
+  }
+
+  loadApprovedReviews();
 
   if (!form || !success) return;
-
-  /* ── Validation helpers ─────────────────────────────────── */
 
   function getSelectedRating() {
     const checked = form.querySelector("input[name='rating']:checked");
@@ -43,72 +50,74 @@ document.addEventListener("DOMContentLoaded", function () {
   function showError(field, message) {
     field.setCustomValidity(message);
     field.reportValidity();
-    field.setCustomValidity("");
+    field.setCustomValidity('');
   }
 
-  /* ── Form submit ────────────────────────────────────────── */
-
-  form.addEventListener("submit", function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const nameField   = document.getElementById("reviewName");
-    const reviewField = document.getElementById("reviewText");
-    const rating      = getSelectedRating();
+    const nameField = document.getElementById('reviewName');
+    const reviewField = document.getElementById('reviewText');
+    const websiteField = document.getElementById('reviewWebsite');
+    const rating = getSelectedRating();
 
-    /* Validate name */
     if (!nameField.value.trim()) {
-      showError(nameField, "Παρακαλώ συμπληρώστε το όνομά σας.");
+      showError(nameField, 'Παρακαλώ συμπληρώστε το όνομά σας.');
       nameField.focus();
       return;
     }
 
-    /* Validate rating */
     if (rating === 0) {
       const firstStar = form.querySelector("input[name='rating']");
-      firstStar.setCustomValidity("Παρακαλώ επιλέξτε βαθμολογία.");
+      firstStar.setCustomValidity('Παρακαλώ επιλέξτε βαθμολογία.');
       firstStar.reportValidity();
-      firstStar.setCustomValidity("");
+      firstStar.setCustomValidity('');
       return;
     }
 
-    /* Validate review text */
     if (!reviewField.value.trim()) {
-      showError(reviewField, "Παρακαλώ γράψτε την κριτική σας.");
+      showError(reviewField, 'Παρακαλώ γράψτε την κριτική σας.');
       reviewField.focus();
       return;
     }
 
-    /* Build star string for the email subject */
-    let stars = "";
-    for (let i = 0; i < rating; i++) stars += "★";
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalLabel = submitButton ? submitButton.textContent : '';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Υποβολή...';
+    }
 
-    const subject = encodeURIComponent(
-      "Νέα κριτική (" + stars + ") — " + nameField.value.trim()
-    );
+    try {
+      const response = await fetch('/api/public/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          guest_name: nameField.value.trim(),
+          rating,
+          review_text: reviewField.value.trim(),
+          website: websiteField ? websiteField.value : '',
+        }),
+      });
 
-    const body = encodeURIComponent(
-      "Όνομα: " + nameField.value.trim() + "\n" +
-      "Βαθμολογία: " + rating + "/5 " + stars + "\n\n" +
-      "Κριτική:\n" + reviewField.value.trim() + "\n\n" +
-      "---\n" +
-      "Αυτή η κριτική υποβλήθηκε μέσω της φόρμας στη σελίδα και\n" +
-      "χρειάζεται έγκριση πριν δημοσιευτεί.\n" +
-      "TODO: Αντικαταστήστε αυτό το mailto με κλήση API endpoint."
-    );
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || 'Αποτυχία υποβολής');
+      }
 
-    /* Open mail client (temporary — replace with fetch() to backend) */
-    window.location.href =
-      "mailto:" + REVIEW_RECIPIENT_EMAIL +
-      "?subject=" + subject +
-      "&body=" + body;
+      form.hidden = true;
+      success.hidden = false;
+      success.focus();
 
-    /* Show success state immediately */
-    form.hidden = true;
-    success.hidden = false;
-    success.focus();
-
-    /* Also hide the notice */
-    const notice = form.closest(".review-form-wrapper").querySelector(".review-form-notice");
-    if (notice) notice.hidden = true;
+      const notice = form.closest('.review-form-wrapper').querySelector('.review-form-notice');
+      if (notice) notice.hidden = true;
+    } catch (err) {
+      alert(err.message || 'Αποτυχία υποβολής');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalLabel;
+      }
+    }
   });
 });

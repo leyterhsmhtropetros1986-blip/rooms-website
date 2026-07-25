@@ -119,6 +119,9 @@
         <a href="../index.html" class="admin-back-link">
           <span aria-hidden="true">←</span> Δημόσια σελίδα
         </a>
+        <button class="admin-btn" type="button" id="adminLogoutBtn" style="margin-top:10px;">
+          Αποσύνδεση
+        </button>
       </div>
 
     </aside>
@@ -130,7 +133,7 @@
       <div class="admin-tab" id="tab-reservations">
         <div class="admin-page-header">
           <h1>Κρατήσεις</h1>
-          <button class="admin-btn admin-btn-primary" type="button">
+          <button class="admin-btn admin-btn-primary" type="button" id="addReservationBtn">
             + Νέα κράτηση
           </button>
         </div>
@@ -148,16 +151,17 @@
           <input
             type="search"
             class="admin-input"
+            id="reservationSearch"
             placeholder="Αναζήτηση κράτησης…"
             aria-label="Αναζήτηση κράτησης"
           >
-          <select class="admin-select" aria-label="Φίλτρο κατάστασης">
-            <option>Όλες</option>
-            <option>Επιβεβαιωμένες</option>
-            <option>Σε αναμονή</option>
-            <option>Ακυρωμένες</option>
+          <select class="admin-select" aria-label="Φίλτρο κατάστασης" id="reservationStatusFilter">
+            <option value="all">Όλες</option>
+            <option value="confirmed">Επιβεβαιωμένες</option>
+            <option value="pending">Σε αναμονή</option>
+            <option value="cancelled">Ακυρωμένες</option>
           </select>
-          <input type="date" class="admin-input" aria-label="Φίλτρο ημερομηνίας">
+          <input type="date" class="admin-input" aria-label="Φίλτρο ημερομηνίας" id="reservationDateFilter">
         </div>
 
         <div class="admin-table-wrapper">
@@ -207,7 +211,7 @@
             <span>Δευ</span><span>Τρί</span><span>Τετ</span>
             <span>Πεμ</span><span>Παρ</span><span>Σαβ</span><span>Κυρ</span>
           </div>
-          <div class="calendar-grid-body">
+          <div class="calendar-grid-body" id="calendarGridBody">
             <!-- Visual placeholder cells -->
             <div class="cal-day cal-prev">28</div>
             <div class="cal-day cal-prev">29</div>
@@ -322,7 +326,7 @@
       <div class="admin-tab hidden" id="tab-offers">
         <div class="admin-page-header">
           <h1>Προσφορές</h1>
-          <button class="admin-btn admin-btn-primary" type="button">+ Νέα προσφορά</button>
+          <button class="admin-btn admin-btn-primary" type="button" id="addOfferBtn">+ Νέα προσφορά</button>
         </div>
 
         <div class="admin-backend-notice">
@@ -495,7 +499,6 @@
                 class="admin-btn admin-btn-primary admin-btn-ai"
                 type="button"
                 id="aiGenerateBtn"
-                disabled
                 title="Απαιτείται backend σύνδεση με AI API"
               >
                 🤖 Δημιουργία περιεχομένου
@@ -513,8 +516,11 @@
                 placeholder="Το παραγόμενο κείμενο θα εμφανιστεί εδώ μετά τη σύνδεση με AI API…"
               ></textarea>
               <div class="ai-output-actions">
-                <button class="admin-btn" type="button" id="aiCopyBtn" disabled>
+                <button class="admin-btn" type="button" id="aiCopyBtn">
                   📋 Αντιγραφή
+                </button>
+                <button class="admin-btn" type="button" id="aiSaveDraftBtn">
+                  💾 Αποθήκευση draft
                 </button>
                 <button class="admin-btn" type="button" id="aiClearBtn">
                   🗑️ Καθαρισμός
@@ -582,7 +588,7 @@
             <button
               class="admin-btn admin-btn-instagram"
               type="button"
-              disabled
+              id="instagramConnectBtn"
               title="Απαιτείται Meta API ρύθμιση"
             >
               Σύνδεση μέσω Meta
@@ -648,11 +654,10 @@
               <button
                 class="admin-btn admin-btn-primary"
                 type="button"
-                disabled
-                title="Απαιτείται AI backend"
+                id="instagramDraftSaveBtn"
+                title="Αποθήκευση πρόχειρου caption"
               >
-                🤖 Δημιουργία caption
-                <span class="ai-btn-note">(Χρειάζεται AI backend)</span>
+                💾 Αποθήκευση caption draft
               </button>
             </div>
 
@@ -669,7 +674,7 @@
               <button
                 class="admin-btn"
                 type="button"
-                disabled
+                id="instagramPublishBtn"
                 title="Απαιτείται Meta API έγκριση"
               >
                 📤 Δημοσίευση στο Instagram

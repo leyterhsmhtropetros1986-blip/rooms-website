@@ -309,6 +309,21 @@
 
           <form class="booking-form" id="bookingForm" novalidate>
             <label class="booking-field">
+              <span data-i18n="book.name">Ονοματεπώνυμο</span>
+              <input type="text" id="guestName" name="guestName" required autocomplete="name">
+            </label>
+
+            <label class="booking-field">
+              <span data-i18n="book.email">Email</span>
+              <input type="email" id="guestEmail" name="guestEmail" required autocomplete="email">
+            </label>
+
+            <label class="booking-field">
+              <span data-i18n="book.phone">Τηλέφωνο</span>
+              <input type="tel" id="guestPhone" name="guestPhone" required autocomplete="tel">
+            </label>
+
+            <label class="booking-field">
               <span data-i18n="book.arrival">Άφιξη</span>
               <input type="date" id="arrivalDate" name="arrival" required>
             </label>
@@ -932,6 +947,7 @@
             Η γνώμη σας είναι πολύτιμη. Υποβάλετε την κριτική σας
             και, μετά από έλεγχο, θα εμφανιστεί στη σελίδα μας.
           </p>
+          <div id="approvedReviewsList" style="margin-top: 18px;"></div>
           <p style="margin-top: 14px; font-size: 0.9rem;" data-i18n="rev.google.note">
             Έχετε κριτικές στο Google ή Booking.com;
             Επικοινωνήστε μαζί μας για να τις συνδέσουμε.
@@ -987,6 +1003,8 @@
                 data-i18n-ph="rev.text.ph"
               ></textarea>
             </div>
+
+            <input type="text" name="website" id="reviewWebsite" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px;">
 
             <button
               type="submit"
@@ -1170,13 +1188,13 @@
         </div>
 
         <!-- When no active offers exist, show this message + contact CTA -->
-        <div class="offers-empty">
+        <div class="offers-empty" id="offersEmptyState">
           <p data-i18n="offers.none">Δεν υπάρχουν ενεργές προσφορές αυτή τη στιγμή. Επικοινωνήστε μαζί μας για τις καλύτερες τιμές.</p>
           <a href="#contact" class="button button-primary" data-i18n="offers.contact.btn">Επικοινωνήστε μαζί μας</a>
         </div>
 
         <!-- EXAMPLE OFFER CARDS — replace with real offers or hide with CSS/JS when not active -->
-        <div class="offers-grid" aria-label="Παραδείγματα προσφορών — TODO" hidden>
+        <div class="offers-grid" id="publicOffersGrid" aria-label="Προσφορές">
           <article class="offer-card">
             <span class="offer-badge" data-i18n="offers.ex1.badge">ΠΑΡΑΔΕΙΓΜΑ — TODO</span>
             <h3 data-i18n="offers.ex1.title">Πρώιμη Κράτηση</h3>
@@ -1701,6 +1719,7 @@
   <script src="premium-features.js"></script>
   <script src="booking-config.js"></script>
   <script src="review-form.js"></script>
+  <script src="public-data.js"></script>
   <script src="lang.js"></script>
   <script src="faq.js"></script>
 
