@@ -37,34 +37,34 @@ var SITE_CONFIG = {
   /* ── Background / hero images ──────────────────────────────── */
   images: {
     /** Full-screen hero background */
-    hero:     "images/hero.jpg",
+    hero:     "images/exterior-01.jpg",
 
     /** About section — shown beside the text */
-    about:    "images/exterior.jpg",
+    about:    "images/exterior-01.jpg",
 
     /** Offers section — darkened background */
-    offers:   "images/hero.jpg",
+    offers:   "images/exterior-01.jpg",
 
     /** Footer — very dark overlay applied on top */
-    footer:   "images/exterior.jpg",
+    footer:   "images/exterior-05.jpg",
 
     /** Location section image */
-    location: "images/location.jpg",
+    location: "images/exterior-05.jpg",
 
     /** Gallery items — order controls display order */
     gallery: [
-      { src: "images/exterior.jpg", alt: "Εξωτερικός χώρος του καταλύματος" },
-      { src: "images/room-1.jpg",   alt: "Deluxe δίκλινο δωμάτιο" },
-      { src: "images/room-2.jpg",   alt: "Superior τρίκλινο δωμάτιο" },
-      { src: "images/room-3.jpg",   alt: "Family δωμάτιο για τέσσερις" },
-      { src: "images/location.jpg", alt: "Περιοχή Νιμπορειού Ευβοίας" },
+      { src: "images/exterior-01.jpg", alt: "Εξωτερικός χώρος 1" },
+      { src: "images/exterior-02.jpg", alt: "Εξωτερικός χώρος 2" },
+      { src: "images/exterior-03.jpg", alt: "Εξωτερικός χώρος 3" },
+      { src: "images/exterior-04.jpg", alt: "Εξωτερικός χώρος 4" },
+      { src: "images/exterior-05.jpg", alt: "Εξωτερικός χώρος 5" },
     ],
 
     /** Room cards — must match room order in HTML */
     rooms: [
-      { src: "images/room-1.jpg", alt: "Deluxe δίκλινο δωμάτιο με διπλό κρεβάτι" },
-      { src: "images/room-2.jpg", alt: "Superior τρίκλινο δωμάτιο για οικογένεια" },
-      { src: "images/room-3.jpg", alt: "Family δωμάτιο για τέσσερις επισκέπτες" },
+      { src: "images/exterior-02.jpg", alt: "Deluxe δίκλινο δωμάτιο με διπλό κρεβάτι" },
+      { src: "images/exterior-03.jpg", alt: "Superior τρίκλινο δωμάτιο για οικογένεια" },
+      { src: "images/exterior-04.jpg", alt: "Family δωμάτιο για τέσσερις επισκέπτες" },
     ],
   },
 
