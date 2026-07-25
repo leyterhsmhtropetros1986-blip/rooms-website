@@ -19,7 +19,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 84px;
 }
 
 body {
@@ -423,8 +423,7 @@ p {
 }
 
 .contact-section {
-  padding: 110px 0;
-  text-align: center;
+  padding: clamp(82px, 9vw, 110px) 0;
   background: var(--dark);
 }
 
@@ -442,14 +441,13 @@ p {
 }
 
 .contact-actions {
-  justify-content: center;
+  justify-content: flex-start;
   margin: 35px 0;
 }
 
 .contact-details {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 20px 35px;
   color: rgba(255, 255, 255, 0.75);
 }
@@ -457,23 +455,6 @@ p {
 .footer {
   padding: 38px 0;
   background: #0c1511;
-}
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  color: #ffffff;
-}
-
-.footer strong {
-  font-size: 1.15rem;
-}
-
-.footer p {
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 0.9rem;
 }
 
 @media (max-width: 900px) {
@@ -517,7 +498,7 @@ p {
   }
 
   .rooms-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .amenities-grid {
@@ -557,6 +538,10 @@ p {
 
   .button {
     width: 100%;
+  }
+
+  .rooms-grid {
+    grid-template-columns: 1fr;
   }
 
   .amenities-grid,

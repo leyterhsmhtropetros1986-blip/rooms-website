@@ -169,6 +169,7 @@
 }
 
 .scroll-indicator {
+  position: absolute;
   right: 32px;
   bottom: 34px;
   display: inline-flex;
@@ -416,6 +417,82 @@
   box-shadow: 0 18px 36px rgba(21, 115, 71, 0.24);
 }
 
+/* ── Gallery items: reset button defaults ──────────────────── */
+
+.gallery-item {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* ── Amenity icon badges ────────────────────────────────────── */
+
+.amenity-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  min-height: 52px;
+  padding: 0 14px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eef5f1, #e4f0ea);
+  color: var(--primary-dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.amenity {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.amenity:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(12, 31, 24, 0.09);
+}
+
+/* ── Text-link hover ────────────────────────────────────────── */
+
+.text-link {
+  transition: color 0.2s ease;
+}
+
+.text-link:hover {
+  color: var(--primary);
+}
+
+/* ── Button-dark hover ──────────────────────────────────────── */
+
+.button-dark:hover {
+  background: #263d33;
+}
+
+/* ── Location card label ────────────────────────────────────── */
+
+.location-card-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── About-badge strong ─────────────────────────────────────── */
+
+.about-badge strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
 @media (max-width: 1100px) {
   .about-grid,
   .contact-layout,
@@ -547,5 +624,37 @@
 
   .footer {
     padding-top: 44px;
+  }
+}
+
+/* ── Focus-visible: keyboard navigation ────────────────────── */
+
+:focus-visible {
+  outline: 3px solid #b98b5f;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.button:focus-visible,
+.navigation-button:focus-visible {
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Reduced-motion ─────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
