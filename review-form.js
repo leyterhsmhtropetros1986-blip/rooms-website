@@ -118,8 +118,13 @@
       "Κριτική:\n"     + data.review
     );
 
+    var ownerEmail =
+      (typeof SITE_CONFIG !== "undefined" && SITE_CONFIG.contact && SITE_CONFIG.contact.email)
+        ? SITE_CONFIG.contact.email
+        : "info@example.gr";
+
     window.location.href =
-      "mailto:info@example.gr?subject=" + subject + "&body=" + body;
+      "mailto:" + ownerEmail + "?subject=" + subject + "&body=" + body;
 
     /* Show success state immediately — owner will receive the email */
     showSuccess();

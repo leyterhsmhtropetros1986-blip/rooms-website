@@ -75,6 +75,16 @@ document.addEventListener("DOMContentLoaded", function () {
         input.disabled = true;
         var btn = newsletterForm.querySelector("button");
         if (btn) btn.disabled = true;
+        /* Announce success to screen readers */
+        var notice = newsletterForm.querySelector(".newsletter-notice");
+        if (!notice) {
+          notice = document.createElement("p");
+          notice.className = "newsletter-notice";
+          notice.setAttribute("role", "status");
+          notice.setAttribute("aria-live", "polite");
+          newsletterForm.appendChild(notice);
+        }
+        notice.textContent = "Εγγραφήκατε επιτυχώς στο newsletter μας!";
       }
     });
   }
