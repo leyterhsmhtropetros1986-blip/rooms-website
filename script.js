@@ -127,8 +127,22 @@ function applyConfig() {
   /* Hero background */
   setBackground("heroBg", img.hero);
 
-  /* About image */
-  setImgSrc("aboutImg", img.about);
+  /* About section exterior gallery */
+  if (Array.isArray(img.aboutGallery)) {
+    var aboutGrid = document.getElementById("aboutGallery");
+    if (aboutGrid) {
+      var aboutItems = aboutGrid.querySelectorAll(".about-gallery-item");
+      img.aboutGallery.forEach(function (photo, i) {
+        if (aboutItems[i]) {
+          var aboutImgEl = aboutItems[i].querySelector("img");
+          if (aboutImgEl) {
+            setImageWithFallback(aboutImgEl, photo.src, photo.alt, "aboutGallery");
+          }
+          aboutItems[i].setAttribute("aria-label", "Προβολή: " + photo.alt);
+        }
+      });
+    }
+  }
 
   /* Offers background */
   setBackground("offersBg", img.offers);
@@ -152,8 +166,7 @@ function applyConfig() {
       if (items[i]) {
         var imgEl = items[i].querySelector("img");
         if (imgEl) {
-          imgEl.src = g.src;
-          imgEl.alt = g.alt;
+          setImageWithFallback(imgEl, g.src, g.alt, "mainGallery");
           items[i].setAttribute("aria-label", "Προβολή: " + g.alt);
         }
       }
@@ -171,6 +184,21 @@ function setImgSrc(id, src, alt) {
   if (!src) return;
   var el = document.getElementById(id);
   if (!el) return;
+  el.src = src;
+  if (alt) el.alt = alt;
+}
+
+function setImageWithFallback(el, src, alt, groupName) {
+  if (!el || !src) return;
+  var fallbackSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'%3E%3Crect width='1600' height='1000' fill='%23ece7dc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='64' fill='%23746649'%3EImage unavailable%3C/text%3E%3C/svg%3E";
+
+  el.onerror = function () {
+    el.onerror = null;
+    el.src = fallbackSvg;
+    if (alt) el.alt = alt + " (μη διαθέσιμη εικόνα)";
+    console.warn("Image failed to load in " + groupName + ":", src);
+  };
+
   el.src = src;
   if (alt) el.alt = alt;
 }

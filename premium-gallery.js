@@ -12,7 +12,7 @@
 
   if (!lightbox || !lbImage) return;
 
-  var items   = Array.from(document.querySelectorAll(".gallery-item"));
+  var items   = Array.from(document.querySelectorAll("[data-lightbox-item='true']"));
   if (items.length === 0) return;
 
   var current = 0;
