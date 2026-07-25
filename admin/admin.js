@@ -47,17 +47,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ── Tab navigation ──────────────────────────────────────── */
 
-  var navLinks = Array.from(document.querySelectorAll(".admin-nav-link"));
-  var tabs     = Array.from(document.querySelectorAll(".admin-tab"));
+  const navLinks = Array.from(document.querySelectorAll(".admin-nav-link"));
+  const tabs     = Array.from(document.querySelectorAll(".admin-tab"));
 
   function activateTab(tabName) {
     navLinks.forEach(function (link) {
-      var isActive = link.getAttribute("data-tab") === tabName;
+      const isActive = link.getAttribute("data-tab") === tabName;
       link.classList.toggle("active", isActive);
     });
 
     tabs.forEach(function (tab) {
-      var isActive = tab.id === "tab-" + tabName;
+      const isActive = tab.id === "tab-" + tabName;
       tab.classList.toggle("hidden", !isActive);
     });
 
@@ -70,35 +70,35 @@ document.addEventListener("DOMContentLoaded", function () {
   navLinks.forEach(function (link) {
     link.addEventListener("click", function (e) {
       e.preventDefault();
-      var tabName = link.getAttribute("data-tab");
+      const tabName = link.getAttribute("data-tab");
       activateTab(tabName);
     });
   });
 
   /* Restore last active tab */
   try {
-    var savedTab = sessionStorage.getItem("adminActiveTab");
+    const savedTab = sessionStorage.getItem("adminActiveTab");
     if (savedTab) activateTab(savedTab);
   } catch (e) { /* ignore */ }
 
   /* ── Mobile sidebar toggle ───────────────────────────────── */
 
-  var sidebarToggle = document.getElementById("sidebarToggle");
-  var adminNav      = document.querySelector(".admin-nav");
+  const sidebarToggle = document.getElementById("sidebarToggle");
+  const adminNav      = document.querySelector(".admin-nav");
 
   if (sidebarToggle && adminNav) {
     sidebarToggle.addEventListener("click", function () {
-      var isOpen = adminNav.classList.toggle("open");
+      const isOpen = adminNav.classList.toggle("open");
       sidebarToggle.setAttribute("aria-expanded", String(isOpen));
     });
   }
 
   /* ── AI type selector ────────────────────────────────────── */
 
-  var aiTypeButtons = Array.from(document.querySelectorAll(".ai-type-btn"));
-  var aiContextArea = document.getElementById("aiContext");
+  const aiTypeButtons = Array.from(document.querySelectorAll(".ai-type-btn"));
+  const aiContextArea = document.getElementById("aiContext");
 
-  var aiPlaceholders = {
+  const aiPlaceholders = {
     offer:     "π.χ. Early booking Αύγουστος, -20%, ισχύει για ζευγάρια, έως 30 Ιουνίου",
     instagram: "π.χ. Ηλιοβασίλεμα από τον εξώστη δωμάτιο 2, ήσυχη Κυριακή, ζευγάρι",
     post:      "π.χ. Ανοικτά για κρατήσεις Σεπτεμβρίου, ειδικές τιμές για οικογένειες",
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
       aiTypeButtons.forEach(function (b) { b.classList.remove("active"); });
       btn.classList.add("active");
 
-      var type = btn.getAttribute("data-type");
+      const type = btn.getAttribute("data-type");
       if (aiContextArea && aiPlaceholders[type]) {
         aiContextArea.placeholder = aiPlaceholders[type];
       }
@@ -121,8 +121,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ── AI clear button ─────────────────────────────────────── */
 
-  var aiClearBtn = document.getElementById("aiClearBtn");
-  var aiOutput   = document.getElementById("aiOutput");
+  const aiClearBtn = document.getElementById("aiClearBtn");
+  const aiOutput   = document.getElementById("aiOutput");
 
   if (aiClearBtn && aiOutput) {
     aiClearBtn.addEventListener("click", function () {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ── AI generate placeholder message ────────────────────── */
 
-  var aiGenerateBtn = document.getElementById("aiGenerateBtn");
+  const aiGenerateBtn = document.getElementById("aiGenerateBtn");
 
   if (aiGenerateBtn) {
     aiGenerateBtn.addEventListener("click", function () {
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ── Reviews badge (placeholder: 0 pending) ─────────────── */
   /* Replace with a fetch() to /api/reviews?status=pending when backend ready */
-  var reviewsBadge = document.getElementById("reviewsBadge");
+  const reviewsBadge = document.getElementById("reviewsBadge");
   if (reviewsBadge) {
     reviewsBadge.textContent = "0";
     /* When backend is ready:

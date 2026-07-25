@@ -25,18 +25,18 @@
 
 /* Temporary fallback: email address that receives review submissions.
    Replace with a real backend endpoint as documented above. */
-var REVIEW_RECIPIENT_EMAIL = "info@example.gr";
+const REVIEW_RECIPIENT_EMAIL = "info@example.gr";
 
 document.addEventListener("DOMContentLoaded", function () {
-  var form    = document.getElementById("reviewForm");
-  var success = document.getElementById("reviewSuccess");
+  const form    = document.getElementById("reviewForm");
+  const success = document.getElementById("reviewSuccess");
 
-  if (!form) return;
+  if (!form || !success) return;
 
   /* ── Validation helpers ─────────────────────────────────── */
 
   function getSelectedRating() {
-    var checked = form.querySelector("input[name='rating']:checked");
+    const checked = form.querySelector("input[name='rating']:checked");
     return checked ? parseInt(checked.value, 10) : 0;
   }
 
@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    var nameField   = document.getElementById("reviewName");
-    var reviewField = document.getElementById("reviewText");
-    var rating      = getSelectedRating();
+    const nameField   = document.getElementById("reviewName");
+    const reviewField = document.getElementById("reviewText");
+    const rating      = getSelectedRating();
 
     /* Validate name */
     if (!nameField.value.trim()) {
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* Validate rating */
     if (rating === 0) {
-      var firstStar = form.querySelector("input[name='rating']");
+      const firstStar = form.querySelector("input[name='rating']");
       firstStar.setCustomValidity("Παρακαλώ επιλέξτε βαθμολογία.");
       firstStar.reportValidity();
       firstStar.setCustomValidity("");
@@ -79,14 +79,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* Build star string for the email subject */
-    var stars = "";
-    for (var i = 0; i < rating; i++) stars += "★";
+    let stars = "";
+    for (let i = 0; i < rating; i++) stars += "★";
 
-    var subject = encodeURIComponent(
+    const subject = encodeURIComponent(
       "Νέα κριτική (" + stars + ") — " + nameField.value.trim()
     );
 
-    var body = encodeURIComponent(
+    const body = encodeURIComponent(
       "Όνομα: " + nameField.value.trim() + "\n" +
       "Βαθμολογία: " + rating + "/5 " + stars + "\n\n" +
       "Κριτική:\n" + reviewField.value.trim() + "\n\n" +
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     success.focus();
 
     /* Also hide the notice */
-    var notice = form.closest(".review-form-wrapper").querySelector(".review-form-notice");
+    const notice = form.closest(".review-form-wrapper").querySelector(".review-form-notice");
     if (notice) notice.hidden = true;
   });
 });
