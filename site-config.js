@@ -53,11 +53,11 @@ var SITE_CONFIG = {
 
     /** Gallery items — order controls display order */
     gallery: [
-      { src: "images/exterior-01.jpg", alt: "Εξωτερικός χώρος 1" },
-      { src: "images/exterior-02.jpg", alt: "Εξωτερικός χώρος 2" },
-      { src: "images/exterior-03.jpg", alt: "Εξωτερικός χώρος 3" },
-      { src: "images/exterior-04.jpg", alt: "Εξωτερικός χώρος 4" },
-      { src: "images/exterior-05.jpg", alt: "Εξωτερικός χώρος 5" },
+      { src: "images/exterior-01.jpg", alt: "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" },
+      { src: "images/exterior-02.jpg", alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
+      { src: "images/exterior-03.jpg", alt: "Κήπος και είσοδος των διαμερισμάτων" },
+      { src: "images/exterior-04.jpg", alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
+      { src: "images/exterior-05.jpg", alt: "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" },
     ],
 
     /** Room cards — must match room order in HTML */
