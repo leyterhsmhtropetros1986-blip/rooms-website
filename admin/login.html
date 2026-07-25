@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Admin Login — Asteria Apartments</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-main" style="max-width: 460px; margin: 60px auto;">
+    <div class="admin-card">
+      <h3>Σύνδεση διαχειριστή</h3>
+      <p class="admin-muted" style="margin-bottom: 16px;">Η πρόσβαση επιτρέπεται μόνο σε εξουσιοδοτημένους λογαριασμούς ιδιοκτήτη.</p>
+
+      <form id="adminLoginForm">
+        <div class="admin-form-group">
+          <label class="admin-label" for="adminEmail">Email</label>
+          <input class="admin-input" id="adminEmail" type="email" required autocomplete="username">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-label" for="adminPassword">Κωδικός</label>
+          <input class="admin-input" id="adminPassword" type="password" required autocomplete="current-password">
+        </div>
+
+        <p class="admin-muted" id="adminLoginError" hidden style="color: var(--admin-danger); margin-bottom: 10px;"></p>
+
+        <button class="admin-btn admin-btn-primary" id="adminLoginBtn" type="submit" style="width: 100%; justify-content:center;">
+          Σύνδεση
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

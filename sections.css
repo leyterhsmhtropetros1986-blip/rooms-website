@@ -1,0 +1,345 @@
+/* ============================================================
+ * sections.css
+ * Styles for: language toggle, video, offers, stay info, FAQ
+ * ============================================================ */
+
+/* ── Language toggle button ───────────────────────────────── */
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 13px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.9);
+  outline: none;
+}
+
+.lang-toggle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(185, 139, 95, 0.6);
+}
+
+/* On scrolled / light header */
+.header.scrolled .lang-toggle {
+  border-color: rgba(23, 33, 29, 0.4);
+  color: var(--text);
+}
+
+.header.scrolled .lang-toggle:hover {
+  background: rgba(23, 33, 29, 0.08);
+}
+
+/* ── Video section ────────────────────────────────────────── */
+
+.video-section {
+  background: var(--dark);
+  color: #fff;
+}
+
+.video-section .section-label {
+  color: #e2c6aa;
+}
+
+.video-section h2 {
+  color: #fff;
+}
+
+.video-section p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.video-embed-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 36px auto 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #0a1a14;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.4);
+}
+
+.video-iframe,
+.video-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--radius);
+}
+
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.88rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ── Offers section ───────────────────────────────────────── */
+
+.offers-section {
+  background: var(--background);
+}
+
+.offers-empty {
+  max-width: 540px;
+  margin: 32px auto 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.offers-empty p {
+  color: var(--muted);
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.offer-card {
+  position: relative;
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.offer-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.offer-card h3 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.32rem);
+}
+
+.offer-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.offer-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 16px;
+  font-size: 0.875rem;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin: 0;
+}
+
+.offer-meta dt {
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.offer-meta dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.offer-card .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* ── Stay information ─────────────────────────────────────── */
+
+.stay-info-section {
+  background: var(--surface);
+}
+
+.stay-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.stay-info-item {
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stay-info-item dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+}
+
+.stay-info-item dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.stay-info-item dd a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* TODO items stand out slightly */
+.stay-info-item dd[data-i18n*="TODO"],
+.stay-info-item dd:not([data-i18n]) {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── FAQ accordion ────────────────────────────────────────── */
+
+.faq-section {
+  background: var(--background);
+}
+
+.faq-container {
+  max-width: 780px;
+}
+
+.faq-list {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 18px 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  gap: 16px;
+  transition: color 0.15s;
+}
+
+.faq-question:hover {
+  color: var(--primary);
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Chevron indicator */
+.faq-question::after {
+  content: "+";
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.faq-question[aria-expanded="true"]::after {
+  content: "−";
+}
+
+.faq-answer {
+  padding: 4px 4px 22px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+/* ── Responsive adjustments ───────────────────────────────── */
+
+@media (max-width: 640px) {
+  .video-embed-container {
+    border-radius: 12px;
+  }
+
+  .stay-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .offers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .stay-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-question::after,
+  .lang-toggle {
+    transition: none;
+  }
+}

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    IMPORTANT: Prevent search engines from indexing the admin dashboard.
+    This page must NOT appear in public search results.
+  -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+
+  <title>Admin Dashboard — Asteria Apartments</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  PROTOTYPE NOTICE                                           ║
+    ║                                                             ║
+    ║  This admin dashboard now uses backend APIs and auth.       ║
+    ║  Some integrations (AI/Instagram publish) still need keys.  ║
+    ║                                                             ║
+    ║  REQUIRED BEFORE FULL PRODUCTION AUTOMATION:                ║
+    ║  • Configure all environment variables in Vercel            ║
+    ║  • Apply Supabase migration                                 ║
+    ║  • Configure AI provider and Meta Graph credentials         ║
+    ║  • Complete Meta App Review for instagram_content_publish   ║
+    ║  • Review owner credentials and rotation policy             ║
+    ║                                                             ║
+    ║  Do NOT deploy without env configuration and DB migration.  ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <div class="prototype-banner" role="alert">
+    <span aria-hidden="true">⚠️</span>
+    <strong>ADMIN</strong> — Απαιτείται έγκυρη σύνδεση διαχειριστή.
+    Ορισμένες λειτουργίες (AI/Instagram publish) παραμένουν ανενεργές χωρίς
+    τα απαιτούμενα backend credentials.
+  </div>
+
+  <div class="admin-layout">
+
+    <!-- ── Sidebar ─────────────────────────────────────────────── -->
+    <aside class="admin-sidebar" id="adminSidebar">
+
+      <div class="admin-sidebar-header">
+        <div class="admin-logo">
+          <span class="admin-logo-main">Asteria</span>
+          <span class="admin-logo-sub">Admin Panel</span>
+        </div>
+        <button
+          class="admin-sidebar-toggle"
+          id="sidebarToggle"
+          type="button"
+          aria-label="Εναλλαγή πλευρικής γραμμής"
+        >
+          ☰
+        </button>
+      </div>
+
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a href="#" class="admin-nav-link active" data-tab="reservations">
+          <span class="nav-icon" aria-hidden="true">📅</span>
+          <span class="nav-label">Κρατήσεις</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="calendar">
+          <span class="nav-icon" aria-hidden="true">🗓️</span>
+          <span class="nav-label">Ημερολόγιο</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="guests">
+          <span class="nav-icon" aria-hidden="true">👥</span>
+          <span class="nav-label">Επισκέπτες</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="reviews">
+          <span class="nav-icon" aria-hidden="true">⭐</span>
+          <span class="nav-label">Κριτικές</span>
+          <span class="nav-badge" id="reviewsBadge" aria-label="κριτικές σε αναμονή">0</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="offers">
+          <span class="nav-icon" aria-hidden="true">🏷️</span>
+          <span class="nav-label">Προσφορές</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="content">
+          <span class="nav-icon" aria-hidden="true">📝</span>
+          <span class="nav-label">Περιεχόμενο</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="ai">
+          <span class="nav-icon" aria-hidden="true">🤖</span>
+          <span class="nav-label">AI Βοηθός</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="instagram">
+          <span class="nav-icon" aria-hidden="true">📸</span>
+          <span class="nav-label">Instagram</span>
+        </a>
+        <a href="#" class="admin-nav-link" data-tab="settings">
+          <span class="nav-icon" aria-hidden="true">⚙️</span>
+          <span class="nav-label">Ρυθμίσεις</span>
+        </a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="../index.html" class="admin-back-link">
+          <span aria-hidden="true">←</span> Δημόσια σελίδα
+        </a>
+        <button class="admin-btn" type="button" id="adminLogoutBtn" style="margin-top:10px;">
+          Αποσύνδεση
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- ── Main content ───────────────────────────────────────── -->
+    <main class="admin-main" id="adminMain">
+
+      <!-- ── Reservations ──────────────────────────────────── -->
+      <div class="admin-tab" id="tab-reservations">
+        <div class="admin-page-header">
+          <h1>Κρατήσεις</h1>
+          <button class="admin-btn admin-btn-primary" type="button" id="addReservationBtn">
+            + Νέα κράτηση
+          </button>
+        </div>
+
+        <div class="admin-backend-notice">
+          <strong>⚙️ Backend απαιτείται</strong>
+          <p>
+            Για την αποθήκευση κρατήσεων χρειάζεστε βάση δεδομένων και
+            API endpoint (π.χ. <code>POST /api/reservations</code>).
+            Προς το παρόν εμφανίζεται η δομή της διεπαφής.
+          </p>
+        </div>
+
+        <div class="admin-filters">
+          <input
+            type="search"
+            class="admin-input"
+            id="reservationSearch"
+            placeholder="Αναζήτηση κράτησης…"
+            aria-label="Αναζήτηση κράτησης"
+          >
+          <select class="admin-select" aria-label="Φίλτρο κατάστασης" id="reservationStatusFilter">
+            <option value="all">Όλες</option>
+            <option value="confirmed">Επιβεβαιωμένες</option>
+            <option value="pending">Σε αναμονή</option>
+            <option value="cancelled">Ακυρωμένες</option>
+          </select>
+          <input type="date" class="admin-input" aria-label="Φίλτρο ημερομηνίας" id="reservationDateFilter">
+        </div>
+
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Επισκέπτης</th>
+                <th>Δωμάτιο</th>
+                <th>Άφιξη</th>
+                <th>Αναχώρηση</th>
+                <th>Διανυκτερεύσεις</th>
+                <th>Κατάσταση</th>
+                <th>Ενέργειες</th>
+              </tr>
+            </thead>
+            <tbody id="reservationsBody">
+              <tr class="admin-empty-row">
+                <td colspan="7">
+                  <span aria-hidden="true">📭</span>
+                  Δεν υπάρχουν κρατήσεις ακόμα.
+                  Συνδέστε το backend για να εμφανίζονται εδώ.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── Calendar ──────────────────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-calendar">
+        <div class="admin-page-header">
+          <h1>Ημερολόγιο Διαθεσιμότητας</h1>
+        </div>
+
+        <div class="admin-backend-notice">
+          <strong>⚙️ Backend απαιτείται</strong>
+          <p>
+            Το ημερολόγιο χρειάζεται API για ανάγνωση και αποθήκευση
+            διαθεσιμότητας. Συνιστώμενη βιβλιοθήκη: FullCalendar.js
+            συνδεδεμένο με iCalendar endpoint για συμβατότητα με
+            Booking.com / Airbnb (iCal sync).
+          </p>
+        </div>
+
+        <div class="calendar-placeholder" aria-hidden="true">
+          <div class="calendar-grid-header">
+            <span>Δευ</span><span>Τρί</span><span>Τετ</span>
+            <span>Πεμ</span><span>Παρ</span><span>Σαβ</span><span>Κυρ</span>
+          </div>
+          <div class="calendar-grid-body" id="calendarGridBody">
+            <!-- Visual placeholder cells -->
+            <div class="cal-day cal-prev">28</div>
+            <div class="cal-day cal-prev">29</div>
+            <div class="cal-day cal-prev">30</div>
+            <div class="cal-day">1</div>
+            <div class="cal-day cal-booked">2</div>
+            <div class="cal-day cal-booked">3</div>
+            <div class="cal-day">4</div>
+            <div class="cal-day">5</div>
+            <div class="cal-day">6</div>
+            <div class="cal-day">7</div>
+            <div class="cal-day">8</div>
+            <div class="cal-day cal-booked">9</div>
+            <div class="cal-day cal-booked">10</div>
+            <div class="cal-day cal-booked">11</div>
+            <div class="cal-day">12</div>
+            <div class="cal-day">13</div>
+            <div class="cal-day">14</div>
+            <div class="cal-day">15</div>
+            <div class="cal-day">16</div>
+            <div class="cal-day">17</div>
+            <div class="cal-day">18</div>
+            <div class="cal-day">19</div>
+            <div class="cal-day">20</div>
+            <div class="cal-day">21</div>
+            <div class="cal-day today">22</div>
+            <div class="cal-day">23</div>
+            <div class="cal-day">24</div>
+            <div class="cal-day">25</div>
+            <div class="cal-day">26</div>
+            <div class="cal-day">27</div>
+            <div class="cal-day">28</div>
+            <div class="cal-day cal-next">1</div>
+            <div class="cal-day cal-next">2</div>
+            <div class="cal-day cal-next">3</div>
+            <div class="cal-day cal-next">4</div>
+          </div>
+          <div class="calendar-legend">
+            <span class="legend-item"><span class="legend-dot available"></span> Διαθέσιμο</span>
+            <span class="legend-item"><span class="legend-dot booked"></span> Κλεισμένο</span>
+            <span class="legend-item"><span class="legend-dot today-dot"></span> Σήμερα</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Guests ─────────────────────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-guests">
+        <div class="admin-page-header">
+          <h1>Επισκέπτες</h1>
+          <button class="admin-btn admin-btn-primary" type="button">+ Νέος επισκέπτης</button>
+        </div>
+
+        <div class="admin-backend-notice">
+          <strong>⚙️ Backend απαιτείται</strong>
+          <p>
+            Τα στοιχεία επισκεπτών αποθηκεύονται σε βάση δεδομένων.
+            Χρειάζεται GDPR-compliant αποθήκευση και
+            πολιτική διαγραφής δεδομένων.
+          </p>
+        </div>
+
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Όνομα</th>
+                <th>Email</th>
+                <th>Τηλέφωνο</th>
+                <th>Επισκέψεις</th>
+                <th>Τελευταία επίσκεψη</th>
+                <th>Ενέργειες</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="admin-empty-row">
+                <td colspan="6">
+                  <span aria-hidden="true">👤</span>
+                  Δεν υπάρχουν στοιχεία επισκεπτών ακόμα.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── Reviews (moderation) ───────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-reviews">
+        <div class="admin-page-header">
+          <h1>Κριτικές — Έλεγχος</h1>
+        </div>
+
+        <div class="admin-backend-notice">
+          <strong>⚙️ Backend απαιτείται</strong>
+          <p>
+            Οι κριτικές αποθηκεύονται σε βάση με status = "pending".
+            Εδώ εμφανίζεται μια λίστα αναμενόμενων κριτικών από την
+            API endpoint <code>GET /api/reviews?status=pending</code>.
+            Απαιτείται διαχειριστικό token για έγκριση ή απόρριψη.
+          </p>
+        </div>
+
+        <div class="review-moderation-grid" id="pendingReviews">
+          <div class="admin-empty-state">
+            <span aria-hidden="true">⭐</span>
+            <p>Δεν υπάρχουν κριτικές προς έλεγχο.</p>
+            <p class="admin-muted">Οι νέες υποβολές θα εμφανίζονται εδώ.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Offers ─────────────────────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-offers">
+        <div class="admin-page-header">
+          <h1>Προσφορές</h1>
+          <button class="admin-btn admin-btn-primary" type="button" id="addOfferBtn">+ Νέα προσφορά</button>
+        </div>
+
+        <div class="admin-backend-notice">
+          <strong>⚙️ Backend απαιτείται</strong>
+          <p>
+            Οι προσφορές αποθηκεύονται σε βάση και εμφανίζονται δυναμικά
+            στη δημόσια σελίδα. Χρειάζεται
+            <code>POST /api/offers</code> endpoint και ενσωμάτωση στο frontend.
+          </p>
+        </div>
+
+        <div class="admin-grid-cards" id="offersGrid">
+          <div class="admin-empty-state">
+            <span aria-hidden="true">🏷️</span>
+            <p>Δεν υπάρχουν ενεργές προσφορές.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Content ───────────────────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-content">
+        <div class="admin-page-header">
+          <h1>Διαχείριση Περιεχομένου</h1>
+        </div>
+
+        <div class="admin-backend-notice">
+          <strong>⚙️ Backend απαιτείται</strong>
+          <p>
+            Για δυναμικό περιεχόμενο χρειάζεστε CMS ή API.
+            Προς το παρόν, επεξεργαστείτε απευθείας τα αρχεία
+            <code>index.html</code>, <code>style.css</code> κ.λπ.
+          </p>
+        </div>
+
+        <div class="admin-content-sections">
+          <div class="admin-card">
+            <h3>Κείμενα αρχικής σελίδας</h3>
+            <p class="admin-muted">Επεξεργαστείτε το <code>index.html</code> απευθείας.</p>
+            <button class="admin-btn" type="button" disabled title="Απαιτείται CMS backend">
+              Επεξεργασία (Backend)
+            </button>
+          </div>
+          <div class="admin-card">
+            <h3>Φωτογραφίες δωματίων</h3>
+            <p class="admin-muted">Ανεβάστε εικόνες στον φάκελο <code>images/</code> χρησιμοποιώντας FTP ή git.</p>
+            <button class="admin-btn" type="button" disabled title="Απαιτείται file upload API">
+              Ανέβασμα (Backend)
+            </button>
+          </div>
+          <div class="admin-card">
+            <h3>Τιμοκατάλογος</h3>
+            <p class="admin-muted">Ενημερώστε τις τιμές στο <code>booking-config.js</code> ή μέσω CMS.</p>
+            <button class="admin-btn" type="button" disabled title="Απαιτείται pricing API">
+              Επεξεργασία (Backend)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AI Assistant ───────────────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-ai">
+        <div class="admin-page-header">
+          <h1>AI Βοηθός</h1>
+          <span class="admin-badge-prototype">PROTOTYPE</span>
+        </div>
+
+        <!--
+          AI INTEGRATION NOTES
+          =====================
+          This interface is a prototype for an AI content generation tool.
+
+          REQUIRED SETUP (backend):
+          1. Create a server-side API endpoint, e.g.:
+               POST /api/ai/generate
+               Authorization: ******
+               Body: { type: "instagram_caption", context: "..." }
+
+          2. Your backend calls the AI provider (OpenAI, Anthropic, etc.)
+             using environment variables:
+               OPENAI_API_KEY=sk-...       (never put this in frontend code)
+               AI_MODEL=gpt-4o             (configurable model)
+
+          3. The frontend sends requests to /api/ai/generate (your own backend),
+             NOT directly to OpenAI. This keeps the API key secure.
+
+          4. Implement rate limiting and admin authentication on the endpoint.
+
+          SUPPORTED CONTENT TYPES:
+          • Offers / promotions
+          • Instagram captions (GR + EN)
+          • Website posts / announcements
+          • Room descriptions
+          • Replies to guest reviews
+          • Greek ↔ English translations
+        -->
+
+        <div class="admin-backend-notice">
+          <strong>🔑 API Key απαιτείται (backend)</strong>
+          <p>
+            Ο AI Βοηθός απαιτεί σύνδεση με AI provider μέσω backend.
+            Προσθέστε <code>OPENAI_API_KEY</code> ως environment variable
+            στον server σας. <strong>Μην τοποθετείτε ποτέ API keys
+            σε frontend αρχεία.</strong>
+          </p>
+          <p style="margin-top: 8px;">
+            Δείτε τα σχόλια στον κώδικα (<code>admin/admin.js</code>)
+            για οδηγίες ρύθμισης.
+          </p>
+        </div>
+
+        <div class="ai-layout">
+          <div class="ai-sidebar">
+            <h3>Τύπος περιεχομένου</h3>
+            <div class="ai-type-list">
+              <button class="ai-type-btn active" data-type="offer" type="button">
+                🏷️ Προσφορά
+              </button>
+              <button class="ai-type-btn" data-type="instagram" type="button">
+                📸 Instagram caption
+              </button>
+              <button class="ai-type-btn" data-type="post" type="button">
+                📝 Ανακοίνωση / Post
+              </button>
+              <button class="ai-type-btn" data-type="room" type="button">
+                🛏️ Περιγραφή δωματίου
+              </button>
+              <button class="ai-type-btn" data-type="reply" type="button">
+                💬 Απάντηση σε κριτική
+              </button>
+              <button class="ai-type-btn" data-type="translate" type="button">
+                🌐 Μετάφραση (EL ↔ EN)
+              </button>
+            </div>
+          </div>
+
+          <div class="ai-main">
+            <div class="ai-form">
+              <div class="admin-form-group">
+                <label class="admin-label" for="aiContext">
+                  Περιγραφή / Οδηγίες
+                </label>
+                <textarea
+                  class="admin-textarea"
+                  id="aiContext"
+                  rows="5"
+                  placeholder="π.χ. Προσφορά για early booking Αυγούστου, -20%, ισχύει για ζευγάρια…"
+                ></textarea>
+              </div>
+
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label" for="aiLanguage">Γλώσσα εξόδου</label>
+                  <select class="admin-select" id="aiLanguage">
+                    <option value="el">Ελληνικά</option>
+                    <option value="en">English</option>
+                    <option value="both">Και τα δύο</option>
+                  </select>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label" for="aiTone">Ύφος</label>
+                  <select class="admin-select" id="aiTone">
+                    <option>Φιλικό</option>
+                    <option>Επαγγελματικό</option>
+                    <option>Ενθουσιώδες</option>
+                  </select>
+                </div>
+              </div>
+
+              <button
+                class="admin-btn admin-btn-primary admin-btn-ai"
+                type="button"
+                id="aiGenerateBtn"
+                title="Απαιτείται backend σύνδεση με AI API"
+              >
+                🤖 Δημιουργία περιεχομένου
+                <span class="ai-btn-note">(Χρειάζεται backend)</span>
+              </button>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-label" for="aiOutput">Αποτέλεσμα</label>
+              <textarea
+                class="admin-textarea admin-textarea-output"
+                id="aiOutput"
+                rows="8"
+                readonly
+                placeholder="Το παραγόμενο κείμενο θα εμφανιστεί εδώ μετά τη σύνδεση με AI API…"
+              ></textarea>
+              <div class="ai-output-actions">
+                <button class="admin-btn" type="button" id="aiCopyBtn">
+                  📋 Αντιγραφή
+                </button>
+                <button class="admin-btn" type="button" id="aiSaveDraftBtn">
+                  💾 Αποθήκευση draft
+                </button>
+                <button class="admin-btn" type="button" id="aiClearBtn">
+                  🗑️ Καθαρισμός
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Instagram ─────────────────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-instagram">
+        <div class="admin-page-header">
+          <h1>Instagram</h1>
+          <span class="admin-badge-prototype">PROTOTYPE</span>
+        </div>
+
+        <!--
+          INSTAGRAM INTEGRATION NOTES
+          ============================
+          This is a UI prototype for Instagram integration via the Meta Graph API.
+
+          REQUIRED SETUP:
+          1. Create a Meta Business App at developers.facebook.com
+          2. Connect your Instagram Business Account to a Facebook Page
+          3. Request permissions: instagram_basic, instagram_content_publish,
+             instagram_manage_insights, pages_read_engagement
+
+          ENVIRONMENT VARIABLES (backend only — never in frontend):
+            META_APP_ID=...
+            META_APP_SECRET=...
+            META_INSTAGRAM_ACCOUNT_ID=...
+            META_ACCESS_TOKEN=...    (long-lived page token)
+
+          API ENDPOINTS needed on your backend:
+            GET  /api/instagram/posts     → fetch recent posts via Graph API
+            POST /api/instagram/caption   → generate caption via AI
+            POST /api/instagram/publish   → publish to Instagram (requires approval)
+
+          IMPORTANT:
+          • Access tokens expire — implement token refresh logic.
+          • Instagram publishing requires the instagram_content_publish permission
+            which needs Meta App Review.
+          • Never store tokens in frontend JavaScript or HTML files.
+        -->
+
+        <div class="admin-backend-notice">
+          <strong>📱 Meta Graph API απαιτείται</strong>
+          <p>
+            Η σύνδεση Instagram χρειάζεται Meta Business App,
+            Instagram Business Account και environment variables στον server.
+            Δείτε τα σχόλια στον κώδικα για λεπτομέρειες.
+          </p>
+        </div>
+
+        <div class="instagram-layout">
+
+          <div class="instagram-connect-card">
+            <div class="instagram-connect-icon" aria-hidden="true">📸</div>
+            <h3>Σύνδεση Instagram</h3>
+            <p>
+              Συνδέστε τον επαγγελματικό λογαριασμό Instagram
+              για να βλέπετε posts και να δημιουργείτε περιεχόμενο.
+            </p>
+            <button
+              class="admin-btn admin-btn-instagram"
+              type="button"
+              id="instagramConnectBtn"
+              title="Απαιτείται Meta API ρύθμιση"
+            >
+              Σύνδεση μέσω Meta
+              <span class="ai-btn-note">(Χρειάζεται Meta App)</span>
+            </button>
+
+            <div class="instagram-requirements">
+              <h4>Απαιτήσεις</h4>
+              <ul>
+                <li>✓ Instagram Business ή Creator Account</li>
+                <li>✓ Σύνδεση με Facebook Page</li>
+                <li>✓ Meta Business App (developers.facebook.com)</li>
+                <li>✓ Έγκριση για <code>instagram_content_publish</code></li>
+                <li>✓ Environment variables στον server</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="instagram-content">
+            <div class="instagram-section">
+              <h3>Πρόσφατα Posts</h3>
+              <div class="instagram-posts-grid" id="instagramPosts">
+                <div class="admin-empty-state">
+                  <span aria-hidden="true">🖼️</span>
+                  <p>Δεν υπάρχουν posts.</p>
+                  <p class="admin-muted">Συνδέστε τον λογαριασμό για να δείτε τα πρόσφατα posts.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="instagram-section">
+              <h3>Δημιουργία Caption</h3>
+              <div class="admin-form-group">
+                <label class="admin-label" for="instagramContext">
+                  Περιγράψτε τη φωτογραφία / περιστατικό
+                </label>
+                <textarea
+                  class="admin-textarea"
+                  id="instagramContext"
+                  rows="3"
+                  placeholder="π.χ. Ηλιοβασίλεμα από τον εξώστη του δωματίου 2, ήσυχο απόγευμα…"
+                ></textarea>
+              </div>
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label" for="igHashtags">Hashtags</label>
+                  <input
+                    type="text"
+                    class="admin-input"
+                    id="igHashtags"
+                    placeholder="#asteriaapartments #νοτιαευβοια…"
+                  >
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label" for="igLanguage">Γλώσσα</label>
+                  <select class="admin-select" id="igLanguage">
+                    <option>Ελληνικά</option>
+                    <option>English</option>
+                    <option>Και τα δύο</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                class="admin-btn admin-btn-primary"
+                type="button"
+                id="instagramDraftSaveBtn"
+                title="Αποθήκευση πρόχειρου caption"
+              >
+                💾 Αποθήκευση caption draft
+              </button>
+            </div>
+
+            <div class="instagram-section">
+              <h3>Προετοιμασία Post</h3>
+              <p class="admin-muted">
+                Ανεβάστε εικόνα, επεξεργαστείτε το caption και
+                προγραμματίστε δημοσίευση.
+                <br>
+                <strong>Σημείωση:</strong> Η αυτόματη δημοσίευση στο Instagram
+                λειτουργεί μόνο αφού ρυθμιστεί το Meta API και εγκριθεί η
+                εφαρμογή για <code>instagram_content_publish</code>.
+              </p>
+              <button
+                class="admin-btn"
+                type="button"
+                id="instagramPublishBtn"
+                title="Απαιτείται Meta API έγκριση"
+              >
+                📤 Δημοσίευση στο Instagram
+                <span class="ai-btn-note">(Χρειάζεται Meta App Review)</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Settings ──────────────────────────────────────── -->
+      <div class="admin-tab hidden" id="tab-settings">
+        <div class="admin-page-header">
+          <h1>Ρυθμίσεις</h1>
+        </div>
+
+        <div class="admin-settings-grid">
+
+          <div class="admin-card">
+            <h3>Στοιχεία καταλύματος</h3>
+            <div class="admin-form-group">
+              <label class="admin-label" for="settingName">Όνομα καταλύματος</label>
+              <input type="text" class="admin-input" id="settingName" value="Asteria Apartments">
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label" for="settingPhone">Τηλέφωνο</label>
+              <input type="tel" class="admin-input" id="settingPhone" value="+30 694 788 3098">
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label" for="settingEmail">Email</label>
+              <input type="email" class="admin-input" id="settingEmail" value="info@example.gr">
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label" for="settingAddress">Διεύθυνση</label>
+              <input type="text" class="admin-input" id="settingAddress" value="Νιμπορειό Ευβοίας, Νότια Εύβοια">
+            </div>
+            <button class="admin-btn admin-btn-primary" type="button" disabled title="Απαιτείται backend">
+              Αποθήκευση (Backend)
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <h3>Booking URLs</h3>
+            <p class="admin-muted">
+              Επεξεργαστείτε το αρχείο
+              <code>booking-config.js</code> για να ορίσετε
+              τα links Booking.com και Airbnb.
+            </p>
+            <div class="admin-form-group">
+              <label class="admin-label" for="settingBookingCom">Booking.com URL</label>
+              <input type="url" class="admin-input" id="settingBookingCom" placeholder="https://www.booking.com/…">
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label" for="settingAirbnb">Airbnb URL</label>
+              <input type="url" class="admin-input" id="settingAirbnb" placeholder="https://www.airbnb.com/rooms/…">
+            </div>
+            <p class="admin-muted" style="font-size: 0.8rem;">
+              Αντιγράψτε τις τιμές παραπάνω στο
+              <code>booking-config.js</code> ή ρυθμίστε backend για δυναμική αλλαγή.
+            </p>
+          </div>
+
+          <div class="admin-card">
+            <h3>Μηνύματα ειδοποίησης</h3>
+            <p class="admin-muted">
+              Ορίστε email για ειδοποιήσεις νέων κρατήσεων και κριτικών.
+            </p>
+            <div class="admin-form-group">
+              <label class="admin-label" for="settingNotifEmail">Email ειδοποιήσεων</label>
+              <input type="email" class="admin-input" id="settingNotifEmail" placeholder="admin@example.gr">
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">
+                <input type="checkbox" checked> Ειδοποίηση για νέα κράτηση
+              </label>
+            </div>
+            <div class="admin-form-group">
+              <label class="admin-label">
+                <input type="checkbox" checked> Ειδοποίηση για νέα κριτική
+              </label>
+            </div>
+            <button class="admin-btn admin-btn-primary" type="button" disabled title="Απαιτείται backend">
+              Αποθήκευση (Backend)
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <h3>Τεκμηρίωση Backend</h3>
+            <p class="admin-muted">
+              Αυτό το dashboard είναι UI prototype. Ακολουθεί η λίστα
+              backend tasks που απαιτούνται για πλήρη λειτουργία:
+            </p>
+            <ul class="backend-todo-list">
+              <li>Secure authentication (JWT / session)</li>
+              <li>PostgreSQL ή MongoDB database</li>
+              <li>REST API: reservations, guests, reviews, offers</li>
+              <li>File upload service (room photos)</li>
+              <li>Email notification service (SendGrid / SMTP)</li>
+              <li>AI API integration (<code>OPENAI_API_KEY</code>)</li>
+              <li>Meta Graph API (<code>META_ACCESS_TOKEN</code>)</li>
+              <li>iCal feed για Booking.com / Airbnb sync</li>
+              <li>GDPR-compliant data handling</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+
+</body>
+</html>
