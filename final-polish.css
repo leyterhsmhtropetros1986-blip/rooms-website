@@ -658,12 +658,12 @@ h3 {
 
 /* ── Active nav link (set by scroll-spy) ───────────────────── */
 
-.navigation a[aria-current="page"] {
+.navigation a[aria-current="location"] {
   color: #ffffff;
   opacity: 1;
 }
 
-.navigation a[aria-current="page"]::after {
+.navigation a[aria-current="location"]::after {
   transform: scaleX(1);
   transform-origin: left;
 }

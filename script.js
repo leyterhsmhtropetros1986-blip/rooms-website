@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.forEach((link) => {
       const isCurrent = link.getAttribute("href") === `#${id}`;
       if (isCurrent) {
-        link.setAttribute("aria-current", "page");
+        link.setAttribute("aria-current", "location");
       } else {
         link.removeAttribute("aria-current");
       }

@@ -86,11 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let touchStartX = 0;
 
   lightbox.addEventListener("touchstart", (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartX = e.changedTouches[0].clientX;
   }, { passive: true });
 
   lightbox.addEventListener("touchend", (e) => {
-    const delta = touchStartX - e.changedTouches[0].screenX;
+    const delta = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(delta) > 48) {
       if (delta > 0) next(); else prev();
     }
