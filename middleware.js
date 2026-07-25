@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 const SESSION_COOKIE_NAME = 'admin_session';
 
 function toBase64Url(bytes) {
@@ -59,13 +61,13 @@ export default async function middleware(request) {
   const shouldProtectAdminApi = pathname.startsWith('/api/admin') || pathname.startsWith('/api/auth/session');
 
   if (!shouldProtectAdminPage && !shouldProtectAdminApi) {
-    return Response.next();
+    return NextResponse.next();
   }
 
   const token = request.cookies.get(SESSION_COOKIE_NAME)?.value;
   const valid = await isValidSession(token, sessionSecret, ownerEmails);
 
-  if (valid) return Response.next();
+  if (valid) return NextResponse.next();
 
   if (shouldProtectAdminApi) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {

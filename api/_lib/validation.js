@@ -17,7 +17,7 @@ function optionalString(value, field, { max = 5000 } = {}) {
 function requireEmail(value) {
   const email = requireString(value, 'email', { min: 3, max: 120 }).toLowerCase();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    throw new Error('email is invalid');
+    throw new Error('Please enter a valid email address');
   }
   return email;
 }

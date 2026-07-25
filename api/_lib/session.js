@@ -37,7 +37,10 @@ function verifySessionToken(token) {
   if (!header || !payload || !signature) return null;
 
   const expected = sign(`${header}.${payload}`);
-  if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) return null;
+  const signatureBuffer = Buffer.from(signature);
+  const expectedBuffer = Buffer.from(expected);
+  if (signatureBuffer.length !== expectedBuffer.length) return null;
+  if (!crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) return null;
 
   try {
     const decoded = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));

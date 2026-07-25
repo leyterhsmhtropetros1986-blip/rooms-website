@@ -11,10 +11,11 @@ function parseCredentials() {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
     return parsed
-      .filter((item) => item && item.email && item.password)
+      .filter((item) => item && item.email && (item.password || item.password_scrypt))
       .map((item) => ({
         email: String(item.email).trim().toLowerCase(),
-        password: String(item.password),
+        password: item.password ? String(item.password) : null,
+        password_scrypt: item.password_scrypt ? String(item.password_scrypt) : null,
       }));
   } catch {
     return [];

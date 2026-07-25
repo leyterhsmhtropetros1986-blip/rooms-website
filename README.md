@@ -10,7 +10,7 @@ Static public website with a Vercel serverless backend for:
 
 ## Production architecture
 
-See `/home/runner/work/rooms-website/rooms-website/docs/production-architecture.md`.
+See `docs/production-architecture.md`.
 
 ## Stack
 
@@ -39,7 +39,7 @@ Copy `.env.example` and set values in Vercel project settings:
 
 Run migration in Supabase SQL editor:
 
-- `/home/runner/work/rooms-website/rooms-website/supabase/migrations/001_initial_schema.sql`
+- `supabase/migrations/001_initial_schema.sql`
 
 ## Local run
 
@@ -67,6 +67,7 @@ This repository is static-first. For local API + middleware behavior, run with V
 - Never store API keys or tokens in frontend files.
 - Keep `SUPABASE_SERVICE_ROLE_KEY` server-side only.
 - Keep admin credentials in encrypted environment variables only.
+- Prefer scrypt hashes in `ADMIN_CREDENTIALS_JSON` via `password_scrypt` (`salt:hexhash`) instead of plaintext passwords.
 - Session cookie is `HttpOnly`, `Secure`, `SameSite=Lax`.
 - Public review/reservation endpoints include server-side validation and rate limiting.
 - Instagram publishing must remain disabled until Meta App permissions are approved.

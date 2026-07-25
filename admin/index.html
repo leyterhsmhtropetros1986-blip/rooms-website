@@ -34,25 +34,25 @@
     ╔══════════════════════════════════════════════════════════════╗
     ║  PROTOTYPE NOTICE                                           ║
     ║                                                             ║
-    ║  This admin dashboard is a UI PROTOTYPE ONLY.              ║
-    ║  It does NOT provide real authentication or data storage.   ║
+    ║  This admin dashboard now uses backend APIs and auth.       ║
+    ║  Some integrations (AI/Instagram publish) still need keys.  ║
     ║                                                             ║
-    ║  REQUIRED BACKEND WORK BEFORE PRODUCTION USE:               ║
-    ║  • Secure server-side authentication (e.g. JWT / OAuth)     ║
-    ║  • Session management with HTTPS-only cookies               ║
-    ║  • Database integration (reservations, guests, reviews)     ║
-    ║  • Server-rendered or API-protected admin routes            ║
-    ║  • Role-based access control                                ║
+    ║  REQUIRED BEFORE FULL PRODUCTION AUTOMATION:                ║
+    ║  • Configure all environment variables in Vercel            ║
+    ║  • Apply Supabase migration                                 ║
+    ║  • Configure AI provider and Meta Graph credentials         ║
+    ║  • Complete Meta App Review for instagram_content_publish   ║
+    ║  • Review owner credentials and rotation policy             ║
     ║                                                             ║
-    ║  Do NOT deploy this page publicly without backend auth.     ║
+    ║  Do NOT deploy without env configuration and DB migration.  ║
     ╚══════════════════════════════════════════════════════════════╝
   -->
 
   <div class="prototype-banner" role="alert">
     <span aria-hidden="true">⚠️</span>
-    <strong>PROTOTYPE</strong> — Δεν υπάρχει πραγματικός έλεγχος ταυτότητας.
-    Δείτε τα σχόλια στον κώδικα για τις απαιτούμενες backend ρυθμίσεις
-    πριν από δημόσια ανάπτυξη.
+    <strong>ADMIN</strong> — Απαιτείται έγκυρη σύνδεση διαχειριστή.
+    Ορισμένες λειτουργίες (AI/Instagram publish) παραμένουν ανενεργές χωρίς
+    τα απαιτούμενα backend credentials.
   </div>
 
   <div class="admin-layout">

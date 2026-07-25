@@ -22,13 +22,16 @@ module.exports = async function handler(req, res) {
 
     const prompt = `You are an assistant for a hotel owner. Generate ${type} text in ${language} with ${tone} tone. Context:\n${context}`;
 
-    const aiRes = await fetch('https://api.openai.com/v1/responses', {
+    const aiRes = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         Authorization: 'Bearer ' + OPENAI_API_KEY,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ model: AI_MODEL, input: prompt }),
+      body: JSON.stringify({
+        model: AI_MODEL,
+        messages: [{ role: 'user', content: prompt }],
+      }),
     });
 
     const aiData = await aiRes.json();
@@ -36,7 +39,7 @@ module.exports = async function handler(req, res) {
       return error(res, aiRes.status, aiData?.error?.message || 'AI request failed');
     }
 
-    const output = aiData.output_text || aiData.output?.[0]?.content?.[0]?.text || '';
+    const output = aiData?.choices?.[0]?.message?.content || '';
 
     await supabaseRequest('ai_drafts', {
       method: 'POST',
