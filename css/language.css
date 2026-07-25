@@ -1,0 +1,20 @@
+
+.language-toggle {
+  min-width: 48px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 800;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: transform .2s ease, background-color .2s ease;
+}
+.language-toggle:hover { transform: translateY(-1px); }
+.language-toggle:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .language-toggle { margin-left: auto; margin-right: 10px; }
+}
