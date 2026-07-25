@@ -56,9 +56,12 @@
          <br> keep their inner markup unchanged — their data-XX attr
          acts only as an ARIA / screen-reader label in that case.
          Exception: buttons, anchors, small, strong — always safe to update. */
-      var hasChildElements = Array.from(el.childNodes).some(function (n) {
-        return n.nodeType === 1; /* Node.ELEMENT_NODE */
-      });
+      var hasChildElements = (function () {
+        for (var i = 0; i < el.childNodes.length; i++) {
+          if (el.childNodes[i].nodeType === 1) return true;
+        }
+        return false;
+      }());
 
       var tagName = el.tagName ? el.tagName.toLowerCase() : "";
       var safeTags = ["a", "button", "span", "p", "small", "strong", "li", "h4", "label"];

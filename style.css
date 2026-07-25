@@ -1863,18 +1863,18 @@ body.lightbox-open { overflow: hidden; }
 }
 
 /* ── Nav Booking external link ─────────────────────────────────── */
-.nav-booking-ext {
-  font-size: 0.78rem !important;
-  color: rgba(255, 255, 255, 0.75) !important;
+.site-nav .nav-booking-ext {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
-  padding: 5px 10px !important;
-  transition: border-color 0.2s, color 0.2s !important;
+  padding: 5px 10px;
+  transition: border-color 0.2s, color 0.2s;
 }
 
-.nav-booking-ext:hover {
-  border-color: var(--gold) !important;
-  color: var(--gold) !important;
+.site-nav .nav-booking-ext:hover {
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -2055,7 +2055,7 @@ body.lightbox-open { overflow: hidden; }
 
 @media (max-width: 767px) {
   .amenities-grid { grid-template-columns: 1fr; }
-  .lang-switcher  { order: -1; margin-left: 0; margin-right: auto; }
+  .lang-switcher { order: -1; margin-left: 0; margin-right: auto; }
   .nav-booking-ext { display: none; } /* shown in mobile menu only */
   .contact-actions { flex-wrap: wrap; gap: 10px; }
   .btn-booking { width: 100%; justify-content: center; }
