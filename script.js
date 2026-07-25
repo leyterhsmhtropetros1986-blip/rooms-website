@@ -1,6 +1,11 @@
 /* global SITE_CONFIG, BOOKING_CONFIG */
 "use strict";
 
+var FALLBACK_BRAND_NAME = "Asteria Apartments";
+var FALLBACK_PRIMARY_HEX = "%230d1e16";
+var FALLBACK_SECONDARY_HEX = "%231e3c2b";
+var FALLBACK_GOLD_HEX = "%23c8a96b";
+
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ── Apply centralized image config to DOM ─────────────────── */
@@ -127,22 +132,8 @@ function applyConfig() {
   /* Hero background */
   setBackground("heroBg", img.hero);
 
-  /* About section exterior gallery */
-  if (Array.isArray(img.aboutGallery)) {
-    var aboutGrid = document.getElementById("aboutGallery");
-    if (aboutGrid) {
-      var aboutItems = aboutGrid.querySelectorAll(".about-gallery-item");
-      img.aboutGallery.forEach(function (photo, i) {
-        if (aboutItems[i]) {
-          var aboutImgEl = aboutItems[i].querySelector("img");
-          if (aboutImgEl) {
-            setImageWithFallback(aboutImgEl, photo.src, photo.alt, "aboutGallery");
-          }
-          aboutItems[i].setAttribute("aria-label", "Προβολή: " + photo.alt);
-        }
-      });
-    }
-  }
+  /* About image */
+  setImgSrc("aboutImg", img.about);
 
   /* Offers background */
   setBackground("offersBg", img.offers);
@@ -159,15 +150,15 @@ function applyConfig() {
 
   /* Gallery images */
   if (Array.isArray(img.gallery)) {
-    var grid = document.getElementById("galleryGrid");
+    var grid = document.getElementById("premiumGallery");
     if (!grid) return;
-    var items = grid.querySelectorAll(".gallery-item");
+    var items = grid.querySelectorAll(".premium-gallery-card");
     img.gallery.forEach(function (g, i) {
       if (items[i]) {
         var imgEl = items[i].querySelector("img");
         if (imgEl) {
-          setImageWithFallback(imgEl, g.src, g.alt, "mainGallery");
-          items[i].setAttribute("aria-label", "Προβολή: " + g.alt);
+          setImageWithFallback(imgEl, g.src, g.alt);
+          items[i].setAttribute("aria-label", "Άνοιγμα: " + g.alt);
         }
       }
     });
@@ -184,19 +175,21 @@ function setImgSrc(id, src, alt) {
   if (!src) return;
   var el = document.getElementById(id);
   if (!el) return;
-  el.src = src;
-  if (alt) el.alt = alt;
+  setImageWithFallback(el, src, alt);
 }
 
-function setImageWithFallback(el, src, alt, groupName) {
+function buildFallbackSvg() {
+  return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='" + FALLBACK_PRIMARY_HEX + "'/%3E%3Cstop offset='1' stop-color='" + FALLBACK_SECONDARY_HEX + "'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='1000' fill='url(%23g)'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' font-family='Georgia,serif' font-size='78' fill='" + FALLBACK_GOLD_HEX + "'%3E" + encodeURIComponent(FALLBACK_BRAND_NAME) + "%3C/text%3E%3C/svg%3E";
+}
+
+function setImageWithFallback(el, src, alt) {
   if (!el || !src) return;
-  var fallbackSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'%3E%3Crect width='1600' height='1000' fill='%23ece7dc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='64' fill='%23746649'%3EImage unavailable%3C/text%3E%3C/svg%3E";
+  var fallbackSvg = buildFallbackSvg();
 
   el.onerror = function () {
     el.onerror = null;
     el.src = fallbackSvg;
-    if (alt) el.alt = alt + " (μη διαθέσιμη εικόνα)";
-    console.warn("Image failed to load in " + groupName + ":", src);
+    if (alt) el.alt = alt;
   };
 
   el.src = src;
@@ -278,7 +271,7 @@ function renderSocialLinks() {
    by opening the lightbox for the swiped-to item.
 ────────────────────────────────────────────────────────────── */
 function initGallerySwipe() {
-  var grid = document.getElementById("galleryGrid");
+  var grid = document.getElementById("premiumGallery");
   if (!grid) return;
 
   var startX = 0;
@@ -292,7 +285,7 @@ function initGallerySwipe() {
     var dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) < SWIPE_THRESHOLD) return;
 
-    var items = Array.from(grid.querySelectorAll(".gallery-item"));
+    var items = Array.from(grid.querySelectorAll(".premium-gallery-card"));
     if (!items.length) return;
 
     // Find the item currently most visible in the viewport

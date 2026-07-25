@@ -32,18 +32,29 @@
  */
 
 /* global SITE_CONFIG */
+var EXTERIOR_HERO_IMAGE = "images/exterior-01.jpg";
+
 var SITE_CONFIG = {
 
   /* ── Background / hero images ──────────────────────────────── */
   images: {
     /** Full-screen hero background */
-    hero:     "images/hero.jpg",
+    hero:     EXTERIOR_HERO_IMAGE,
 
-    /** About section exterior gallery (1 featured + 4 thumbnails).
-     *  Files must exist in `/images`: exterior-01.jpg ... exterior-05.jpg.
-     *  Missing files are replaced by a neutral fallback image and logged in the browser console.
-     */
-    aboutGallery: [
+    /** About section — shown beside the text */
+    about:    EXTERIOR_HERO_IMAGE,
+
+    /** Offers section — darkened background */
+    offers:   EXTERIOR_HERO_IMAGE,
+
+    /** Footer — very dark overlay applied on top */
+    footer:   "images/exterior-05.jpg",
+
+    /** Location section image */
+    location: "images/exterior-05.jpg",
+
+    /** Gallery items — order controls display order */
+    gallery: [
       { src: "images/exterior-01.jpg", alt: "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" },
       { src: "images/exterior-02.jpg", alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
       { src: "images/exterior-03.jpg", alt: "Κήπος και είσοδος των διαμερισμάτων" },
@@ -51,29 +62,11 @@ var SITE_CONFIG = {
       { src: "images/exterior-05.jpg", alt: "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" },
     ],
 
-    /** Offers section — darkened background */
-    offers:   "images/hero.jpg",
-
-    /** Footer — very dark overlay applied on top */
-    footer:   "images/exterior.jpg",
-
-    /** Location section image */
-    location: "images/location.jpg",
-
-    /** Gallery items — order controls display order */
-    gallery: [
-      { src: "images/exterior.jpg", alt: "Εξωτερικός χώρος του καταλύματος" },
-      { src: "images/room-1.jpg",   alt: "Deluxe δίκλινο δωμάτιο" },
-      { src: "images/room-2.jpg",   alt: "Superior τρίκλινο δωμάτιο" },
-      { src: "images/room-3.jpg",   alt: "Family δωμάτιο για τέσσερις" },
-      { src: "images/location.jpg", alt: "Περιοχή Νιμπορειού Ευβοίας" },
-    ],
-
     /** Room cards — must match room order in HTML */
     rooms: [
-      { src: "images/room-1.jpg", alt: "Deluxe δίκλινο δωμάτιο με διπλό κρεβάτι" },
-      { src: "images/room-2.jpg", alt: "Superior τρίκλινο δωμάτιο για οικογένεια" },
-      { src: "images/room-3.jpg", alt: "Family δωμάτιο για τέσσερις επισκέπτες" },
+      { src: "images/exterior-02.jpg", alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
+      { src: "images/exterior-03.jpg", alt: "Κήπος και είσοδος των διαμερισμάτων" },
+      { src: "images/exterior-04.jpg", alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
     ],
   },
 
