@@ -12,6 +12,12 @@
     return;
   }
 
+  const initialImage = galleryButtons[0].querySelector("img");
+  if (initialImage) {
+    lightboxImage.src = initialImage.src;
+    lightboxImage.alt = initialImage.alt;
+  }
+
   let currentIndex = 0;
 
   function showImage(index) {
