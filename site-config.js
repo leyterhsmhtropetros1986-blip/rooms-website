@@ -32,18 +32,20 @@
  */
 
 /* global SITE_CONFIG */
+var EXTERIOR_HERO_IMAGE = "images/exterior-01.jpg";
+
 var SITE_CONFIG = {
 
   /* ── Background / hero images ──────────────────────────────── */
   images: {
     /** Full-screen hero background */
-    hero:     "images/exterior-01.jpg",
+    hero:     EXTERIOR_HERO_IMAGE,
 
     /** About section — shown beside the text */
-    about:    "images/exterior-01.jpg",
+    about:    EXTERIOR_HERO_IMAGE,
 
     /** Offers section — darkened background */
-    offers:   "images/exterior-01.jpg",
+    offers:   EXTERIOR_HERO_IMAGE,
 
     /** Footer — very dark overlay applied on top */
     footer:   "images/exterior-05.jpg",
