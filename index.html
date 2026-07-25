@@ -70,12 +70,14 @@
   <!-- Centralized configuration (must load before script.js) -->
   <script src="site-config.js"></script>
   <script src="booking-config.js"></script>
+  <!-- Bilingual support (must load before body renders) -->
+  <script src="i18n.js"></script>
 </head>
 
 <body>
 
   <!-- Skip navigation -->
-  <a class="skip-link" href="#main-content">Μετάβαση στο κύριο περιεχόμενο</a>
+  <a class="skip-link" href="#main-content" data-i18n="skip">Μετάβαση στο κύριο περιεχόμενο</a>
 
   <!-- ═══════════ HEADER ═══════════════════════════════════════ -->
   <header class="site-header" id="site-header">
@@ -90,6 +92,7 @@
         class="menu-button"
         id="menuButton"
         type="button"
+        data-i18n-aria="nav.menu.open"
         aria-label="Άνοιγμα μενού πλοήγησης"
         aria-controls="navigation"
         aria-expanded="false"
@@ -99,14 +102,21 @@
         <span></span>
       </button>
 
-      <nav class="site-nav" id="navigation" aria-label="Κύριο μενού">
-        <a href="#about">Το κατάλυμα</a>
-        <a href="#rooms">Δωμάτια</a>
-        <a href="#amenities">Παροχές</a>
-        <a href="#gallery">Φωτογραφίες</a>
-        <a href="#location">Τοποθεσία</a>
-        <a href="#contact">Επικοινωνία</a>
-        <a href="#booking" class="nav-cta">Κράτηση</a>
+      <nav class="site-nav" id="navigation" data-i18n-aria="nav.menu.open" aria-label="Κύριο μενού">
+        <a href="#about" data-i18n="nav.about">Το κατάλυμα</a>
+        <a href="#rooms" data-i18n="nav.rooms">Δωμάτια</a>
+        <a href="#amenities" data-i18n="nav.amenities">Παροχές</a>
+        <a href="#gallery" data-i18n="nav.gallery">Φωτογραφίες</a>
+        <a href="#location" data-i18n="nav.location">Τοποθεσία</a>
+        <a href="#contact" data-i18n="nav.contact">Επικοινωνία</a>
+        <a href="#booking" class="nav-cta" data-i18n="nav.book">Κράτηση</a>
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          type="button"
+          lang="en"
+          aria-label="Switch to English"
+        >EN</button>
       </nav>
 
     </div>
@@ -121,42 +131,42 @@
 
       <div class="container hero-content">
 
-        <p class="hero-eyebrow">Αυθεντική φιλοξενία · Νότια Εύβοια</p>
+        <p class="hero-eyebrow" data-i18n="hero.eyebrow">Αυθεντική φιλοξενία · Νότια Εύβοια</p>
 
-        <h1 id="hero-title">
+        <h1 id="hero-title" data-i18n-html="hero.title">
           Ηρεμία,<br>
           άνεση &amp;<br>
           αξέχαστες στιγμές
         </h1>
 
-        <p class="hero-lead">
+        <p class="hero-lead" data-i18n="hero.lead">
           Boutique κατάλυμα στο Νιμπορειό Ευβοίας — προσεγμένα δωμάτια,
           ζεστή φιλοξενία και ιδανική τοποθεσία για ξεκούραστες διακοπές.
         </p>
 
         <div class="hero-actions">
-          <a href="#rooms"   class="btn btn-primary">Ανακαλύψτε τα δωμάτια</a>
-          <a href="#booking" class="btn btn-outline">Έλεγχος διαθεσιμότητας</a>
+          <a href="#rooms"   class="btn btn-primary" data-i18n="hero.btn.rooms">Ανακαλύψτε τα δωμάτια</a>
+          <a href="#booking" class="btn btn-outline" data-i18n="hero.btn.book">Έλεγχος διαθεσιμότητας</a>
         </div>
 
-        <div class="hero-stats" aria-label="Στατιστικά καταλύματος">
+        <div class="hero-stats" data-i18n-aria="hero.stats.aria" aria-label="Στατιστικά καταλύματος">
           <div class="hero-stat">
             <strong>3</strong>
-            <small>Τύποι δωματίων</small>
+            <small data-i18n="hero.stat1">Τύποι δωματίων</small>
           </div>
           <div class="hero-stat">
             <strong>100%</strong>
-            <small>Ιδιωτικά μπάνια</small>
+            <small data-i18n="hero.stat2">Ιδιωτικά μπάνια</small>
           </div>
           <div class="hero-stat">
             <strong>24/7</strong>
-            <small>Επικοινωνία</small>
+            <small data-i18n="hero.stat3">Επικοινωνία</small>
           </div>
         </div>
 
       </div>
 
-      <a href="#about" class="scroll-cue" aria-label="Μετάβαση στην επόμενη ενότητα">
+      <a href="#about" class="scroll-cue" data-i18n-aria="hero.scroll.aria" aria-label="Μετάβαση στην επόμενη ενότητα" data-i18n="hero.scroll">
         Ανακαλύψτε
       </a>
     </section>
@@ -167,18 +177,18 @@
         <div class="about-grid">
 
           <div class="about-content">
-            <p class="section-label">Το κατάλυμα</p>
+            <p class="section-label" data-i18n="about.label">Το κατάλυμα</p>
 
-            <h2 id="about-title">
+            <h2 id="about-title" data-i18n-html="about.title">
               Μια εμπειρία<br>διαμονής με<br>έμφαση στη λεπτομέρεια
             </h2>
 
-            <p class="about-lead">
+            <p class="about-lead" data-i18n="about.lead">
               Το Asteria Apartments δημιουργήθηκε για επισκέπτες που αναζητούν
               καθαριότητα, άνεση και φιλική εξυπηρέτηση.
             </p>
 
-            <p>
+            <p data-i18n="about.body">
               Κάθε δωμάτιο είναι προσεγμένο ώστε να σας προσφέρει όλα όσα
               χρειάζεστε — είτε ταξιδεύετε ως ζευγάρι, οικογένεια ή παρέα.
             </p>
@@ -186,23 +196,23 @@
             <div class="about-features">
               <div class="about-feature">
                 <span class="about-feature-icon" aria-hidden="true">✦</span>
-                <strong>Καθαριότητα</strong>
-                <span>Προσεγμένοι χώροι και υψηλά πρότυπα υγιεινής</span>
+                <strong data-i18n="about.f1.name">Καθαριότητα</strong>
+                <span data-i18n="about.f1.desc">Προσεγμένοι χώροι και υψηλά πρότυπα υγιεινής</span>
               </div>
               <div class="about-feature">
                 <span class="about-feature-icon" aria-hidden="true">◇</span>
-                <strong>Άνεση</strong>
-                <span>Σύγχρονες παροχές για ευχάριστη διαμονή</span>
+                <strong data-i18n="about.f2.name">Άνεση</strong>
+                <span data-i18n="about.f2.desc">Σύγχρονες παροχές για ευχάριστη διαμονή</span>
               </div>
               <div class="about-feature">
                 <span class="about-feature-icon" aria-hidden="true">❋</span>
-                <strong>Φιλοξενία</strong>
-                <span>Προσωπική εξυπηρέτηση πριν και κατά τη διαμονή</span>
+                <strong data-i18n="about.f3.name">Φιλοξενία</strong>
+                <span data-i18n="about.f3.desc">Προσωπική εξυπηρέτηση πριν και κατά τη διαμονή</span>
               </div>
               <div class="about-feature">
                 <span class="about-feature-icon" aria-hidden="true">◈</span>
-                <strong>Τοποθεσία</strong>
-                <span>Παραθαλάσσιο σημείο με εύκολη πρόσβαση</span>
+                <strong data-i18n="about.f4.name">Τοποθεσία</strong>
+                <span data-i18n="about.f4.desc">Παραθαλάσσιο σημείο με εύκολη πρόσβαση</span>
               </div>
             </div>
           </div>
@@ -212,13 +222,14 @@
               <img
                 id="aboutImg"
                 src="images/exterior-01.jpg"
+                data-i18n-alt="about.img.alt"
                 alt="Εξωτερική άποψη του Asteria Apartments"
                 loading="lazy"
               >
             </div>
             <div class="about-badge" aria-hidden="true">
-              <strong>Νιμπορειό</strong>
-              <span>Νότια Εύβοια</span>
+              <strong data-i18n="about.badge.village">Νιμπορειό</strong>
+              <span data-i18n="about.badge.region">Νότια Εύβοια</span>
             </div>
           </div>
 
@@ -232,10 +243,10 @@
 
         <div class="rooms-section-header">
           <div>
-            <p class="section-label">Διαμονή</p>
-            <h2 id="rooms-title">Επιλέξτε<br>το δωμάτιό σας</h2>
+            <p class="section-label" data-i18n="rooms.label">Διαμονή</p>
+            <h2 id="rooms-title" data-i18n-html="rooms.title">Επιλέξτε<br>το δωμάτιό σας</h2>
           </div>
-          <p>
+          <p data-i18n="rooms.lead">
             Τρεις κατηγορίες δωματίων σχεδιασμένες για ζευγάρια,
             οικογένειες και παρέες — με όλες τις παροχές που χρειάζεστε.
           </p>
@@ -252,27 +263,27 @@
                 alt="Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό"
                 loading="lazy"
               >
-              <span class="room-badge">Για 2 επισκέπτες</span>
+              <span class="room-badge" data-i18n="room1.badge">Για 2 επισκέπτες</span>
             </div>
             <div class="room-card-content">
-              <p class="room-capacity">Άνετη διαμονή για δύο</p>
-              <h3>Deluxe δίκλινο</h3>
-              <p>Κομψό και άνετο δωμάτιο, ιδανικό για ζευγάρια που αναζητούν ξεκούραση και πρακτικές παροχές.</p>
+              <p class="room-capacity" data-i18n="room1.capacity">Άνετη διαμονή για δύο</p>
+              <h3 data-i18n="room1.name">Deluxe δίκλινο</h3>
+              <p data-i18n="room1.desc">Κομψό και άνετο δωμάτιο, ιδανικό για ζευγάρια που αναζητούν ξεκούραση και πρακτικές παροχές.</p>
               <div class="room-features" role="list">
-                <span class="room-tag" role="listitem">🛏 Διπλό κρεβάτι</span>
-                <span class="room-tag" role="listitem">🚿 Ιδιωτικό μπάνιο</span>
-                <span class="room-tag" role="listitem">❄️ A/C</span>
-                <span class="room-tag" role="listitem">📶 Wi-Fi</span>
-                <span class="room-tag" role="listitem">📺 TV</span>
-                <span class="room-tag" role="listitem">🌿 Μπαλκόνι</span>
+                <span class="room-tag" role="listitem" data-i18n="room1.tag1">🛏 Διπλό κρεβάτι</span>
+                <span class="room-tag" role="listitem" data-i18n="room1.tag2">🚿 Ιδιωτικό μπάνιο</span>
+                <span class="room-tag" role="listitem" data-i18n="room1.tag3">❄️ A/C</span>
+                <span class="room-tag" role="listitem" data-i18n="room1.tag4">📶 Wi-Fi</span>
+                <span class="room-tag" role="listitem" data-i18n="room1.tag5">📺 TV</span>
+                <span class="room-tag" role="listitem" data-i18n="room1.tag6">🌿 Μπαλκόνι</span>
               </div>
               <div class="room-footer">
                 <div class="room-price">
-                  <small>Από</small>
-                  <strong>Επικοινωνήστε</strong>
+                  <small data-i18n="rooms.from">Από</small>
+                  <strong data-i18n="rooms.enquire">Επικοινωνήστε</strong>
                 </div>
                 <div class="room-actions">
-                  <a href="#booking" class="btn btn-primary btn-sm">Κράτηση</a>
+                  <a href="#booking" class="btn btn-primary btn-sm" data-i18n="rooms.book">Κράτηση</a>
                 </div>
               </div>
             </div>
@@ -287,27 +298,27 @@
                 alt="Κήπος και είσοδος των διαμερισμάτων"
                 loading="lazy"
               >
-              <span class="room-badge">Δημοφιλής επιλογή</span>
+              <span class="room-badge" data-i18n="room2.badge">Δημοφιλής επιλογή</span>
             </div>
             <div class="room-card-content">
-              <p class="room-capacity">Έως 3 επισκέπτες</p>
-              <h3>Superior τρίκλινο</h3>
-              <p>Ευρύχωρη επιλογή για μικρές οικογένειες ή παρέες, με άνετη διαρρύθμιση και όλες τις βασικές παροχές.</p>
+              <p class="room-capacity" data-i18n="room2.capacity">Έως 3 επισκέπτες</p>
+              <h3 data-i18n="room2.name">Superior τρίκλινο</h3>
+              <p data-i18n="room2.desc">Ευρύχωρη επιλογή για μικρές οικογένειες ή παρέες, με άνετη διαρρύθμιση και όλες τις βασικές παροχές.</p>
               <div class="room-features" role="list">
-                <span class="room-tag" role="listitem">🛏 Διπλό + μονό</span>
-                <span class="room-tag" role="listitem">🚿 Ιδιωτικό μπάνιο</span>
-                <span class="room-tag" role="listitem">❄️ A/C</span>
-                <span class="room-tag" role="listitem">🧊 Ψυγείο</span>
-                <span class="room-tag" role="listitem">📶 Wi-Fi</span>
-                <span class="room-tag" role="listitem">🌿 Μπαλκόνι</span>
+                <span class="room-tag" role="listitem" data-i18n="room2.tag1">🛏 Διπλό + μονό</span>
+                <span class="room-tag" role="listitem" data-i18n="room2.tag2">🚿 Ιδιωτικό μπάνιο</span>
+                <span class="room-tag" role="listitem" data-i18n="room2.tag3">❄️ A/C</span>
+                <span class="room-tag" role="listitem" data-i18n="room2.tag4">🧊 Ψυγείο</span>
+                <span class="room-tag" role="listitem" data-i18n="room2.tag5">📶 Wi-Fi</span>
+                <span class="room-tag" role="listitem" data-i18n="room2.tag6">🌿 Μπαλκόνι</span>
               </div>
               <div class="room-footer">
                 <div class="room-price">
-                  <small>Από</small>
-                  <strong>Επικοινωνήστε</strong>
+                  <small data-i18n="rooms.from">Από</small>
+                  <strong data-i18n="rooms.enquire">Επικοινωνήστε</strong>
                 </div>
                 <div class="room-actions">
-                  <a href="#booking" class="btn btn-primary btn-sm">Κράτηση</a>
+                  <a href="#booking" class="btn btn-primary btn-sm" data-i18n="rooms.book">Κράτηση</a>
                 </div>
               </div>
             </div>
@@ -322,27 +333,27 @@
                 alt="Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος"
                 loading="lazy"
               >
-              <span class="room-badge">Για οικογένειες</span>
+              <span class="room-badge" data-i18n="room3.badge">Για οικογένειες</span>
             </div>
             <div class="room-card-content">
-              <p class="room-capacity">Έως 4 επισκέπτες</p>
-              <h3>Family δωμάτιο</h3>
-              <p>Ευρύχωρη και πρακτική επιλογή για οικογένειες, με άνετα κρεβάτια και λειτουργική διαρρύθμιση.</p>
+              <p class="room-capacity" data-i18n="room3.capacity">Έως 4 επισκέπτες</p>
+              <h3 data-i18n="room3.name">Family δωμάτιο</h3>
+              <p data-i18n="room3.desc">Ευρύχωρη και πρακτική επιλογή για οικογένειες, με άνετα κρεβάτια και λειτουργική διαρρύθμιση.</p>
               <div class="room-features" role="list">
-                <span class="room-tag" role="listitem">🛏 Οικογενειακή διαρρύθμιση</span>
-                <span class="room-tag" role="listitem">🚿 Ιδιωτικό μπάνιο</span>
-                <span class="room-tag" role="listitem">❄️ A/C</span>
-                <span class="room-tag" role="listitem">📺 TV</span>
-                <span class="room-tag" role="listitem">🧊 Ψυγείο</span>
-                <span class="room-tag" role="listitem">🗄 Αποθήκευση</span>
+                <span class="room-tag" role="listitem" data-i18n="room3.tag1">🛏 Οικογενειακή διαρρύθμιση</span>
+                <span class="room-tag" role="listitem" data-i18n="room3.tag2">🚿 Ιδιωτικό μπάνιο</span>
+                <span class="room-tag" role="listitem" data-i18n="room3.tag3">❄️ A/C</span>
+                <span class="room-tag" role="listitem" data-i18n="room3.tag4">📺 TV</span>
+                <span class="room-tag" role="listitem" data-i18n="room3.tag5">🧊 Ψυγείο</span>
+                <span class="room-tag" role="listitem" data-i18n="room3.tag6">🗄 Αποθήκευση</span>
               </div>
               <div class="room-footer">
                 <div class="room-price">
-                  <small>Από</small>
-                  <strong>Επικοινωνήστε</strong>
+                  <small data-i18n="rooms.from">Από</small>
+                  <strong data-i18n="rooms.enquire">Επικοινωνήστε</strong>
                 </div>
                 <div class="room-actions">
-                  <a href="#booking" class="btn btn-primary btn-sm">Κράτηση</a>
+                  <a href="#booking" class="btn btn-primary btn-sm" data-i18n="rooms.book">Κράτηση</a>
                 </div>
               </div>
             </div>
@@ -357,51 +368,51 @@
       <div class="container">
 
         <div class="amenities-header">
-          <p class="section-label section-label-center">Παροχές</p>
-          <h2 id="amenities-title">Όλα όσα χρειάζεστε για μια άνετη διαμονή</h2>
-          <p>Οι χώροι μας είναι πλήρως εξοπλισμένοι με πρακτικές παροχές που κάνουν τη διαμονή σας πιο ευχάριστη.</p>
+          <p class="section-label section-label-center" data-i18n="amenities.label">Παροχές</p>
+          <h2 id="amenities-title" data-i18n="amenities.title">Όλα όσα χρειάζεστε για μια άνετη διαμονή</h2>
+          <p data-i18n="amenities.lead">Οι χώροι μας είναι πλήρως εξοπλισμένοι με πρακτικές παροχές που κάνουν τη διαμονή σας πιο ευχάριστη.</p>
         </div>
 
         <div class="amenities-grid">
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">📶</span>
-            <h3>Δωρεάν Wi-Fi</h3>
-            <p>Γρήγορη σύνδεση στο διαδίκτυο σε όλους τους χώρους.</p>
+            <h3 data-i18n="am1.name">Δωρεάν Wi-Fi</h3>
+            <p data-i18n="am1.desc">Γρήγορη σύνδεση στο διαδίκτυο σε όλους τους χώρους.</p>
           </article>
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">❄️</span>
-            <h3>Κλιματισμός</h3>
-            <p>Ιδανική θερμοκρασία καθ' όλη τη διάρκεια της διαμονής.</p>
+            <h3 data-i18n="am2.name">Κλιματισμός</h3>
+            <p data-i18n="am2.desc">Ιδανική θερμοκρασία καθ' όλη τη διάρκεια της διαμονής.</p>
           </article>
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">🚿</span>
-            <h3>Ιδιωτικό μπάνιο</h3>
-            <p>Καθαρός, σύγχρονος και πλήρως εξοπλισμένος χώρος.</p>
+            <h3 data-i18n="am3.name">Ιδιωτικό μπάνιο</h3>
+            <p data-i18n="am3.desc">Καθαρός, σύγχρονος και πλήρως εξοπλισμένος χώρος.</p>
           </article>
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">📺</span>
-            <h3>Τηλεόραση</h3>
-            <p>Ψυχαγωγία και ενημέρωση μέσα στο δωμάτιό σας.</p>
+            <h3 data-i18n="am4.name">Τηλεόραση</h3>
+            <p data-i18n="am4.desc">Ψυχαγωγία και ενημέρωση μέσα στο δωμάτιό σας.</p>
           </article>
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">🅿️</span>
-            <h3>Χώρος στάθμευσης</h3>
-            <p>Εύκολη πρόσβαση και δωρεάν στάθμευση κοντά στο κατάλυμα.</p>
+            <h3 data-i18n="am5.name">Χώρος στάθμευσης</h3>
+            <p data-i18n="am5.desc">Εύκολη πρόσβαση και δωρεάν στάθμευση κοντά στο κατάλυμα.</p>
           </article>
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">🧊</span>
-            <h3>Ψυγείο</h3>
-            <p>Πρακτική παροχή για ποτά, τρόφιμα και καθημερινές ανάγκες.</p>
+            <h3 data-i18n="am6.name">Ψυγείο</h3>
+            <p data-i18n="am6.desc">Πρακτική παροχή για ποτά, τρόφιμα και καθημερινές ανάγκες.</p>
           </article>
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">🌿</span>
-            <h3>Μπαλκόνι</h3>
-            <p>Ιδιωτικός εξωτερικός χώρος για στιγμές χαλάρωσης.</p>
+            <h3 data-i18n="am7.name">Μπαλκόνι</h3>
+            <p data-i18n="am7.desc">Ιδιωτικός εξωτερικός χώρος για στιγμές χαλάρωσης.</p>
           </article>
           <article class="amenity">
             <span class="amenity-icon" aria-hidden="true">✨</span>
-            <h3>Καθαριότητα</h3>
-            <p>Τακτική καθαριότητα για άνετη και ασφαλή διαμονή.</p>
+            <h3 data-i18n="am8.name">Καθαριότητα</h3>
+            <p data-i18n="am8.desc">Τακτική καθαριότητα για άνετη και ασφαλή διαμονή.</p>
           </article>
         </div>
 
@@ -414,35 +425,35 @@
 
         <div class="gallery-section-header">
           <div>
-            <p class="section-label">Gallery</p>
-            <h2 id="gallery-title">Γνωρίστε<br>τους χώρους μας</h2>
+            <p class="section-label" data-i18n="gallery.label">Gallery</p>
+            <h2 id="gallery-title" data-i18n-html="gallery.title">Γνωρίστε<br>τους χώρους μας</h2>
           </div>
-          <p>
+          <p data-i18n="gallery.lead">
             Περιηγηθείτε στις φωτογραφίες και ανακαλύψτε
             την ατμόσφαιρα του Asteria Apartments.
           </p>
         </div>
 
-        <div class="premium-gallery-grid" id="premiumGallery" aria-label="Φωτογραφίες εξωτερικών χώρων">
+        <div class="premium-gallery-grid" id="premiumGallery" data-i18n-aria="gallery.grid.aria" aria-label="Φωτογραφίες εξωτερικών χώρων">
 
-          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 1">
-            <img src="images/exterior-01.jpg" alt="Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" loading="lazy">
+          <button class="premium-gallery-card" type="button" data-i18n-aria="gallery.btn1.aria" aria-label="Άνοιγμα φωτογραφίας 1">
+            <img src="images/exterior-01.jpg" data-i18n-alt="gallery.img1.alt" alt="Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" loading="lazy">
           </button>
 
-          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 2">
-            <img src="images/exterior-02.jpg" alt="Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" loading="lazy">
+          <button class="premium-gallery-card" type="button" data-i18n-aria="gallery.btn2.aria" aria-label="Άνοιγμα φωτογραφίας 2">
+            <img src="images/exterior-02.jpg" data-i18n-alt="gallery.img2.alt" alt="Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" loading="lazy">
           </button>
 
-          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 3">
-            <img src="images/exterior-03.jpg" alt="Κήπος και είσοδος των διαμερισμάτων" loading="lazy">
+          <button class="premium-gallery-card" type="button" data-i18n-aria="gallery.btn3.aria" aria-label="Άνοιγμα φωτογραφίας 3">
+            <img src="images/exterior-03.jpg" data-i18n-alt="gallery.img3.alt" alt="Κήπος και είσοδος των διαμερισμάτων" loading="lazy">
           </button>
 
-          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 4">
-            <img src="images/exterior-04.jpg" alt="Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" loading="lazy">
+          <button class="premium-gallery-card" type="button" data-i18n-aria="gallery.btn4.aria" aria-label="Άνοιγμα φωτογραφίας 4">
+            <img src="images/exterior-04.jpg" data-i18n-alt="gallery.img4.alt" alt="Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" loading="lazy">
           </button>
 
-          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 5">
-            <img src="images/exterior-05.jpg" alt="Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" loading="lazy">
+          <button class="premium-gallery-card" type="button" data-i18n-aria="gallery.btn5.aria" aria-label="Άνοιγμα φωτογραφίας 5">
+            <img src="images/exterior-05.jpg" data-i18n-alt="gallery.img5.alt" alt="Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" loading="lazy">
           </button>
 
         </div>
@@ -457,47 +468,47 @@
 
       <div class="container offers-inner">
         <div class="offers-header">
-          <p class="section-label section-label-center">Προσφορές</p>
-          <h2 id="offers-title">Ειδικές προσφορές για αξέχαστες διακοπές</h2>
-          <p>Επικοινωνήστε μαζί μας για τρέχουσες τιμές και ειδικές προσφορές.</p>
+          <p class="section-label section-label-center" data-i18n="offers.label">Προσφορές</p>
+          <h2 id="offers-title" data-i18n="offers.title">Ειδικές προσφορές για αξέχαστες διακοπές</h2>
+          <p data-i18n="offers.lead">Επικοινωνήστε μαζί μας για τρέχουσες τιμές και ειδικές προσφορές.</p>
         </div>
 
         <div class="offers-grid">
 
           <div class="offer-card">
-            <span class="offer-badge">Ζευγάρια</span>
+            <span class="offer-badge" data-i18n="offer1.badge">Ζευγάρια</span>
             <h3>Romantic Escape</h3>
-            <p>Ιδανική επιλογή για ζευγάρια που αναζητούν ρομαντική απόδραση στη Νότια Εύβοια.</p>
+            <p data-i18n="offer1.desc">Ιδανική επιλογή για ζευγάρια που αναζητούν ρομαντική απόδραση στη Νότια Εύβοια.</p>
             <ul>
-              <li>Deluxe δίκλινο δωμάτιο</li>
-              <li>Πρωινό στο δωμάτιο</li>
-              <li>Late check-out</li>
+              <li data-i18n="offer1.li1">Deluxe δίκλινο δωμάτιο</li>
+              <li data-i18n="offer1.li2">Πρωινό στο δωμάτιο</li>
+              <li data-i18n="offer1.li3">Late check-out</li>
             </ul>
-            <a href="#contact" class="btn btn-gold-outline">Μάθετε περισσότερα</a>
+            <a href="#contact" class="btn btn-gold-outline" data-i18n="offers.cta">Μάθετε περισσότερα</a>
           </div>
 
           <div class="offer-card">
-            <span class="offer-badge">Οικογένειες</span>
+            <span class="offer-badge" data-i18n="offer2.badge">Οικογένειες</span>
             <h3>Family Paradise</h3>
-            <p>Ευρύχωρη διαμονή για όλη την οικογένεια, με παιδόφιλο περιβάλλον και εξυπηρέτηση.</p>
+            <p data-i18n="offer2.desc">Ευρύχωρη διαμονή για όλη την οικογένεια, με παιδόφιλο περιβάλλον και εξυπηρέτηση.</p>
             <ul>
-              <li>Family δωμάτιο</li>
-              <li>Ελεύθερη στάθμευση</li>
-              <li>Συμβουλές για εξορμήσεις</li>
+              <li data-i18n="offer2.li1">Family δωμάτιο</li>
+              <li data-i18n="offer2.li2">Ελεύθερη στάθμευση</li>
+              <li data-i18n="offer2.li3">Συμβουλές για εξορμήσεις</li>
             </ul>
-            <a href="#contact" class="btn btn-gold-outline">Μάθετε περισσότερα</a>
+            <a href="#contact" class="btn btn-gold-outline" data-i18n="offers.cta">Μάθετε περισσότερα</a>
           </div>
 
           <div class="offer-card">
-            <span class="offer-badge">Παρέες</span>
+            <span class="offer-badge" data-i18n="offer3.badge">Παρέες</span>
             <h3>Group &amp; Stay</h3>
-            <p>Κρατήστε περισσότερα δωμάτια ταυτόχρονα και απολαύστε ειδική τιμή για ομαδικές κρατήσεις.</p>
+            <p data-i18n="offer3.desc">Κρατήστε περισσότερα δωμάτια ταυτόχρονα και απολαύστε ειδική τιμή για ομαδικές κρατήσεις.</p>
             <ul>
-              <li>Πολλαπλά δωμάτια</li>
-              <li>Ειδική τιμή ομάδας</li>
-              <li>Άμεση επικοινωνία</li>
+              <li data-i18n="offer3.li1">Πολλαπλά δωμάτια</li>
+              <li data-i18n="offer3.li2">Ειδική τιμή ομάδας</li>
+              <li data-i18n="offer3.li3">Άμεση επικοινωνία</li>
             </ul>
-            <a href="#contact" class="btn btn-gold-outline">Μάθετε περισσότερα</a>
+            <a href="#contact" class="btn btn-gold-outline" data-i18n="offers.cta">Μάθετε περισσότερα</a>
           </div>
 
         </div>
@@ -510,10 +521,10 @@
 
         <div class="reviews-section-header">
           <div>
-            <p class="section-label">Αξιολογήσεις</p>
-            <h2 id="reviews-title">Οι εμπειρίες<br>των επισκεπτών μας</h2>
+            <p class="section-label" data-i18n="reviews.label">Αξιολογήσεις</p>
+            <h2 id="reviews-title" data-i18n-html="reviews.title">Οι εμπειρίες<br>των επισκεπτών μας</h2>
           </div>
-          <p style="max-width:380px">
+          <p style="max-width:380px" data-i18n="reviews.lead">
             Πραγματικές αξιολογήσεις από τους επισκέπτες μας.
             Κάθε κριτική εγκρίνεται πριν δημοσιευθεί.
           </p>
@@ -524,22 +535,22 @@
 
           <!-- PLACEHOLDER — replace with approved reviews when available -->
           <div class="reviews-placeholder">
-            <p class="reviews-placeholder-stars" aria-label="Πέντε αστέρια">★★★★★</p>
-            <h3>Προσθέστε πραγματικές κριτικές</h3>
-            <p>
+            <p class="reviews-placeholder-stars" data-i18n-aria="reviews.stars.aria" aria-label="Πέντε αστέρια">★★★★★</p>
+            <h3 data-i18n="reviews.placeholder.title">Προσθέστε πραγματικές κριτικές</h3>
+            <p data-i18n="reviews.placeholder.desc">
               Δεν δημοσιεύουμε κατασκευασμένες αξιολογήσεις.
               Αυτή η ενότητα είναι έτοιμη να συνδεθεί με εγκεκριμένες
               κριτικές από Google, Booking.com ή Airbnb.
             </p>
-            <a href="#review-form" class="btn btn-ghost btn-sm">Γράψτε μια κριτική</a>
+            <a href="#review-form" class="btn btn-ghost btn-sm" data-i18n="reviews.write.btn">Γράψτε μια κριτική</a>
           </div>
 
         </div>
 
         <!-- Review submission form -->
         <div class="review-form-wrapper" id="review-form" aria-labelledby="review-form-title">
-          <h3 id="review-form-title">Μοιραστείτε την εμπειρία σας</h3>
-          <p>
+          <h3 id="review-form-title" data-i18n="reviewform.title">Μοιραστείτε την εμπειρία σας</h3>
+          <p data-i18n="reviewform.lead">
             Η κριτική σας θα εξεταστεί από τον διαχειριστή πριν δημοσιευθεί.
             Εκτιμούμε κάθε αυθεντική γνώμη.
           </p>
@@ -547,51 +558,51 @@
           <form class="review-form" id="reviewForm" novalidate>
 
             <div class="form-field">
-              <label for="reviewName">Όνομα <span aria-hidden="true">*</span></label>
-              <input type="text" id="reviewName" name="name" required placeholder="π.χ. Μαρία Παπαδοπούλου" autocomplete="name">
+              <label for="reviewName"><span data-i18n="reviewform.name.label">Όνομα</span> <span aria-hidden="true">*</span></label>
+              <input type="text" id="reviewName" name="name" required data-i18n-placeholder="reviewform.name.ph" placeholder="π.χ. Μαρία Παπαδοπούλου" autocomplete="name">
             </div>
 
             <div class="form-field">
-              <label for="reviewEmail">Email <span style="font-weight:500;text-transform:none;letter-spacing:0">(προαιρετικό)</span></label>
+              <label for="reviewEmail"><span data-i18n="reviewform.email.label">Email</span> <span style="font-weight:500;text-transform:none;letter-spacing:0" data-i18n="reviewform.email.optional">(προαιρετικό)</span></label>
               <input type="email" id="reviewEmail" name="email" placeholder="email@example.com" autocomplete="email">
             </div>
 
             <div class="form-field star-rating-field">
-              <label>Βαθμολογία <span aria-hidden="true">*</span></label>
-              <div class="star-widget" role="radiogroup" aria-label="Επιλέξτε αριθμό αστεριών">
+              <label><span data-i18n="reviewform.rating.label">Βαθμολογία</span> <span aria-hidden="true">*</span></label>
+              <div class="star-widget" role="radiogroup" data-i18n-aria="reviewform.rating.aria" aria-label="Επιλέξτε αριθμό αστεριών">
                 <input type="radio" id="star5" name="rating" value="5" required>
-                <label for="star5" title="5 αστέρια">★</label>
+                <label for="star5" data-i18n-title="reviewform.star5.title" title="5 αστέρια">★</label>
                 <input type="radio" id="star4" name="rating" value="4">
-                <label for="star4" title="4 αστέρια">★</label>
+                <label for="star4" data-i18n-title="reviewform.star4.title" title="4 αστέρια">★</label>
                 <input type="radio" id="star3" name="rating" value="3">
-                <label for="star3" title="3 αστέρια">★</label>
+                <label for="star3" data-i18n-title="reviewform.star3.title" title="3 αστέρια">★</label>
                 <input type="radio" id="star2" name="rating" value="2">
-                <label for="star2" title="2 αστέρια">★</label>
+                <label for="star2" data-i18n-title="reviewform.star2.title" title="2 αστέρια">★</label>
                 <input type="radio" id="star1" name="rating" value="1">
-                <label for="star1" title="1 αστέρι">★</label>
+                <label for="star1" data-i18n-title="reviewform.star1.title" title="1 αστέρι">★</label>
               </div>
             </div>
 
             <div class="form-field">
-              <label for="reviewStayDate">Ημερομηνία διαμονής</label>
+              <label for="reviewStayDate" data-i18n="reviewform.date.label">Ημερομηνία διαμονής</label>
               <input type="month" id="reviewStayDate" name="stayDate">
             </div>
 
             <div class="form-field form-col-full">
-              <label for="reviewText">Κριτική <span aria-hidden="true">*</span></label>
-              <textarea id="reviewText" name="review" required placeholder="Πείτε μας για την εμπειρία διαμονής σας…" minlength="30"></textarea>
+              <label for="reviewText"><span data-i18n="reviewform.text.label">Κριτική</span> <span aria-hidden="true">*</span></label>
+              <textarea id="reviewText" name="review" required data-i18n-placeholder="reviewform.text.ph" placeholder="Πείτε μας για την εμπειρία διαμονής σας…" minlength="30"></textarea>
             </div>
 
             <div class="consent-row">
               <input type="checkbox" id="reviewConsent" name="consent" required>
-              <label for="reviewConsent">
+              <label for="reviewConsent" data-i18n="reviewform.consent">
                 Συμφωνώ με την αποθήκευση των στοιχείων μου για σκοπούς
                 επαλήθευσης και δημοσίευσης της κριτικής μου, σύμφωνα με
                 την πολιτική απορρήτου.
               </label>
             </div>
 
-            <div class="form-notice">
+            <div class="form-notice" data-i18n="reviewform.notice">
               ℹ️ Οι κριτικές δεν δημοσιεύονται αυτόματα. Κάθε αξιολόγηση
               εξετάζεται από τον διαχειριστή πριν εμφανιστεί δημόσια.
             </div>
@@ -599,7 +610,7 @@
             <div class="form-message" id="reviewFormMessage" role="alert" aria-live="polite"></div>
 
             <div class="form-col-full">
-              <button type="submit" class="btn btn-primary">Αποστολή κριτικής</button>
+              <button type="submit" class="btn btn-primary" data-i18n="reviewform.submit">Αποστολή κριτικής</button>
             </div>
 
           </form>
@@ -614,61 +625,61 @@
         <div class="booking-panel">
 
           <div class="booking-panel-header">
-            <p class="section-label section-label-center">Άμεσο αίτημα</p>
-            <h2 id="booking-title">Ελέγξτε διαθεσιμότητα</h2>
-            <p>Συμπληρώστε τις ημερομηνίες και στείλτε αίτημα μέσω WhatsApp.</p>
+            <p class="section-label section-label-center" data-i18n="booking.label">Άμεσο αίτημα</p>
+            <h2 id="booking-title" data-i18n="booking.title">Ελέγξτε διαθεσιμότητα</h2>
+            <p data-i18n="booking.lead">Συμπληρώστε τις ημερομηνίες και στείλτε αίτημα μέσω WhatsApp.</p>
           </div>
 
           <form class="booking-form" id="bookingForm" novalidate>
             <label class="booking-field">
-              <span>Άφιξη</span>
-              <input type="date" id="arrivalDate" name="arrival" required aria-label="Ημερομηνία άφιξης">
+              <span data-i18n="booking.arrival">Άφιξη</span>
+              <input type="date" id="arrivalDate" name="arrival" required data-i18n-aria="booking.arrival.aria" aria-label="Ημερομηνία άφιξης">
             </label>
             <label class="booking-field">
-              <span>Αναχώρηση</span>
-              <input type="date" id="departureDate" name="departure" required aria-label="Ημερομηνία αναχώρησης">
+              <span data-i18n="booking.departure">Αναχώρηση</span>
+              <input type="date" id="departureDate" name="departure" required data-i18n-aria="booking.departure.aria" aria-label="Ημερομηνία αναχώρησης">
             </label>
             <label class="booking-field">
-              <span>Ενήλικες</span>
-              <select id="adultGuests" name="adults" aria-label="Αριθμός ενηλίκων">
-                <option value="1">1 ενήλικας</option>
-                <option value="2" selected>2 ενήλικες</option>
-                <option value="3">3 ενήλικες</option>
-                <option value="4">4 ενήλικες</option>
-                <option value="5">5 ενήλικες</option>
-                <option value="6">6 ενήλικες</option>
+              <span data-i18n="booking.adults">Ενήλικες</span>
+              <select id="adultGuests" name="adults" data-i18n-aria="booking.adults.aria" aria-label="Αριθμός ενηλίκων">
+                <option value="1" data-i18n="booking.adult1">1 ενήλικας</option>
+                <option value="2" selected data-i18n="booking.adult2">2 ενήλικες</option>
+                <option value="3" data-i18n="booking.adult3">3 ενήλικες</option>
+                <option value="4" data-i18n="booking.adult4">4 ενήλικες</option>
+                <option value="5" data-i18n="booking.adult5">5 ενήλικες</option>
+                <option value="6" data-i18n="booking.adult6">6 ενήλικες</option>
               </select>
             </label>
             <label class="booking-field">
-              <span>Παιδιά</span>
-              <select id="childGuests" name="children" aria-label="Αριθμός παιδιών">
-                <option value="0" selected>Χωρίς παιδιά</option>
-                <option value="1">1 παιδί</option>
-                <option value="2">2 παιδιά</option>
-                <option value="3">3 παιδιά</option>
-                <option value="4">4 παιδιά</option>
+              <span data-i18n="booking.children">Παιδιά</span>
+              <select id="childGuests" name="children" data-i18n-aria="booking.children.aria" aria-label="Αριθμός παιδιών">
+                <option value="0" selected data-i18n="booking.child0">Χωρίς παιδιά</option>
+                <option value="1" data-i18n="booking.child1">1 παιδί</option>
+                <option value="2" data-i18n="booking.child2">2 παιδιά</option>
+                <option value="3" data-i18n="booking.child3">3 παιδιά</option>
+                <option value="4" data-i18n="booking.child4">4 παιδιά</option>
               </select>
             </label>
             <label class="booking-field">
-              <span>Δωμάτιο</span>
-              <select id="roomType" name="room" aria-label="Τύπος δωματίου">
-                <option value="Δεν έχω προτίμηση">Χωρίς προτίμηση</option>
-                <option value="Deluxe δίκλινο">Deluxe δίκλινο</option>
-                <option value="Superior τρίκλινο">Superior τρίκλινο</option>
-                <option value="Family δωμάτιο">Family δωμάτιο</option>
+              <span data-i18n="booking.room">Δωμάτιο</span>
+              <select id="roomType" name="room" data-i18n-aria="booking.room.aria" aria-label="Τύπος δωματίου">
+                <option value="Δεν έχω προτίμηση" data-i18n="booking.room0">Χωρίς προτίμηση</option>
+                <option value="Deluxe δίκλινο" data-i18n="booking.room1">Deluxe δίκλινο</option>
+                <option value="Superior τρίκλινο" data-i18n="booking.room2">Superior τρίκλινο</option>
+                <option value="Family δωμάτιο" data-i18n="booking.room3">Family δωμάτιο</option>
               </select>
             </label>
-            <button type="submit" class="btn btn-primary booking-submit">
+            <button type="submit" class="btn btn-primary booking-submit" data-i18n="booking.submit">
               Αποστολή αιτήματος →
             </button>
           </form>
 
-          <div class="booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true">
+          <div class="booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true" data-i18n="booking.summary.default">
             Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.
           </div>
 
           <!-- Platform links — rendered by script.js from booking-config.js -->
-          <div class="booking-platforms" id="bookingPlatforms" aria-label="Πλατφόρμες κράτησης"></div>
+          <div class="booking-platforms" id="bookingPlatforms" data-i18n-aria="booking.platforms.aria" aria-label="Πλατφόρμες κράτησης"></div>
 
         </div>
       </div>
@@ -680,9 +691,9 @@
         <div class="location-grid">
 
           <div class="location-content">
-            <p class="section-label">Τοποθεσία</p>
-            <h2 id="location-title">Ιδανικό σημείο για να εξερευνήσετε τη Νότια Εύβοια</h2>
-            <p>
+            <p class="section-label" data-i18n="location.label">Τοποθεσία</p>
+            <h2 id="location-title" data-i18n="location.title">Ιδανικό σημείο για να εξερευνήσετε τη Νότια Εύβοια</h2>
+            <p data-i18n="location.lead">
               Το Asteria Apartments βρίσκεται στο Νιμπορειό Ευβοίας,
               σε ήσυχο παραθαλάσσιο σημείο με εύκολη πρόσβαση και
               εντυπωσιακή φύση.
@@ -692,29 +703,29 @@
               <div class="location-highlight" role="listitem">
                 <span class="location-highlight-icon" aria-hidden="true">🏖️</span>
                 <div class="location-highlight-text">
-                  <strong>Παραλία</strong>
-                  <span>Μικρή απόσταση από τη θάλασσα</span>
+                  <strong data-i18n="loc.h0.name">Παραλία</strong>
+                  <span data-i18n="loc.h0.desc">Μικρή απόσταση από τη θάλασσα</span>
                 </div>
               </div>
               <div class="location-highlight" role="listitem">
                 <span class="location-highlight-icon" aria-hidden="true">🍽️</span>
                 <div class="location-highlight-text">
-                  <strong>Εστίαση</strong>
-                  <span>Κοντά σε ταβέρνες, καφέ και αγορά</span>
+                  <strong data-i18n="loc.h1.name">Εστίαση</strong>
+                  <span data-i18n="loc.h1.desc">Κοντά σε ταβέρνες, καφέ και αγορά</span>
                 </div>
               </div>
               <div class="location-highlight" role="listitem">
                 <span class="location-highlight-icon" aria-hidden="true">🚗</span>
                 <div class="location-highlight-text">
-                  <strong>Πρόσβαση</strong>
-                  <span>Εύκολη πρόσβαση με αυτοκίνητο</span>
+                  <strong data-i18n="loc.h2.name">Πρόσβαση</strong>
+                  <span data-i18n="loc.h2.desc">Εύκολη πρόσβαση με αυτοκίνητο</span>
                 </div>
               </div>
               <div class="location-highlight" role="listitem">
                 <span class="location-highlight-icon" aria-hidden="true">🗺️</span>
                 <div class="location-highlight-text">
-                  <strong>Εξορμήσεις</strong>
-                  <span>Βάση για ημερήσιες εξορμήσεις στην Εύβοια</span>
+                  <strong data-i18n="loc.h3.name">Εξορμήσεις</strong>
+                  <span data-i18n="loc.h3.desc">Βάση για ημερήσιες εξορμήσεις στην Εύβοια</span>
                 </div>
               </div>
             </div>
@@ -725,6 +736,7 @@
                 class="btn btn-dark"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="loc.btn1"
               >
                 📍 Άνοιγμα στο Google Maps
               </a>
@@ -733,6 +745,7 @@
                 class="btn btn-ghost"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="loc.btn2"
               >
                 Οδηγίες πλοήγησης →
               </a>
@@ -743,6 +756,7 @@
             <div class="map-frame-wrapper">
               <iframe
                 class="map-frame"
+                data-i18n-iframe-title="loc.map.title"
                 title="Χάρτης Νιμπορειού Ευβοίας"
                 src="https://www.google.com/maps?q=%CE%9D%CE%B9%CE%BC%CF%80%CE%BF%CF%81%CE%B5%CE%B9%CF%8C%20%CE%95%CF%8D%CE%B2%CE%BF%CE%B9%CE%B1%CF%82&output=embed"
                 loading="lazy"
@@ -751,9 +765,9 @@
               ></iframe>
             </div>
             <div class="location-card" aria-hidden="true">
-              <span class="location-card-label">Τοποθεσία</span>
-              <strong>Νιμπορειό Ευβοίας</strong>
-              <span>Νότια Εύβοια, Ελλάδα</span>
+              <span class="location-card-label" data-i18n="loc.card.label">Τοποθεσία</span>
+              <strong data-i18n="loc.card.name">Νιμπορειό Ευβοίας</strong>
+              <span data-i18n="loc.card.region">Νότια Εύβοια, Ελλάδα</span>
             </div>
           </div>
 
@@ -765,30 +779,30 @@
     <section class="nearby-section section" aria-labelledby="nearby-title">
       <div class="container">
         <div class="nearby-header">
-          <p class="section-label section-label-center">Γύρω από το κατάλυμα</p>
-          <h2 id="nearby-title">Ανακαλύψτε τη Νότια Εύβοια</h2>
-          <p>Χρησιμοποιήστε το κατάλυμα ως βάση για θάλασσα, φαγητό, βόλτες και ημερήσιες εξορμήσεις.</p>
+          <p class="section-label section-label-center" data-i18n="nearby.label">Γύρω από το κατάλυμα</p>
+          <h2 id="nearby-title" data-i18n="nearby.title">Ανακαλύψτε τη Νότια Εύβοια</h2>
+          <p data-i18n="nearby.lead">Χρησιμοποιήστε το κατάλυμα ως βάση για θάλασσα, φαγητό, βόλτες και ημερήσιες εξορμήσεις.</p>
         </div>
         <div class="nearby-grid">
           <article class="nearby-card">
             <span aria-hidden="true">🏖️</span>
-            <h3>Παραλίες</h3>
-            <p>Εξερευνήστε τις παραλίες και τους ήσυχους όρμους της περιοχής.</p>
+            <h3 data-i18n="nearby1.name">Παραλίες</h3>
+            <p data-i18n="nearby1.desc">Εξερευνήστε τις παραλίες και τους ήσυχους όρμους της περιοχής.</p>
           </article>
           <article class="nearby-card">
             <span aria-hidden="true">🍽️</span>
-            <h3>Τοπική γαστρονομία</h3>
-            <p>Ανακαλύψτε ταβέρνες και τοπικές γεύσεις της Νότιας Εύβοιας.</p>
+            <h3 data-i18n="nearby2.name">Τοπική γαστρονομία</h3>
+            <p data-i18n="nearby2.desc">Ανακαλύψτε ταβέρνες και τοπικές γεύσεις της Νότιας Εύβοιας.</p>
           </article>
           <article class="nearby-card">
             <span aria-hidden="true">🥾</span>
-            <h3>Πεζοπορία</h3>
-            <p>Απολαύστε διαδρομές στη φύση και σημεία με εντυπωσιακή θέα.</p>
+            <h3 data-i18n="nearby3.name">Πεζοπορία</h3>
+            <p data-i18n="nearby3.desc">Απολαύστε διαδρομές στη φύση και σημεία με εντυπωσιακή θέα.</p>
           </article>
           <article class="nearby-card">
             <span aria-hidden="true">🚗</span>
-            <h3>Εξορμήσεις</h3>
-            <p>Οργανώστε εύκολα κοντινές επισκέψεις σε χωριά και αξιοθέατα.</p>
+            <h3 data-i18n="nearby4.name">Εξορμήσεις</h3>
+            <p data-i18n="nearby4.desc">Οργανώστε εύκολα κοντινές επισκέψεις σε χωριά και αξιοθέατα.</p>
           </article>
         </div>
       </div>
@@ -800,72 +814,73 @@
         <div class="contact-grid">
 
           <div class="contact-content">
-            <p class="section-label">Επικοινωνία</p>
-            <h2 id="contact-title">Κάντε το πρώτο βήμα για τη διαμονή σας</h2>
-            <p>
+            <p class="section-label" data-i18n="contact.label">Επικοινωνία</p>
+            <h2 id="contact-title" data-i18n="contact.title">Κάντε το πρώτο βήμα για τη διαμονή σας</h2>
+            <p data-i18n="contact.lead">
               Επικοινωνήστε απευθείας μαζί μας για τιμές,
               διαθέσιμες ημερομηνίες και οποιαδήποτε πληροφορία χρειάζεστε.
             </p>
 
             <div class="contact-actions">
-              <a href="tel:+306947883098" class="btn btn-primary">📞 Καλέστε μας</a>
+              <a href="tel:+306947883098" class="btn btn-primary" data-i18n="contact.btn.call">📞 Καλέστε μας</a>
               <a
                 href="https://wa.me/306936960328?text=Καλησπέρα!%20Θα%20ήθελα%20να%20ρωτήσω%20για%20διαθεσιμότητα."
                 class="btn btn-outline"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="contact.btn.wa"
               >WhatsApp</a>
-              <a href="viber://chat?number=%2B306936960328" class="btn btn-outline">Viber</a>
+              <a href="viber://chat?number=%2B306936960328" class="btn btn-outline" data-i18n="contact.btn.viber">Viber</a>
             </div>
 
-            <nav class="contact-links" aria-label="Τρόποι επικοινωνίας">
+            <nav class="contact-links" data-i18n-aria="contact.nav.aria" aria-label="Τρόποι επικοινωνίας">
               <a href="tel:+306947883098" class="contact-link-row">
                 <span class="contact-link-icon" aria-hidden="true">📞</span>
                 <div class="contact-link-info">
-                  <strong>Τηλέφωνο</strong>
+                  <strong data-i18n="contact.row1.label">Τηλέφωνο</strong>
                   <span>+30 694 788 3098</span>
                 </div>
               </a>
               <a href="https://wa.me/306936960328" target="_blank" rel="noopener noreferrer" class="contact-link-row">
                 <span class="contact-link-icon" aria-hidden="true">💬</span>
                 <div class="contact-link-info">
-                  <strong>WhatsApp / Viber</strong>
+                  <strong data-i18n="contact.row2.label">WhatsApp / Viber</strong>
                   <span>+30 693 696 0328</span>
                 </div>
               </a>
               <a href="mailto:info@example.gr" class="contact-link-row">
                 <span class="contact-link-icon" aria-hidden="true">✉️</span>
                 <div class="contact-link-info">
-                  <strong>Email</strong>
+                  <strong data-i18n="contact.row3.label">Email</strong>
                   <span>info@example.gr</span>
                 </div>
               </a>
               <a href="https://maps.app.goo.gl/kTvWVXG8Cv5SHYaw6" target="_blank" rel="noopener noreferrer" class="contact-link-row">
                 <span class="contact-link-icon" aria-hidden="true">📍</span>
                 <div class="contact-link-info">
-                  <strong>Τοποθεσία</strong>
-                  <span>Νιμπορειό Ευβοίας, Νότια Εύβοια</span>
+                  <strong data-i18n="contact.row4.label">Τοποθεσία</strong>
+                  <span data-i18n="contact.row4.value">Νιμπορειό Ευβοίας, Νότια Εύβοια</span>
                 </div>
               </a>
             </nav>
           </div>
 
           <div class="contact-info-card">
-            <h3>Ώρες επικοινωνίας</h3>
-            <p>Είμαστε πάντα διαθέσιμοι για να σας βοηθήσουμε.</p>
+            <h3 data-i18n="contact.hours.title">Ώρες επικοινωνίας</h3>
+            <p data-i18n="contact.hours.desc">Είμαστε πάντα διαθέσιμοι για να σας βοηθήσουμε.</p>
 
             <ul class="contact-info-list">
               <li>
-                <span>Δευτέρα – Παρασκευή</span>
-                <strong>09:00 – 21:00</strong>
+                <span data-i18n="contact.hours.row1.day">Δευτέρα – Παρασκευή</span>
+                <strong data-i18n="contact.hours.row1.time">09:00 – 21:00</strong>
               </li>
               <li>
-                <span>Σαββατοκύριακο</span>
-                <strong>09:00 – 21:00</strong>
+                <span data-i18n="contact.hours.row2.day">Σαββατοκύριακο</span>
+                <strong data-i18n="contact.hours.row2.time">09:00 – 21:00</strong>
               </li>
               <li>
-                <span>WhatsApp / Viber</span>
-                <strong>Πάντα διαθέσιμοι</strong>
+                <span data-i18n="contact.hours.row3.day">WhatsApp / Viber</span>
+                <strong data-i18n="contact.hours.row3.time">Πάντα διαθέσιμοι</strong>
               </li>
             </ul>
 
@@ -873,6 +888,7 @@
               href="mailto:info@example.gr?subject=Αίτημα%20διαθεσιμότητας"
               class="btn btn-primary"
               style="width:100%"
+              data-i18n="contact.email.btn"
             >
               Αποστολή email
             </a>
@@ -896,32 +912,32 @@
 
           <div class="footer-brand">
             <a href="#home" class="footer-logo">Asteria Apartments</a>
-            <p>Boutique κατάλυμα στο Νιμπορειό Ευβοίας — άνεση, καθαριότητα και αυθεντική ελληνική φιλοξενία.</p>
-            <nav class="footer-social" aria-label="Κοινωνικά δίκτυα" id="footerSocial"></nav>
+            <p data-i18n="footer.brand.desc">Boutique κατάλυμα στο Νιμπορειό Ευβοίας — άνεση, καθαριότητα και αυθεντική ελληνική φιλοξενία.</p>
+            <nav class="footer-social" data-i18n-aria="footer.social.aria" aria-label="Κοινωνικά δίκτυα" id="footerSocial"></nav>
           </div>
 
-          <nav class="footer-col" aria-label="Πλοήγηση">
-            <h4>Πλοήγηση</h4>
-            <a href="#about">Το κατάλυμα</a>
-            <a href="#rooms">Δωμάτια</a>
-            <a href="#amenities">Παροχές</a>
-            <a href="#gallery">Φωτογραφίες</a>
-            <a href="#offers">Προσφορές</a>
-            <a href="#location">Τοποθεσία</a>
+          <nav class="footer-col" data-i18n-aria="footer.nav1.aria" aria-label="Πλοήγηση">
+            <h4 data-i18n="footer.nav1.title">Πλοήγηση</h4>
+            <a href="#about" data-i18n="nav.about">Το κατάλυμα</a>
+            <a href="#rooms" data-i18n="nav.rooms">Δωμάτια</a>
+            <a href="#amenities" data-i18n="nav.amenities">Παροχές</a>
+            <a href="#gallery" data-i18n="nav.gallery">Φωτογραφίες</a>
+            <a href="#offers" data-i18n="nav.offers">Προσφορές</a>
+            <a href="#location" data-i18n="nav.location">Τοποθεσία</a>
           </nav>
 
-          <nav class="footer-col" aria-label="Επικοινωνία">
-            <h4>Επικοινωνία</h4>
+          <nav class="footer-col" data-i18n-aria="footer.nav2.aria" aria-label="Επικοινωνία">
+            <h4 data-i18n="footer.nav2.title">Επικοινωνία</h4>
             <a href="tel:+306947883098">+30 694 788 3098</a>
             <a href="https://wa.me/306936960328" target="_blank" rel="noopener noreferrer">+30 693 696 0328</a>
             <a href="mailto:info@example.gr">info@example.gr</a>
-            <span>Νιμπορειό Ευβοίας</span>
-            <span>Νότια Εύβοια, Ελλάδα</span>
+            <span data-i18n="footer.loc1">Νιμπορειό Ευβοίας</span>
+            <span data-i18n="footer.loc2">Νότια Εύβοια, Ελλάδα</span>
           </nav>
 
           <div class="footer-col footer-newsletter">
-            <h4>Newsletter</h4>
-            <p>
+            <h4 data-i18n="footer.newsletter.title">Newsletter</h4>
+            <p data-i18n="footer.newsletter.desc">
               Εγγραφείτε για να λαμβάνετε ειδικές προσφορές
               και νέα από το κατάλυμα.
               <!-- Backend required: POST /api/newsletter { email } -->
@@ -934,11 +950,12 @@
                 placeholder="email@example.com"
                 required
                 autocomplete="email"
+                data-i18n-aria="footer.newsletter.email.aria"
                 aria-label="Email για newsletter"
               >
-              <button type="submit" class="btn btn-primary btn-sm">Εγγραφή</button>
+              <button type="submit" class="btn btn-primary btn-sm" data-i18n="footer.newsletter.btn">Εγγραφή</button>
             </form>
-            <p class="newsletter-notice">
+            <p class="newsletter-notice" data-i18n="footer.newsletter.notice">
               * Η εγγραφή ενεργοποιείται μόλις διαμορφωθεί το backend.
             </p>
           </div>
@@ -949,11 +966,11 @@
 
       <div class="container">
         <div class="footer-bottom">
-          <p>© 2026 Asteria Apartments. Όλα τα δικαιώματα διατηρούνται.</p>
-          <nav class="footer-legal" aria-label="Νομικό πλαίσιο">
-            <a href="#">Πολιτική απορρήτου</a>
-            <a href="#">Όροι χρήσης</a>
-            <a href="#">Πολιτική ακύρωσης</a>
+          <p data-i18n="footer.copy">© 2026 Asteria Apartments. Όλα τα δικαιώματα διατηρούνται.</p>
+          <nav class="footer-legal" data-i18n-aria="footer.legal.aria" aria-label="Νομικό πλαίσιο">
+            <a href="#" data-i18n="footer.legal1">Πολιτική απορρήτου</a>
+            <a href="#" data-i18n="footer.legal2">Όροι χρήσης</a>
+            <a href="#" data-i18n="footer.legal3">Πολιτική ακύρωσης</a>
           </nav>
         </div>
       </div>
@@ -961,8 +978,8 @@
   </footer>
 
   <!-- ═══════════ FLOATING CONTACT DOCK ════════════════════════ -->
-  <nav class="contact-dock" aria-label="Γρήγορη επικοινωνία">
-    <a href="tel:+306947883098" aria-label="Τηλεφωνική κλήση" title="Τηλέφωνο">
+  <nav class="contact-dock" data-i18n-aria="dock.aria" aria-label="Γρήγορη επικοινωνία">
+    <a href="tel:+306947883098" data-i18n-aria="dock.call.aria" data-i18n-title="dock.call.title" aria-label="Τηλεφωνική κλήση" title="Τηλέφωνο">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.55 3.5.55a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.19 2.4.55 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/>
       </svg>
@@ -973,12 +990,14 @@
       rel="noopener noreferrer"
       aria-label="WhatsApp"
       title="WhatsApp"
+      data-i18n-aria="dock.wa.aria"
+      data-i18n-title="dock.wa.title"
     >
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 2a9.6 9.6 0 0 0-8.2 14.6L2.5 21.5l5-1.3A9.7 9.7 0 1 0 12 2Zm0 17.5a7.8 7.8 0 0 1-4-1.1l-.3-.2-3 .8.8-2.9-.2-.3A7.8 7.8 0 1 1 12 19.5Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.5l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.2.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/>
       </svg>
     </a>
-    <a href="viber://chat?number=%2B306936960328" aria-label="Viber" title="Viber">
+    <a href="viber://chat?number=%2B306936960328" aria-label="Viber" title="Viber" data-i18n-aria="dock.viber.aria" data-i18n-title="dock.viber.title">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M19.2 4.4C17.4 2.7 14.5 2 12 2S6.6 2.7 4.8 4.4C3.2 5.9 2.4 8 2.4 10.8c0 4.1 1.8 6.7 5.4 8.1v2.7c0 .3.4.5.6.3l3.2-2.5h.4c2.5 0 5.4-.7 7.2-2.4 1.6-1.5 2.4-3.6 2.4-6.4 0-2.7-.8-4.7-2.4-6.2Zm-2 9.4c-.2.6-1.1 1.2-1.7 1.3-.5.1-1.1.2-3.7-.9-3.1-1.3-5.1-4.5-5.3-4.8-.2-.3-1.2-1.6-1.2-3.1 0-1.5.8-2.2 1.1-2.5.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6l.9 2.2c.1.3.1.5 0 .7l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.9-.2l1-1.2c.2-.3.5-.3.8-.2l2 .9c.3.1.5.2.6.4.1.1.1.7-.1 1.3Z"/>
       </svg>
@@ -986,7 +1005,7 @@
   </nav>
 
   <!-- Scroll to top -->
-  <button class="scroll-top" id="scrollTop" aria-label="Επιστροφή στην κορυφή" title="Επιστροφή στην κορυφή">↑</button>
+  <button class="scroll-top" id="scrollTop" data-i18n-aria="scrolltop.aria" data-i18n-title="scrolltop.title" aria-label="Επιστροφή στην κορυφή" title="Επιστροφή στην κορυφή">↑</button>
 
   <!-- ═══════════ LIGHTBOX ═══════════════════════════════════════ -->
   <div
@@ -995,14 +1014,15 @@
     aria-hidden="true"
     role="dialog"
     aria-modal="true"
+    data-i18n-aria="lightbox.dialog.aria"
     aria-label="Προβολή φωτογραφίας"
   >
-    <button class="premium-lightbox-close" id="premiumLightboxClose" type="button" aria-label="Κλείσιμο">×</button>
-    <button class="premium-lightbox-nav premium-lightbox-prev" id="premiumLightboxPrev" type="button" aria-label="Προηγούμενη φωτογραφία">‹</button>
+    <button class="premium-lightbox-close" id="premiumLightboxClose" type="button" data-i18n-aria="lightbox.close.aria" aria-label="Κλείσιμο">×</button>
+    <button class="premium-lightbox-nav premium-lightbox-prev" id="premiumLightboxPrev" type="button" data-i18n-aria="lightbox.prev.aria" aria-label="Προηγούμενη φωτογραφία">‹</button>
     <figure class="premium-lightbox-figure">
       <img id="premiumLightboxImage" src="" alt="" loading="lazy">
     </figure>
-    <button class="premium-lightbox-nav premium-lightbox-next" id="premiumLightboxNext" type="button" aria-label="Επόμενη φωτογραφία">›</button>
+    <button class="premium-lightbox-nav premium-lightbox-next" id="premiumLightboxNext" type="button" data-i18n-aria="lightbox.next.aria" aria-label="Επόμενη φωτογραφία">›</button>
   </div>
 
   <!-- Scripts -->
