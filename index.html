@@ -69,6 +69,7 @@
   >
   <link rel="stylesheet" href="premium-gallery.css">
   <link rel="stylesheet" href="premium-features.css">
+  <link rel="stylesheet" href="final-polish.css">
 </head>
 
 <body>
@@ -136,7 +137,7 @@
         </a>
 
         <a
-          href="#contact"
+          href="#booking"
           class="navigation-button"
         >
           Κράτηση
@@ -180,10 +181,10 @@
           </a>
 
           <a
-            href="#contact"
+            href="#booking"
             class="button button-outline"
           >
-            Ρωτήστε για διαθεσιμότητα
+            Έλεγχος διαθεσιμότητας
           </a>
 
         </div>
@@ -220,7 +221,7 @@
     </section>
 
 
-    <section class="booking-strip" aria-labelledby="booking-title">
+    <section class="booking-strip" id="booking" aria-labelledby="booking-title">
       <div class="container">
         <div class="booking-panel">
           <div class="booking-heading">
@@ -442,7 +443,7 @@
                 href="#contact"
                 class="text-link"
               >
-                Ρωτήστε για διαθεσιμότητα
+                Έλεγχος διαθεσιμότητας
                 <span aria-hidden="true">→</span>
               </a>
 
@@ -500,7 +501,7 @@
                 href="#contact"
                 class="text-link"
               >
-                Ρωτήστε για διαθεσιμότητα
+                Έλεγχος διαθεσιμότητας
                 <span aria-hidden="true">→</span>
               </a>
 
@@ -558,7 +559,7 @@
                 href="#contact"
                 class="text-link"
               >
-                Ρωτήστε για διαθεσιμότητα
+                Έλεγχος διαθεσιμότητας
                 <span aria-hidden="true">→</span>
               </a>
 
@@ -1237,17 +1238,27 @@
 
   
   <div class="contact-dock" aria-label="Γρήγορη επικοινωνία">
-    <a href="tel:+306947883098" aria-label="Τηλεφωνική κλήση">☎</a>
+    <a href="tel:+306947883098" aria-label="Τηλεφωνική κλήση" title="Τηλέφωνο">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.55 3.5.55a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.19 2.4.55 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/>
+      </svg>
+    </a>
     <a
       href="https://wa.me/306936960328?text=Καλησπέρα!%20Θα%20ήθελα%20να%20ρωτήσω%20για%20διαθεσιμότητα."
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"
-    >WA</a>
-    <a
-      href="viber://chat?number=%2B306936960328"
-      aria-label="Viber"
-    >V</a>
+      title="WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2a9.6 9.6 0 0 0-8.2 14.6L2.5 21.5l5-1.3A9.7 9.7 0 1 0 12 2Zm0 17.5a7.8 7.8 0 0 1-4-1.1l-.3-.2-3 .8.8-2.9-.2-.3A7.8 7.8 0 1 1 12 19.5Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.5l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.2.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/>
+      </svg>
+    </a>
+    <a href="viber://chat?number=%2B306936960328" aria-label="Viber" title="Viber">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19.2 4.4C17.4 2.7 14.5 2 12 2S6.6 2.7 4.8 4.4C3.2 5.9 2.4 8 2.4 10.8c0 4.1 1.8 6.7 5.4 8.1v2.7c0 .3.4.5.6.3l3.2-2.5h.4c2.5 0 5.4-.7 7.2-2.4 1.6-1.5 2.4-3.6 2.4-6.4 0-2.7-.8-4.7-2.4-6.2Zm-2 9.4c-.2.6-1.1 1.2-1.7 1.3-.5.1-1.1.2-3.7-.9-3.1-1.3-5.1-4.5-5.3-4.8-.2-.3-1.2-1.6-1.2-3.1 0-1.5.8-2.2 1.1-2.5.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6l.9 2.2c.1.3.1.5 0 .7l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.9-.2l1-1.2c.2-.3.5-.3.8-.2l2 .9c.3.1.5.2.6.4.1.1.1.7-.1 1.3Z"/>
+      </svg>
+    </a>
   </div>
 
 
