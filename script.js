@@ -174,13 +174,7 @@ function setImgSrc(id, src, alt) {
 }
 
 function buildFallbackSvg(label) {
-  var safeLabel = encodeURIComponent(
-    String(label || "Asteria Apartments")
-      .replace(/[<>&"'`]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim()
-  );
-  return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%230d1e16'/%3E%3Cstop offset='1' stop-color='%231e3c2b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='1000' fill='url(%23g)'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' font-family='Georgia,serif' font-size='78' fill='%23c8a96b'%3EAsteria Apartments%3C/text%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-family='Arial,sans-serif' font-size='36' fill='%23faf8f4'%3E" + safeLabel + "%3C/text%3E%3C/svg%3E";
+  return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%230d1e16'/%3E%3Cstop offset='1' stop-color='%231e3c2b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='1000' fill='url(%23g)'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' font-family='Georgia,serif' font-size='78' fill='%23c8a96b'%3EAsteria Apartments%3C/text%3E%3C/svg%3E";
 }
 
 function setImageWithFallback(el, src, alt) {
