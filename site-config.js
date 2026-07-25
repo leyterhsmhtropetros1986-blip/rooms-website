@@ -39,17 +39,8 @@ var SITE_CONFIG = {
     /** Full-screen hero background */
     hero:     "images/hero.jpg",
 
-    /** About section exterior gallery (1 featured + 4 thumbnails).
-     *  Files must exist in `/images`: exterior-01.jpg ... exterior-05.jpg.
-     *  Missing files are replaced by a neutral fallback image and logged in the browser console.
-     */
-    aboutGallery: [
-      { src: "images/exterior-01.jpg", alt: "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" },
-      { src: "images/exterior-02.jpg", alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
-      { src: "images/exterior-03.jpg", alt: "Κήπος και είσοδος των διαμερισμάτων" },
-      { src: "images/exterior-04.jpg", alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
-      { src: "images/exterior-05.jpg", alt: "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" },
-    ],
+    /** About section — shown beside the text */
+    about:    "images/exterior.jpg",
 
     /** Offers section — darkened background */
     offers:   "images/hero.jpg",
