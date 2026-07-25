@@ -62,9 +62,9 @@ var SITE_CONFIG = {
 
     /** Room cards — must match room order in HTML */
     rooms: [
-      { src: "images/exterior-02.jpg", alt: "Deluxe δίκλινο δωμάτιο με διπλό κρεβάτι" },
-      { src: "images/exterior-03.jpg", alt: "Superior τρίκλινο δωμάτιο για οικογένεια" },
-      { src: "images/exterior-04.jpg", alt: "Family δωμάτιο για τέσσερις επισκέπτες" },
+      { src: "images/exterior-02.jpg", alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
+      { src: "images/exterior-03.jpg", alt: "Κήπος και είσοδος των διαμερισμάτων" },
+      { src: "images/exterior-04.jpg", alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
     ],
   },
 
