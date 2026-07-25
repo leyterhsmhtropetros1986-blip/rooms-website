@@ -3,7 +3,7 @@
 (function () {
   var STORAGE_KEY = "asteria-language";
   var pageKey = document.body.getAttribute("data-legal-page") || "";
-  var pageTranslations = window.LEGAL_PAGE_TRANSLATIONS || {};
+  var pageTranslations = window.LEGAL_PAGE_TRANSLATIONS || window.PAGE_TRANSLATIONS || {};
 
   var common = {
     el: {
@@ -83,15 +83,22 @@
 
     document.documentElement.setAttribute("lang", selected);
 
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    /* Elements that only need an attribute translated (data-i18n-attr)
+       must NOT also have their textContent replaced here — many of them
+       (nav, logo, menu button) have real child elements that textContent
+       would silently destroy. */
+    document.querySelectorAll("[data-i18n]:not([data-i18n-attr])").forEach(function (el) {
       var key = el.getAttribute("data-i18n");
       if (dict[key]) el.textContent = dict[key];
     });
 
     document.querySelectorAll("[data-i18n-attr]").forEach(function (el) {
-      var attr = el.getAttribute("data-i18n-attr");
+      var attrs = el.getAttribute("data-i18n-attr").split(/\s+/);
       var key = el.getAttribute("data-i18n");
-      if (dict[key]) el.setAttribute(attr, dict[key]);
+      if (!dict[key]) return;
+      attrs.forEach(function (attr) {
+        if (attr) el.setAttribute(attr, dict[key]);
+      });
     });
 
     document.title = dict["meta.title"] || document.title;
@@ -127,7 +134,13 @@
     });
   });
 
-  applyLanguage(getInitialLanguage());
+  /* Deferred to DOMContentLoaded, registered after script.js's listener
+     (this script tag loads later in the document), so that any dynamic
+     content/attributes script.js injects from SITE_CONFIG are already
+     in place before translations are applied on top of them. */
+  document.addEventListener("DOMContentLoaded", function () {
+    applyLanguage(getInitialLanguage());
+  });
 
   if (pageKey) {
     document.body.setAttribute("data-legal-page-ready", pageKey);

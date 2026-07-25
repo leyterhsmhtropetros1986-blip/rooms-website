@@ -53,6 +53,10 @@
 
   if (!form) return;
 
+  function lang() {
+    return document.documentElement.getAttribute("lang") === "en" ? "en" : "el";
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -68,16 +72,16 @@
 
     /* ── Validate ── */
     if (!name) {
-      return showError("Παρακαλούμε συμπληρώστε το όνομά σας.");
+      return showError(lang() === "en" ? "Please enter your name." : "Παρακαλούμε συμπληρώστε το όνομά σας.");
     }
     if (!ratingEl) {
-      return showError("Παρακαλούμε επιλέξτε βαθμολογία (αστέρια).");
+      return showError(lang() === "en" ? "Please select a star rating." : "Παρακαλούμε επιλέξτε βαθμολογία (αστέρια).");
     }
     if (!reviewTxt || reviewTxt.length < 30) {
-      return showError("Η κριτική πρέπει να περιέχει τουλάχιστον 30 χαρακτήρες.");
+      return showError(lang() === "en" ? "Your review must be at least 30 characters long." : "Η κριτική πρέπει να περιέχει τουλάχιστον 30 χαρακτήρες.");
     }
     if (!consent || !consent.checked) {
-      return showError("Παρακαλούμε αποδεχτείτε την πολιτική απορρήτου.");
+      return showError(lang() === "en" ? "Please accept the privacy policy." : "Παρακαλούμε αποδεχτείτε την πολιτική απορρήτου.");
     }
 
     /* ── Submit ── */
@@ -152,9 +156,9 @@
 
   function showSuccess() {
     if (!message) return;
-    message.innerHTML =
-      "✅ <strong>Ευχαριστούμε!</strong> Η κριτική σας ελήφθη και θα εξεταστεί " +
-      "από τον διαχειριστή πριν δημοσιευθεί.";
+    message.innerHTML = lang() === "en"
+      ? "✅ <strong>Thank you!</strong> Your review has been received and will be checked by the owner before publishing."
+      : "✅ <strong>Ευχαριστούμε!</strong> Η κριτική σας ελήφθη και θα εξεταστεί από τον διαχειριστή πριν δημοσιευθεί.";
     message.className = "form-message is-success";
     message.scrollIntoView({ behavior: "smooth", block: "center" });
   }

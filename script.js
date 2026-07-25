@@ -6,6 +6,11 @@ var FALLBACK_PRIMARY_HEX = "%230d1e16";
 var FALLBACK_SECONDARY_HEX = "%231e3c2b";
 var FALLBACK_GOLD_HEX = "%23c8a96b";
 
+/* Current UI language, kept in sync by legal-pages.js via <html lang="">. */
+function currentLang() {
+  return document.documentElement.getAttribute("lang") === "en" ? "en" : "el";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ── Apply centralized image config to DOM ─────────────────── */
@@ -75,8 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
       var input = document.getElementById("newsletterEmail");
       if (input && input.value) {
         // TODO: POST to /api/newsletter once backend is ready
+        var lang = currentLang();
         input.value = "";
-        input.placeholder = "Ευχαριστούμε για την εγγραφή! ✓";
+        input.placeholder = lang === "en" ? "Thank you for subscribing! ✓" : "Ευχαριστούμε για την εγγραφή! ✓";
         input.disabled = true;
         var btn = newsletterForm.querySelector("button");
         if (btn) btn.disabled = true;
@@ -89,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
           notice.setAttribute("aria-live", "polite");
           newsletterForm.appendChild(notice);
         }
-        notice.textContent = "Εγγραφήκατε επιτυχώς στο newsletter μας!";
+        notice.textContent = lang === "en" ? "You have successfully subscribed to our newsletter!" : "Εγγραφήκατε επιτυχώς στο newsletter μας!";
       }
     });
   }
@@ -210,7 +216,7 @@ function renderBookingPlatforms() {
   var platforms = [
     { key: "bookingCom", label: "Booking.com",  icon: "🏨" },
     { key: "airbnb",     label: "Airbnb",        icon: "🏠" },
-    { key: "direct",     label: "Άμεση κράτηση", icon: "✉️" },
+    { key: "direct",     label: "Άμεση κράτηση", i18n: "booking.platformDirect", icon: "✉️" },
   ];
 
   var html = "";
@@ -221,10 +227,11 @@ function renderBookingPlatforms() {
     var attrs = isExternal
       ? 'target="_blank" rel="noopener noreferrer"'
       : "";
+    var labelAttr = p.i18n ? ' data-i18n="' + p.i18n + '"' : "";
     html +=
       '<a href="' + url + '" class="booking-platform-card" ' + attrs + ">" +
         '<span class="p-icon" aria-hidden="true">' + p.icon + "</span>" +
-        p.label +
+        "<span" + labelAttr + ">" + p.label + "</span>" +
       "</a>";
   });
 
