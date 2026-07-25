@@ -86,7 +86,7 @@ var SITE_CONFIG = {
 
   /* ── Social links (set to empty string to hide) ─────────────── */
   social: {
-    instagram: "",
+    instagram: "https://www.instagram.com/asteriarooms/",
     facebook:  "",
     tiktok:    "",
   },
