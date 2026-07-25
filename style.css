@@ -324,7 +324,7 @@ p  { color: var(--text-muted); line-height: 1.75; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('images/hero.jpg') center/cover no-repeat;
+  background: url('images/exterior-01.jpg') center/cover no-repeat;
   transform: scale(1.06);
   transition: transform 7s ease;
   will-change: transform;
@@ -797,7 +797,7 @@ p  { color: var(--text-muted); line-height: 1.75; }
 .offers-bg {
   position: absolute;
   inset: 0;
-  background: url('images/hero.jpg') center/cover no-repeat;
+  background: url('images/exterior-01.jpg') center/cover no-repeat;
 }
 .offers-overlay {
   position: absolute;
@@ -1339,7 +1339,7 @@ p  { color: var(--text-muted); line-height: 1.75; }
 .footer-bg {
   position: absolute;
   inset: 0;
-  background: url('images/exterior.jpg') center/cover no-repeat;
+  background: url('images/exterior-05.jpg') center/cover no-repeat;
 }
 .footer-overlay {
   position: absolute;

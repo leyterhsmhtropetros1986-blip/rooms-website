@@ -17,13 +17,13 @@
   <meta property="og:site_name"   content="Asteria Apartments">
   <meta property="og:title"       content="Asteria Apartments | Πολυτελής διαμονή στη Νότια Εύβοια">
   <meta property="og:description" content="Boutique κατάλυμα στο Νιμπορειό Ευβοίας. Δίκλινα, τρίκλινα και οικογενειακά δωμάτια.">
-  <meta property="og:image"       content="images/hero.jpg">
+  <meta property="og:image"       content="images/exterior-01.jpg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Asteria Apartments | Νότια Εύβοια">
   <meta name="twitter:description" content="Πολυτελής boutique διαμονή στο Νιμπορειό Ευβοίας.">
-  <meta name="twitter:image"       content="images/hero.jpg">
+  <meta name="twitter:image"       content="images/exterior-01.jpg">
 
   <title>Asteria Apartments | Πολυτελής Διαμονή στη Νότια Εύβοια</title>
 
@@ -43,7 +43,7 @@
     "telephone": "+30-694-788-3098",
     "email": "info@example.gr",
     "url": "https://example.gr",
-    "image": "images/hero.jpg",
+    "image": "images/exterior-01.jpg",
     "amenityFeature": [
       {"@type": "LocationFeatureSpecification", "name": "Δωρεάν Wi-Fi", "value": true},
       {"@type": "LocationFeatureSpecification", "name": "Κλιματισμός", "value": true},
@@ -211,7 +211,7 @@
             <div class="about-image-frame">
               <img
                 id="aboutImg"
-                src="images/exterior.jpg"
+                src="images/exterior-01.jpg"
                 alt="Εξωτερική άποψη του Asteria Apartments"
                 loading="lazy"
               >
@@ -248,7 +248,7 @@
             <div class="room-image-wrapper">
               <img
                 id="roomImg0"
-                src="images/room-1.jpg"
+                src="images/exterior-02.jpg"
                 alt="Deluxe δίκλινο δωμάτιο με διπλό κρεβάτι"
                 loading="lazy"
               >
@@ -283,7 +283,7 @@
             <div class="room-image-wrapper">
               <img
                 id="roomImg1"
-                src="images/room-2.jpg"
+                src="images/exterior-03.jpg"
                 alt="Superior τρίκλινο δωμάτιο για οικογένεια ή παρέα"
                 loading="lazy"
               >
@@ -318,7 +318,7 @@
             <div class="room-image-wrapper">
               <img
                 id="roomImg2"
-                src="images/room-3.jpg"
+                src="images/exterior-04.jpg"
                 alt="Family δωμάτιο για τέσσερις επισκέπτες"
                 loading="lazy"
               >
@@ -423,26 +423,26 @@
           </p>
         </div>
 
-        <div class="gallery-grid" id="galleryGrid" aria-label="Φωτογραφική γκαλερί">
+        <div class="premium-gallery-grid" id="premiumGallery" aria-label="Φωτογραφίες εξωτερικών χώρων">
 
-          <button class="gallery-item" type="button" aria-label="Προβολή εξωτερικού χώρου">
-            <img src="images/exterior.jpg" alt="Εξωτερικός χώρος του καταλύματος" loading="lazy">
+          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 1">
+            <img src="images/exterior-01.jpg" alt="Εξωτερικός χώρος 1" loading="lazy">
           </button>
 
-          <button class="gallery-item" type="button" aria-label="Προβολή δίκλινου δωματίου">
-            <img src="images/room-1.jpg" alt="Deluxe δίκλινο δωμάτιο" loading="lazy">
+          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 2">
+            <img src="images/exterior-02.jpg" alt="Εξωτερικός χώρος 2" loading="lazy">
           </button>
 
-          <button class="gallery-item" type="button" aria-label="Προβολή τρίκλινου δωματίου">
-            <img src="images/room-2.jpg" alt="Superior τρίκλινο δωμάτιο" loading="lazy">
+          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 3">
+            <img src="images/exterior-03.jpg" alt="Εξωτερικός χώρος 3" loading="lazy">
           </button>
 
-          <button class="gallery-item" type="button" aria-label="Προβολή οικογενειακού δωματίου">
-            <img src="images/room-3.jpg" alt="Family δωμάτιο" loading="lazy">
+          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 4">
+            <img src="images/exterior-04.jpg" alt="Εξωτερικός χώρος 4" loading="lazy">
           </button>
 
-          <button class="gallery-item" type="button" aria-label="Προβολή περιοχής">
-            <img src="images/location.jpg" alt="Περιοχή Νιμπορειού Ευβοίας" loading="lazy">
+          <button class="premium-gallery-card" type="button" aria-label="Άνοιγμα φωτογραφίας 5">
+            <img src="images/exterior-05.jpg" alt="Εξωτερικός χώρος 5" loading="lazy">
           </button>
 
         </div>
@@ -990,21 +990,19 @@
 
   <!-- ═══════════ LIGHTBOX ═══════════════════════════════════════ -->
   <div
-    class="lightbox"
-    id="lightbox"
+    class="premium-lightbox"
+    id="premiumLightbox"
     aria-hidden="true"
     role="dialog"
     aria-modal="true"
     aria-label="Προβολή φωτογραφίας"
   >
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Κλείσιμο">×</button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Προηγούμενη φωτογραφία">‹</button>
-    <figure class="lightbox-figure">
-      <img id="lightboxImage" src="" alt="" loading="lazy">
-      <figcaption id="lightboxCaption"></figcaption>
+    <button class="premium-lightbox-close" id="premiumLightboxClose" type="button" aria-label="Κλείσιμο">×</button>
+    <button class="premium-lightbox-nav premium-lightbox-prev" id="premiumLightboxPrev" type="button" aria-label="Προηγούμενη φωτογραφία">‹</button>
+    <figure class="premium-lightbox-figure">
+      <img id="premiumLightboxImage" src="images/exterior-01.jpg" alt="Εξωτερικός χώρος 1" loading="lazy">
     </figure>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Επόμενη φωτογραφία">›</button>
-    <div class="lightbox-counter" id="lightboxCounter" aria-live="polite"></div>
+    <button class="premium-lightbox-nav premium-lightbox-next" id="premiumLightboxNext" type="button" aria-label="Επόμενη φωτογραφία">›</button>
   </div>
 
   <!-- Scripts -->
