@@ -87,11 +87,32 @@ var SITE_CONFIG = {
       ],
     },
 
-    /** Room cards — must match room order in HTML (real interior photos, never exterior shots) */
+    /** Room cards — must match room order in HTML (real interior photos,
+     * never exterior shots). Each room now has a small carousel of
+     * "images" instead of a single photo — one bedroom shot plus the
+     * two shared bathroom photos. */
     rooms: [
-      { src: "images/bedroom-mirror.jpg",   alt: "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" },
-      { src: "images/bedroom-balcony.jpg",  alt: "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" },
-      { src: "images/bedroom-wardrobe.jpg", alt: "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" },
+      {
+        images: [
+          { src: "images/bedroom-mirror.jpg",           alt: "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" },
+          { src: "images/bathroom-modern.jpg",          alt: "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" },
+          { src: "images/bathroom-balcony-collage.jpg", alt: "Μπάνιο και βεράντα με θέα στη θάλασσα" },
+        ],
+      },
+      {
+        images: [
+          { src: "images/bedroom-balcony.jpg",          alt: "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" },
+          { src: "images/bathroom-modern.jpg",          alt: "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" },
+          { src: "images/bathroom-balcony-collage.jpg", alt: "Μπάνιο και βεράντα με θέα στη θάλασσα" },
+        ],
+      },
+      {
+        images: [
+          { src: "images/bedroom-wardrobe.jpg",         alt: "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" },
+          { src: "images/bathroom-modern.jpg",          alt: "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" },
+          { src: "images/bathroom-balcony-collage.jpg", alt: "Μπάνιο και βεράντα με θέα στη θάλασσα" },
+        ],
+      },
     ],
   },
 

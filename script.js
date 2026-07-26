@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ── Render hiking trail links (map / GPX) ──────────────────── */
   renderHikingTrail();
 
+  /* ── Room card photo carousels ─────────────────────────────── */
+  initRoomCarousels();
+
   /* ── Mobile menu ─────────────────────────────────────────────── */
   var menuButton = document.getElementById("menuButton");
   var navigation = document.getElementById("navigation");
@@ -150,10 +153,16 @@ function applyConfig() {
   /* Footer background */
   setBackground("footerBg", img.footer);
 
-  /* Room images */
+  /* Room carousels — each room has its own array of photos, matched
+     by position to the <img> tags inside #roomCarouselN's track. */
   if (Array.isArray(img.rooms)) {
     img.rooms.forEach(function (room, i) {
-      setImgSrc("roomImg" + i, room.src, room.alt);
+      var carousel = document.getElementById("roomCarousel" + i);
+      if (!carousel || !Array.isArray(room.images)) return;
+      var imgs = carousel.querySelectorAll(".room-carousel-track img");
+      room.images.forEach(function (photo, j) {
+        if (imgs[j]) setImageWithFallback(imgs[j], photo.src, photo.alt);
+      });
     });
   }
 
@@ -333,5 +342,36 @@ function initGalleryArrows() {
         row.scrollBy({ left: dir * step, behavior: "smooth" });
       });
     });
+  });
+}
+
+/* ──────────────────────────────────────────────────────────────
+   ROOM CARD PHOTO CAROUSELS
+   Each room card has its own small scrollable set of photos with
+   dot indicators. Clicking a dot scrolls to that photo; the active
+   dot follows native scroll position (swipe on mobile too).
+────────────────────────────────────────────────────────────── */
+function initRoomCarousels() {
+  document.querySelectorAll(".room-carousel").forEach(function (carousel) {
+    var track = carousel.querySelector(".room-carousel-track");
+    var dots  = Array.from(carousel.querySelectorAll(".room-carousel-dot"));
+    if (!track || !dots.length) return;
+
+    function setActive(index) {
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("is-active", i === index);
+      });
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () {
+        track.scrollTo({ left: track.clientWidth * i, behavior: "smooth" });
+      });
+    });
+
+    track.addEventListener("scroll", function () {
+      var index = Math.round(track.scrollLeft / track.clientWidth);
+      setActive(index);
+    }, { passive: true });
   });
 }
