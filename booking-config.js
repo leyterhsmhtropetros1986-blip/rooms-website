@@ -21,7 +21,7 @@ var BOOKING_CONFIG = {
    * Booking.com property page URL.
    * Leave empty to hide the Booking.com card.
    */
-  bookingCom: "",
+  bookingCom: "https://www.booking.com/hotel/gr/asteria-rooms.el.html",
 
   /**
    * Airbnb listing URL.

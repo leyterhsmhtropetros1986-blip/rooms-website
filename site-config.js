@@ -69,13 +69,15 @@ var SITE_CONFIG = {
       { src: "images/bathroom-balcony-collage.jpg", alt: "Μπάνιο και βεράντα με θέα στη θάλασσα" },
       { src: "images/door-numbers.jpg",             alt: "Φωτισμένες πινακίδες με τους αριθμούς των διαμερισμάτων" },
       { src: "images/garden-aerial-collage.jpg",    alt: "Κήπος του καταλύματος με θέα στη θάλασσα και στα δέντρα" },
+      { src: "images/garden-dining.jpg",            alt: "Σκιερός κήπος με τραπέζι για φαγητό κάτω από τα δέντρα" },
+      { src: "images/beach-view.jpg",                alt: "Κοντινή παραλία με ξαπλώστρα και κρυστάλλινα νερά" },
     ],
 
-    /** Room cards — must match room order in HTML */
+    /** Room cards — must match room order in HTML (real interior photos, never exterior shots) */
     rooms: [
-      { src: "images/exterior-02.jpg", alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
-      { src: "images/exterior-03.jpg", alt: "Κήπος και είσοδος των διαμερισμάτων" },
-      { src: "images/exterior-04.jpg", alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
+      { src: "images/bedroom-mirror.jpg",   alt: "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" },
+      { src: "images/bedroom-balcony.jpg",  alt: "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" },
+      { src: "images/bedroom-wardrobe.jpg", alt: "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" },
     ],
   },
 
