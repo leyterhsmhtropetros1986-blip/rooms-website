@@ -439,71 +439,130 @@
           </p>
         </div>
 
-        <div class="premium-gallery-grid" id="premiumGallery" data-i18n="gallery.gridAria" data-i18n-attr="aria-label" aria-label="Φωτογραφίες του καταλύματος">
+        <div class="gallery-categories" id="premiumGallery" data-i18n="gallery.gridAria" data-i18n-attr="aria-label" aria-label="Φωτογραφίες του καταλύματος">
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item1.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 1">
-            <img src="images/exterior-01.jpg" alt="Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" data-i18n="gallery.item1.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+          <div class="gallery-category">
+            <div class="gallery-category-head">
+              <h3 class="gallery-category-title" data-i18n="gallery.cat.rooms">Δωμάτια</h3>
+              <div class="gallery-scroll-arrows">
+                <button type="button" class="gallery-arrow" data-dir="prev" data-i18n="gallery.arrow.prev" data-i18n-attr="aria-label" aria-label="Προηγούμενες φωτογραφίες">‹</button>
+                <button type="button" class="gallery-arrow" data-dir="next" data-i18n="gallery.arrow.next" data-i18n-attr="aria-label" aria-label="Επόμενες φωτογραφίες">›</button>
+              </div>
+            </div>
+            <div class="gallery-scroll" data-gallery-category="rooms">
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item2.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 2">
-            <img src="images/exterior-02.jpg" alt="Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" data-i18n="gallery.item2.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item1.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 1">
+                <img src="images/bedroom-mirror.jpg" alt="Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" data-i18n="gallery.item1.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item3.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 3">
-            <img src="images/exterior-03.jpg" alt="Κήπος και είσοδος των διαμερισμάτων" data-i18n="gallery.item3.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item2.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 2">
+                <img src="images/bedroom-balcony.jpg" alt="Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" data-i18n="gallery.item2.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item4.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 4">
-            <img src="images/exterior-04.jpg" alt="Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" data-i18n="gallery.item4.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item3.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 3">
+                <img src="images/bedroom-wardrobe.jpg" alt="Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" data-i18n="gallery.item3.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item5.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 5">
-            <img src="images/exterior-05.jpg" alt="Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" data-i18n="gallery.item5.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item4.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 4">
+                <img src="images/bathroom-modern.jpg" alt="Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" data-i18n="gallery.item4.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item6.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 6">
-            <img src="images/balcony-sea-view.jpg" alt="Βεράντα με τραπέζι, καρέκλες και θέα στη θάλασσα" data-i18n="gallery.item6.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item5.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 5">
+                <img src="images/bathroom-balcony-collage.jpg" alt="Μπάνιο και βεράντα με θέα στη θάλασσα" data-i18n="gallery.item5.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item7.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 7">
-            <img src="images/veranda.jpg" alt="Σκεπαστή βεράντα με τραπέζι για χαλάρωση και φαγητό" data-i18n="gallery.item7.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+            </div>
+          </div>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item8.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 8">
-            <img src="images/bedroom-mirror.jpg" alt="Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" data-i18n="gallery.item8.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+          <div class="gallery-category">
+            <div class="gallery-category-head">
+              <h3 class="gallery-category-title" data-i18n="gallery.cat.exterior">Εξωτερικοί χώροι</h3>
+              <div class="gallery-scroll-arrows">
+                <button type="button" class="gallery-arrow" data-dir="prev" data-i18n="gallery.arrow.prev" data-i18n-attr="aria-label" aria-label="Προηγούμενες φωτογραφίες">‹</button>
+                <button type="button" class="gallery-arrow" data-dir="next" data-i18n="gallery.arrow.next" data-i18n-attr="aria-label" aria-label="Επόμενες φωτογραφίες">›</button>
+              </div>
+            </div>
+            <div class="gallery-scroll" data-gallery-category="exterior">
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item9.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 9">
-            <img src="images/bedroom-balcony.jpg" alt="Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" data-i18n="gallery.item9.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item6.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 6">
+                <img src="images/exterior-01.jpg" alt="Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" data-i18n="gallery.item6.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item10.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 10">
-            <img src="images/bedroom-wardrobe.jpg" alt="Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" data-i18n="gallery.item10.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item7.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 7">
+                <img src="images/exterior-02.jpg" alt="Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" data-i18n="gallery.item7.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item11.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 11">
-            <img src="images/bathroom-modern.jpg" alt="Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" data-i18n="gallery.item11.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item8.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 8">
+                <img src="images/exterior-03.jpg" alt="Κήπος και είσοδος των διαμερισμάτων" data-i18n="gallery.item8.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item12.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 12">
-            <img src="images/bathroom-balcony-collage.jpg" alt="Μπάνιο και βεράντα με θέα στη θάλασσα" data-i18n="gallery.item12.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item9.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 9">
+                <img src="images/exterior-04.jpg" alt="Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" data-i18n="gallery.item9.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item13.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 13">
-            <img src="images/door-numbers.jpg" alt="Φωτισμένες πινακίδες με τους αριθμούς των διαμερισμάτων" data-i18n="gallery.item13.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item10.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 10">
+                <img src="images/exterior-05.jpg" alt="Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" data-i18n="gallery.item10.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item14.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 14">
-            <img src="images/garden-aerial-collage.jpg" alt="Κήπος του καταλύματος με θέα στη θάλασσα και στα δέντρα" data-i18n="gallery.item14.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item11.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 11">
+                <img src="images/balcony-sea-view.jpg" alt="Βεράντα με τραπέζι, καρέκλες και θέα στη θάλασσα" data-i18n="gallery.item11.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item15.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 15">
-            <img src="images/garden-dining.jpg" alt="Σκιερός κήπος με τραπέζι για φαγητό κάτω από τα δέντρα" data-i18n="gallery.item15.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item12.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 12">
+                <img src="images/veranda.jpg" alt="Σκεπαστή βεράντα με τραπέζι για χαλάρωση και φαγητό" data-i18n="gallery.item12.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
 
-          <button class="premium-gallery-card" type="button" data-i18n="gallery.item16.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 16">
-            <img src="images/beach-view.jpg" alt="Κοντινή παραλία με ξαπλώστρα και κρυστάλλινα νερά" data-i18n="gallery.item16.alt" data-i18n-attr="alt" loading="lazy">
-          </button>
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item13.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 13">
+                <img src="images/door-numbers.jpg" alt="Φωτισμένες πινακίδες με τους αριθμούς των διαμερισμάτων" data-i18n="gallery.item13.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item14.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 14">
+                <img src="images/garden-aerial-collage.jpg" alt="Κήπος του καταλύματος με θέα στη θάλασσα και στα δέντρα" data-i18n="gallery.item14.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item15.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 15">
+                <img src="images/garden-dining.jpg" alt="Σκιερός κήπος με τραπέζι για φαγητό κάτω από τα δέντρα" data-i18n="gallery.item15.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item16.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 16">
+                <img src="images/garden-view.jpg" alt="Κήπος με αμπέλι και θέα στο σπίτι" data-i18n="gallery.item16.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item17.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 17">
+                <img src="images/garden-flowers.jpg" alt="Έντονα ροζ γεράνια στον κήπο του καταλύματος" data-i18n="gallery.item17.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+            </div>
+          </div>
+
+          <div class="gallery-category">
+            <div class="gallery-category-head">
+              <h3 class="gallery-category-title" data-i18n="gallery.cat.beach">Παραλία</h3>
+              <div class="gallery-scroll-arrows">
+                <button type="button" class="gallery-arrow" data-dir="prev" data-i18n="gallery.arrow.prev" data-i18n-attr="aria-label" aria-label="Προηγούμενες φωτογραφίες">‹</button>
+                <button type="button" class="gallery-arrow" data-dir="next" data-i18n="gallery.arrow.next" data-i18n-attr="aria-label" aria-label="Επόμενες φωτογραφίες">›</button>
+              </div>
+            </div>
+            <div class="gallery-scroll" data-gallery-category="beach">
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item18.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 18">
+                <img src="images/beach-view.jpg" alt="Κοντινή παραλία με ξαπλώστρα και κρυστάλλινα νερά" data-i18n="gallery.item18.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item19.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 19">
+                <img src="images/beach-rowboat.jpg" alt="Παραδοσιακή βάρκα σε αμμώδη παραλία με γαλάζια νερά" data-i18n="gallery.item19.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item20.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 20">
+                <img src="images/beach-pebbles.jpg" alt="Παραλία με γαλάζια βότσαλα και κρυστάλλινα νερά" data-i18n="gallery.item20.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+              <button class="premium-gallery-card" type="button" data-i18n="gallery.item21.ariaLabel" data-i18n-attr="aria-label" aria-label="Άνοιγμα φωτογραφίας 21">
+                <img src="images/beach-harbor.jpg" alt="Μικρό λιμανάκι με βάρκες κοντά στην παραλία" data-i18n="gallery.item21.alt" data-i18n-attr="alt" loading="lazy">
+              </button>
+
+            </div>
+          </div>
 
         </div>
 
@@ -1173,30 +1232,35 @@
         "gallery.title.2": "τους χώρους μας",
         "gallery.intro": "Περιηγηθείτε στις φωτογραφίες και ανακαλύψτε την ατμόσφαιρα του Asteria Apartments.",
         "gallery.gridAria": "Φωτογραφίες του καταλύματος",
+        "gallery.cat.rooms": "Δωμάτια",
+        "gallery.cat.exterior": "Εξωτερικοί χώροι",
+        "gallery.cat.beach": "Παραλία",
+        "gallery.arrow.prev": "Προηγούμενες φωτογραφίες",
+        "gallery.arrow.next": "Επόμενες φωτογραφίες",
         "gallery.item1.ariaLabel": "Άνοιγμα φωτογραφίας 1",
-        "gallery.item1.alt": "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο",
+        "gallery.item1.alt": "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία",
         "gallery.item2.ariaLabel": "Άνοιγμα φωτογραφίας 2",
-        "gallery.item2.alt": "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό",
+        "gallery.item2.alt": "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα",
         "gallery.item3.ariaLabel": "Άνοιγμα φωτογραφίας 3",
-        "gallery.item3.alt": "Κήπος και είσοδος των διαμερισμάτων",
+        "gallery.item3.alt": "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα",
         "gallery.item4.ariaLabel": "Άνοιγμα φωτογραφίας 4",
-        "gallery.item4.alt": "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος",
+        "gallery.item4.alt": "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο",
         "gallery.item5.ariaLabel": "Άνοιγμα φωτογραφίας 5",
-        "gallery.item5.alt": "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments",
+        "gallery.item5.alt": "Μπάνιο και βεράντα με θέα στη θάλασσα",
         "gallery.item6.ariaLabel": "Άνοιγμα φωτογραφίας 6",
-        "gallery.item6.alt": "Βεράντα με τραπέζι, καρέκλες και θέα στη θάλασσα",
+        "gallery.item6.alt": "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο",
         "gallery.item7.ariaLabel": "Άνοιγμα φωτογραφίας 7",
-        "gallery.item7.alt": "Σκεπαστή βεράντα με τραπέζι για χαλάρωση και φαγητό",
+        "gallery.item7.alt": "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό",
         "gallery.item8.ariaLabel": "Άνοιγμα φωτογραφίας 8",
-        "gallery.item8.alt": "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία",
+        "gallery.item8.alt": "Κήπος και είσοδος των διαμερισμάτων",
         "gallery.item9.ariaLabel": "Άνοιγμα φωτογραφίας 9",
-        "gallery.item9.alt": "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα",
+        "gallery.item9.alt": "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος",
         "gallery.item10.ariaLabel": "Άνοιγμα φωτογραφίας 10",
-        "gallery.item10.alt": "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα",
+        "gallery.item10.alt": "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments",
         "gallery.item11.ariaLabel": "Άνοιγμα φωτογραφίας 11",
-        "gallery.item11.alt": "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο",
+        "gallery.item11.alt": "Βεράντα με τραπέζι, καρέκλες και θέα στη θάλασσα",
         "gallery.item12.ariaLabel": "Άνοιγμα φωτογραφίας 12",
-        "gallery.item12.alt": "Μπάνιο και βεράντα με θέα στη θάλασσα",
+        "gallery.item12.alt": "Σκεπαστή βεράντα με τραπέζι για χαλάρωση και φαγητό",
         "gallery.item13.ariaLabel": "Άνοιγμα φωτογραφίας 13",
         "gallery.item13.alt": "Φωτισμένες πινακίδες με τους αριθμούς των διαμερισμάτων",
         "gallery.item14.ariaLabel": "Άνοιγμα φωτογραφίας 14",
@@ -1204,7 +1268,17 @@
         "gallery.item15.ariaLabel": "Άνοιγμα φωτογραφίας 15",
         "gallery.item15.alt": "Σκιερός κήπος με τραπέζι για φαγητό κάτω από τα δέντρα",
         "gallery.item16.ariaLabel": "Άνοιγμα φωτογραφίας 16",
-        "gallery.item16.alt": "Κοντινή παραλία με ξαπλώστρα και κρυστάλλινα νερά",
+        "gallery.item16.alt": "Κήπος με αμπέλι και θέα στο σπίτι",
+        "gallery.item17.ariaLabel": "Άνοιγμα φωτογραφίας 17",
+        "gallery.item17.alt": "Έντονα ροζ γεράνια στον κήπο του καταλύματος",
+        "gallery.item18.ariaLabel": "Άνοιγμα φωτογραφίας 18",
+        "gallery.item18.alt": "Κοντινή παραλία με ξαπλώστρα και κρυστάλλινα νερά",
+        "gallery.item19.ariaLabel": "Άνοιγμα φωτογραφίας 19",
+        "gallery.item19.alt": "Παραδοσιακή βάρκα σε αμμώδη παραλία με γαλάζια νερά",
+        "gallery.item20.ariaLabel": "Άνοιγμα φωτογραφίας 20",
+        "gallery.item20.alt": "Παραλία με γαλάζια βότσαλα και κρυστάλλινα νερά",
+        "gallery.item21.ariaLabel": "Άνοιγμα φωτογραφίας 21",
+        "gallery.item21.alt": "Μικρό λιμανάκι με βάρκες κοντά στην παραλία",
         "offers.kicker": "Προσφορές",
         "offers.title": "Ειδικές προσφορές για αξέχαστες διακοπές",
         "offers.intro": "Επικοινωνήστε μαζί μας για τρέχουσες τιμές και ειδικές προσφορές.",
@@ -1423,30 +1497,35 @@
         "gallery.title.2": "our spaces",
         "gallery.intro": "Browse the photos and discover the atmosphere of Asteria Apartments.",
         "gallery.gridAria": "Photos of the property",
+        "gallery.cat.rooms": "Rooms",
+        "gallery.cat.exterior": "Exterior Spaces",
+        "gallery.cat.beach": "Beach",
+        "gallery.arrow.prev": "Previous photos",
+        "gallery.arrow.next": "Next photos",
         "gallery.item1.ariaLabel": "Open photo 1",
-        "gallery.item1.alt": "Front view of Asteria Apartments and its exterior area",
+        "gallery.item1.alt": "Bedroom with mirror and a view toward the dining area",
         "gallery.item2.ariaLabel": "Open photo 2",
-        "gallery.item2.alt": "Exterior lounge area of the property in Niborio",
+        "gallery.item2.alt": "Bright bedroom with balcony access",
         "gallery.item3.ariaLabel": "Open photo 3",
-        "gallery.item3.alt": "Garden and entrance of the apartments",
+        "gallery.item3.alt": "Bedroom with wardrobe, air conditioning and balcony access",
         "gallery.item4.ariaLabel": "Open photo 4",
-        "gallery.item4.alt": "Balconies overlooking the property's exterior area",
+        "gallery.item4.alt": "Modern bathroom with a black basin and glass-enclosed shower",
         "gallery.item5.ariaLabel": "Open photo 5",
-        "gallery.item5.alt": "Afternoon view of the exterior area of Asteria Apartments",
+        "gallery.item5.alt": "Bathroom and sea-view balcony",
         "gallery.item6.ariaLabel": "Open photo 6",
-        "gallery.item6.alt": "Balcony with table, chairs and sea views",
+        "gallery.item6.alt": "Front view of Asteria Apartments and its exterior area",
         "gallery.item7.ariaLabel": "Open photo 7",
-        "gallery.item7.alt": "Covered veranda with a table for relaxing and dining",
+        "gallery.item7.alt": "Exterior lounge area of the property in Niborio",
         "gallery.item8.ariaLabel": "Open photo 8",
-        "gallery.item8.alt": "Bedroom with mirror and a view toward the dining area",
+        "gallery.item8.alt": "Garden and entrance of the apartments",
         "gallery.item9.ariaLabel": "Open photo 9",
-        "gallery.item9.alt": "Bright bedroom with balcony access",
+        "gallery.item9.alt": "Balconies overlooking the property's exterior area",
         "gallery.item10.ariaLabel": "Open photo 10",
-        "gallery.item10.alt": "Bedroom with wardrobe, air conditioning and balcony access",
+        "gallery.item10.alt": "Afternoon view of the exterior area of Asteria Apartments",
         "gallery.item11.ariaLabel": "Open photo 11",
-        "gallery.item11.alt": "Modern bathroom with a black basin and glass-enclosed shower",
+        "gallery.item11.alt": "Balcony with table, chairs and sea views",
         "gallery.item12.ariaLabel": "Open photo 12",
-        "gallery.item12.alt": "Bathroom and sea-view balcony",
+        "gallery.item12.alt": "Covered veranda with a table for relaxing and dining",
         "gallery.item13.ariaLabel": "Open photo 13",
         "gallery.item13.alt": "Illuminated apartment number signs",
         "gallery.item14.ariaLabel": "Open photo 14",
@@ -1454,7 +1533,17 @@
         "gallery.item15.ariaLabel": "Open photo 15",
         "gallery.item15.alt": "Shaded garden with a dining table beneath the trees",
         "gallery.item16.ariaLabel": "Open photo 16",
-        "gallery.item16.alt": "Nearby beach with a sun lounger and crystal-clear water",
+        "gallery.item16.alt": "Garden with a grapevine and a view of the house",
+        "gallery.item17.ariaLabel": "Open photo 17",
+        "gallery.item17.alt": "Vivid pink geraniums in the property's garden",
+        "gallery.item18.ariaLabel": "Open photo 18",
+        "gallery.item18.alt": "Nearby beach with a sun lounger and crystal-clear water",
+        "gallery.item19.ariaLabel": "Open photo 19",
+        "gallery.item19.alt": "Traditional rowboat on a sandy beach with turquoise waters",
+        "gallery.item20.ariaLabel": "Open photo 20",
+        "gallery.item20.alt": "Beach with blue pebbles and crystal-clear waters",
+        "gallery.item21.ariaLabel": "Open photo 21",
+        "gallery.item21.alt": "Small harbor with boats near the beach",
         "offers.kicker": "Offers",
         "offers.title": "Special offers for an unforgettable holiday",
         "offers.intro": "Contact us for current rates and special offers.",

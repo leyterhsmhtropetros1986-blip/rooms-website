@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () { hero.classList.add("loaded"); }, 80);
   }
 
-  /* ── Gallery: touch / swipe for mobile ──────────────────────── */
-  initGallerySwipe();
+  /* ── Gallery: scroll-row arrows ──────────────────────────────── */
+  initGalleryArrows();
 
   /* ── Newsletter form — placeholder handler ───────────────────── */
   var newsletterForm = document.getElementById("newsletterForm");
@@ -157,19 +157,22 @@ function applyConfig() {
     });
   }
 
-  /* Gallery images */
-  if (Array.isArray(img.gallery)) {
-    var grid = document.getElementById("premiumGallery");
-    if (!grid) return;
-    var items = grid.querySelectorAll(".premium-gallery-card");
-    img.gallery.forEach(function (g, i) {
-      if (items[i]) {
-        var imgEl = items[i].querySelector("img");
-        if (imgEl) {
-          setImageWithFallback(imgEl, g.src, g.alt);
-          items[i].setAttribute("aria-label", "Άνοιγμα: " + g.alt);
+  /* Gallery images, grouped by category — each category is its own
+     scrollable row identified by [data-gallery-category]. */
+  if (img.gallery && typeof img.gallery === "object") {
+    Object.keys(img.gallery).forEach(function (category) {
+      var row = document.querySelector('[data-gallery-category="' + category + '"]');
+      if (!row) return;
+      var items = row.querySelectorAll(".premium-gallery-card");
+      img.gallery[category].forEach(function (g, i) {
+        if (items[i]) {
+          var imgEl = items[i].querySelector("img");
+          if (imgEl) {
+            setImageWithFallback(imgEl, g.src, g.alt);
+            items[i].setAttribute("aria-label", "Άνοιγμα: " + g.alt);
+          }
         }
-      }
+      });
     });
   }
 }
@@ -311,37 +314,24 @@ function renderHikingTrail() {
    Horizontal swipe on the gallery grid moves between images
    by opening the lightbox for the swiped-to item.
 ────────────────────────────────────────────────────────────── */
-function initGallerySwipe() {
-  var grid = document.getElementById("premiumGallery");
-  if (!grid) return;
+/* ──────────────────────────────────────────────────────────────
+   GALLERY SCROLL-ROW ARROWS
+   Each category row scrolls natively (touch swipe, trackpad,
+   scroll-snap). The prev/next buttons just nudge that native
+   scroll for mouse users — one card-width per click.
+────────────────────────────────────────────────────────────── */
+function initGalleryArrows() {
+  document.querySelectorAll(".gallery-category").forEach(function (category) {
+    var row = category.querySelector(".gallery-scroll");
+    if (!row) return;
 
-  var startX = 0;
-  var SWIPE_THRESHOLD = 50;
-
-  grid.addEventListener("touchstart", function (e) {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  grid.addEventListener("touchend", function (e) {
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) < SWIPE_THRESHOLD) return;
-
-    var items = Array.from(grid.querySelectorAll(".premium-gallery-card"));
-    if (!items.length) return;
-
-    // Find the item currently most visible in the viewport
-    var closest = items.reduce(function (best, item) {
-      var rect  = item.getBoundingClientRect();
-      var score = Math.abs(rect.left + rect.width / 2 - window.innerWidth / 2);
-      return score < best.score ? { el: item, score: score, idx: items.indexOf(item) } : best;
-    }, { el: null, score: Infinity, idx: 0 });
-
-    var next = dx < 0
-      ? Math.min(closest.idx + 1, items.length - 1)
-      : Math.max(closest.idx - 1, 0);
-
-    if (next !== closest.idx) {
-      items[next].click();
-    }
-  }, { passive: true });
+    category.querySelectorAll(".gallery-arrow").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var card = row.querySelector(".premium-gallery-card");
+        var step = card ? card.getBoundingClientRect().width + 18 : row.clientWidth * 0.8;
+        var dir  = button.getAttribute("data-dir") === "prev" ? -1 : 1;
+        row.scrollBy({ left: dir * step, behavior: "smooth" });
+      });
+    });
+  });
 }

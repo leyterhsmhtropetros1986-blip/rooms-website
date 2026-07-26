@@ -53,25 +53,39 @@ var SITE_CONFIG = {
     /** Location section image */
     location: "images/exterior-05.jpg",
 
-    /** Gallery items — order controls display order */
-    gallery: [
-      { src: "images/exterior-01.jpg",              alt: "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" },
-      { src: "images/exterior-02.jpg",              alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
-      { src: "images/exterior-03.jpg",              alt: "Κήπος και είσοδος των διαμερισμάτων" },
-      { src: "images/exterior-04.jpg",              alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
-      { src: "images/exterior-05.jpg",              alt: "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" },
-      { src: "images/balcony-sea-view.jpg",         alt: "Βεράντα με τραπέζι, καρέκλες και θέα στη θάλασσα" },
-      { src: "images/veranda.jpg",                  alt: "Σκεπαστή βεράντα με τραπέζι για χαλάρωση και φαγητό" },
-      { src: "images/bedroom-mirror.jpg",           alt: "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" },
-      { src: "images/bedroom-balcony.jpg",          alt: "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" },
-      { src: "images/bedroom-wardrobe.jpg",         alt: "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" },
-      { src: "images/bathroom-modern.jpg",          alt: "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" },
-      { src: "images/bathroom-balcony-collage.jpg", alt: "Μπάνιο και βεράντα με θέα στη θάλασσα" },
-      { src: "images/door-numbers.jpg",             alt: "Φωτισμένες πινακίδες με τους αριθμούς των διαμερισμάτων" },
-      { src: "images/garden-aerial-collage.jpg",    alt: "Κήπος του καταλύματος με θέα στη θάλασσα και στα δέντρα" },
-      { src: "images/garden-dining.jpg",            alt: "Σκιερός κήπος με τραπέζι για φαγητό κάτω από τα δέντρα" },
-      { src: "images/beach-view.jpg",                alt: "Κοντινή παραλία με ξαπλώστρα και κρυστάλλινα νερά" },
-    ],
+    /** Gallery items, grouped into categories — each category renders as
+     * its own scrollable row. Order within a category controls display
+     * order; the category key must match a data-gallery-category
+     * attribute in the HTML. */
+    gallery: {
+      rooms: [
+        { src: "images/bedroom-mirror.jpg",           alt: "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" },
+        { src: "images/bedroom-balcony.jpg",          alt: "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" },
+        { src: "images/bedroom-wardrobe.jpg",         alt: "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" },
+        { src: "images/bathroom-modern.jpg",          alt: "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" },
+        { src: "images/bathroom-balcony-collage.jpg", alt: "Μπάνιο και βεράντα με θέα στη θάλασσα" },
+      ],
+      exterior: [
+        { src: "images/exterior-01.jpg",           alt: "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" },
+        { src: "images/exterior-02.jpg",           alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
+        { src: "images/exterior-03.jpg",           alt: "Κήπος και είσοδος των διαμερισμάτων" },
+        { src: "images/exterior-04.jpg",           alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
+        { src: "images/exterior-05.jpg",           alt: "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" },
+        { src: "images/balcony-sea-view.jpg",      alt: "Βεράντα με τραπέζι, καρέκλες και θέα στη θάλασσα" },
+        { src: "images/veranda.jpg",               alt: "Σκεπαστή βεράντα με τραπέζι για χαλάρωση και φαγητό" },
+        { src: "images/door-numbers.jpg",          alt: "Φωτισμένες πινακίδες με τους αριθμούς των διαμερισμάτων" },
+        { src: "images/garden-aerial-collage.jpg", alt: "Κήπος του καταλύματος με θέα στη θάλασσα και στα δέντρα" },
+        { src: "images/garden-dining.jpg",         alt: "Σκιερός κήπος με τραπέζι για φαγητό κάτω από τα δέντρα" },
+        { src: "images/garden-view.jpg",           alt: "Κήπος με αμπέλι και θέα στο σπίτι" },
+        { src: "images/garden-flowers.jpg",        alt: "Έντονα ροζ γεράνια στον κήπο του καταλύματος" },
+      ],
+      beach: [
+        { src: "images/beach-view.jpg",    alt: "Κοντινή παραλία με ξαπλώστρα και κρυστάλλινα νερά" },
+        { src: "images/beach-rowboat.jpg", alt: "Παραδοσιακή βάρκα σε αμμώδη παραλία με γαλάζια νερά" },
+        { src: "images/beach-pebbles.jpg", alt: "Παραλία με γαλάζια βότσαλα και κρυστάλλινα νερά" },
+        { src: "images/beach-harbor.jpg",  alt: "Μικρό λιμανάκι με βάρκες κοντά στην παραλία" },
+      ],
+    },
 
     /** Room cards — must match room order in HTML (real interior photos, never exterior shots) */
     rooms: [
