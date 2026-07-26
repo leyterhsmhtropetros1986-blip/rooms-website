@@ -472,27 +472,40 @@ p  { color: var(--text-muted); line-height: 1.75; }
   margin-top: 30px;
 }
 .about-feature {
-  padding: 18px;
-  border: 1px solid var(--border-light);
-  border-radius: var(--r-md);
-  background: var(--white);
-  transition: border-color 0.22s, box-shadow 0.22s;
+  padding: 24px 20px;
+  border: 1px solid rgba(200, 169, 107, 0.22);
+  border-radius: var(--r-lg);
+  background: var(--forest);
+  box-shadow: 0 10px 26px rgba(13, 30, 22, 0.16);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
-.about-feature:hover { border-color: var(--gold); box-shadow: var(--shadow-sm); }
+.about-feature:hover {
+  border-color: var(--gold);
+  box-shadow: 0 16px 34px rgba(13, 30, 22, 0.28);
+  transform: translateY(-4px);
+}
 
 .about-feature-icon {
-  display: block;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--forest);
+  font-size: 1.1rem;
 }
 .about-feature strong {
   display: block;
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin-bottom: 4px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
 }
-.about-feature span { font-size: 0.81rem; color: var(--text-muted); }
+.about-feature span { font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); line-height: 1.6; }
 
 /* About image column */
 .about-image-col { position: relative; }
@@ -507,7 +520,6 @@ p  { color: var(--text-muted); line-height: 1.75; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1.12) contrast(1.03);
   transition: transform 0.6s var(--ease);
 }
 .about-image-frame:hover img { transform: scale(1.04); }
@@ -584,7 +596,6 @@ p  { color: var(--text-muted); line-height: 1.75; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1.12) contrast(1.03);
   transition: transform 0.55s var(--ease);
 }
 .room-card:hover .room-image-wrapper img { transform: scale(1.07); }
@@ -685,35 +696,36 @@ p  { color: var(--text-muted); line-height: 1.75; }
 .amenity {
   padding: 30px 22px;
   border-radius: var(--r-lg);
-  background: var(--white);
-  border: 1px solid var(--border-light);
+  background: var(--forest);
+  border: 1px solid rgba(200, 169, 107, 0.22);
+  box-shadow: 0 10px 26px rgba(13, 30, 22, 0.16);
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s;
 }
 .amenity:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 16px 34px rgba(13, 30, 22, 0.28);
   border-color: var(--gold);
 }
 .amenity-icon {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: var(--r-md);
-  background: var(--ivory);
-  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--forest);
+  font-size: 1.15rem;
   margin-bottom: 16px;
   transition: background 0.22s;
 }
-.amenity:hover .amenity-icon { background: rgba(200, 169, 107, 0.18); }
 .amenity h3 {
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.96rem;
-  font-weight: 800;
-  color: var(--text-dark);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
   margin-bottom: 7px;
 }
-.amenity p { font-size: 0.85rem; margin: 0; }
+.amenity p { font-size: 0.85rem; margin: 0; color: rgba(255, 255, 255, 0.65); line-height: 1.6; }
 
 /* ── GALLERY ────────────────────────────────────────────────────── */
 .gallery-section { background: var(--ivory); }
@@ -816,7 +828,6 @@ p  { color: var(--text-muted); line-height: 1.75; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1.12) contrast(1.03);
   transition: transform 0.35s ease, filter 0.35s ease;
 }
 
@@ -829,7 +840,7 @@ p  { color: var(--text-muted); line-height: 1.75; }
 .premium-gallery-card:hover img,
 .premium-gallery-card:focus-visible img {
   transform: scale(1.04);
-  filter: saturate(1.18) contrast(1.04) brightness(0.9);
+  filter: brightness(0.9);
 }
 
 .premium-lightbox {
