@@ -1,3 +1,14 @@
+/* Legal pages have no dark hero under the header, so the header can't
+   rely on scroll position to gain its dark background — without this
+   it stays transparent and the white logo/nav text is unreadable
+   against the light .legal-main background. */
+body[data-legal-page] .site-header {
+  background: rgba(13, 30, 22, 0.94);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
 .language-switch {
   display: inline-flex;
   align-items: center;
