@@ -670,11 +670,22 @@ p  { color: var(--text-muted); line-height: 1.75; }
   color: rgba(255, 255, 255, 0.45);
   margin-bottom: 2px;
 }
-.room-price strong {
+.room-price strong,
+.room-price a {
   font-family: 'Playfair Display', serif;
   font-size: 1.45rem;
   color: var(--gold);
   font-weight: 700;
+}
+.room-price a {
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 169, 107, 0.4);
+  text-underline-offset: 3px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.room-price a:hover {
+  color: var(--gold-light);
+  text-decoration-color: var(--gold-light);
 }
 .room-actions { display: flex; gap: 8px; }
 
@@ -712,12 +723,13 @@ p  { color: var(--text-muted); line-height: 1.75; }
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  background: var(--gold);
-  color: var(--forest);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(200, 169, 107, 0.28);
   font-size: 1.15rem;
   margin-bottom: 16px;
-  transition: background 0.22s;
+  transition: background 0.22s, border-color 0.22s;
 }
+.amenity:hover .amenity-icon { border-color: var(--gold); }
 .amenity h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.05rem;

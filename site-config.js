@@ -38,7 +38,7 @@ var SITE_CONFIG = {
 
   /* ── Background / hero images ──────────────────────────────── */
   images: {
-    /** Full-screen hero background */
+    /** Full-screen hero background — the property's "entrance" shot */
     hero:     EXTERIOR_HERO_IMAGE,
 
     /** About section — shown beside the text */
@@ -55,11 +55,20 @@ var SITE_CONFIG = {
 
     /** Gallery items — order controls display order */
     gallery: [
-      { src: "images/exterior-01.jpg", alt: "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" },
-      { src: "images/exterior-02.jpg", alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
-      { src: "images/exterior-03.jpg", alt: "Κήπος και είσοδος των διαμερισμάτων" },
-      { src: "images/exterior-04.jpg", alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
-      { src: "images/exterior-05.jpg", alt: "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" },
+      { src: "images/exterior-01.jpg",              alt: "Πρόσοψη του Asteria Apartments με τον εξωτερικό χώρο" },
+      { src: "images/exterior-02.jpg",              alt: "Εξωτερικό καθιστικό του καταλύματος στο Νιμπορειό" },
+      { src: "images/exterior-03.jpg",              alt: "Κήπος και είσοδος των διαμερισμάτων" },
+      { src: "images/exterior-04.jpg",              alt: "Μπαλκόνια με θέα στον εξωτερικό χώρο του καταλύματος" },
+      { src: "images/exterior-05.jpg",              alt: "Απογευματινή άποψη του εξωτερικού χώρου του Asteria Apartments" },
+      { src: "images/balcony-sea-view.jpg",         alt: "Βεράντα με τραπέζι, καρέκλες και θέα στη θάλασσα" },
+      { src: "images/veranda.jpg",                  alt: "Σκεπαστή βεράντα με τραπέζι για χαλάρωση και φαγητό" },
+      { src: "images/bedroom-mirror.jpg",           alt: "Υπνοδωμάτιο με καθρέφτη και θέα προς την τραπεζαρία" },
+      { src: "images/bedroom-balcony.jpg",          alt: "Φωτεινό υπνοδωμάτιο με πρόσβαση σε βεράντα" },
+      { src: "images/bedroom-wardrobe.jpg",         alt: "Υπνοδωμάτιο με ντουλάπα, κλιματισμό και πρόσβαση σε βεράντα" },
+      { src: "images/bathroom-modern.jpg",          alt: "Σύγχρονο μπάνιο με μαύρο νιπτήρα και ντουζιέρα με κρύσταλλο" },
+      { src: "images/bathroom-balcony-collage.jpg", alt: "Μπάνιο και βεράντα με θέα στη θάλασσα" },
+      { src: "images/door-numbers.jpg",             alt: "Φωτισμένες πινακίδες με τους αριθμούς των διαμερισμάτων" },
+      { src: "images/garden-aerial-collage.jpg",    alt: "Κήπος του καταλύματος με θέα στη θάλασσα και στα δέντρα" },
     ],
 
     /** Room cards — must match room order in HTML */
