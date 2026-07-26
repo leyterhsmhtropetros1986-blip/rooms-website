@@ -92,7 +92,7 @@ var SITE_CONFIG = {
     email:        "info@example.gr",
     location:     "Νιμπορειό Ευβοίας, Νότια Εύβοια",
     hours:        "Καθημερινά 09:00–21:00",
-    mapsUrl:      "https://maps.app.goo.gl/kTvWVXG8Cv5SHYaw6",
+    mapsUrl:      "https://www.google.com/maps/search/?api=1&query=38.123445,24.215188",
   },
 
   /* ── Social links (set to empty string to hide) ─────────────── */
