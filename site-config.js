@@ -90,4 +90,20 @@ var SITE_CONFIG = {
     facebook:  "",
     tiktok:    "",
   },
+
+  /* ── Hiking trail, shown on the "Πεζοπορία" (Hiking) card ─────
+   * Both fields are optional — leave either as "" to hide its link.
+   *
+   *   mapUrl → link to view the route on a map (Google Maps,
+   *            Wikiloc, AllTrails, komoot, etc. — anything with a
+   *            shareable URL works).
+   *   gpxUrl → path to a downloadable .gpx track file for GPS
+   *            devices / hiking apps. Upload the .gpx file into a
+   *            "trails/" folder next to "images/" and point here,
+   *            e.g. "trails/paralia-loop.gpx".
+   */
+  hiking: {
+    mapUrl: "",
+    gpxUrl: "",
+  },
 };

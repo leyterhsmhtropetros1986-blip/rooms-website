@@ -1389,6 +1389,13 @@ body.premium-lightbox-open { overflow: hidden; }
   margin-bottom: 7px;
 }
 .nearby-card p { font-size: 0.84rem; margin: 0; }
+.nearby-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.nearby-card-links:empty { display: none; }
 
 /* ── CONTACT ────────────────────────────────────────────────────── */
 .contact-section { background: var(--forest); }

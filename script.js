@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ── Render social links in footer ──────────────────────────── */
   renderSocialLinks();
 
+  /* ── Render hiking trail links (map / GPX) ──────────────────── */
+  renderHikingTrail();
+
   /* ── Mobile menu ─────────────────────────────────────────────── */
   var menuButton = document.getElementById("menuButton");
   var navigation = document.getElementById("navigation");
@@ -270,6 +273,37 @@ function renderSocialLinks() {
   });
 
   container.innerHTML = html || "";
+}
+
+/* ──────────────────────────────────────────────────────────────
+   HIKING TRAIL LINKS
+   Reads SITE_CONFIG.hiking and renders "view map" / "download GPX"
+   links on the Πεζοπορία (Hiking) nearby-card.
+   Empty URL → that link hidden. Both empty → nothing rendered.
+────────────────────────────────────────────────────────────── */
+function renderHikingTrail() {
+  if (typeof SITE_CONFIG === "undefined") return;
+
+  var container = document.getElementById("hikingTrailLinks");
+  var hiking = SITE_CONFIG.hiking;
+  if (!container || !hiking) return;
+
+  var html = "";
+  if (hiking.mapUrl) {
+    html +=
+      '<a href="' + hiking.mapUrl + '" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">' +
+        '<span data-i18n="nearby.hiking.viewMap">Δείτε τη διαδρομή</span>' +
+      "</a>";
+  }
+  if (hiking.gpxUrl) {
+    html +=
+      '<a href="' + hiking.gpxUrl + '" class="btn btn-ghost btn-sm" download>' +
+        '<span data-i18n="nearby.hiking.downloadGpx">Λήψη GPX</span>' +
+      "</a>";
+  }
+
+  container.innerHTML = html;
+  container.style.display = html ? "" : "none";
 }
 
 /* ──────────────────────────────────────────────────────────────
