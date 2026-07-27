@@ -283,6 +283,23 @@ p  { color: var(--text-muted); line-height: 1.75; }
 }
 .nav-cta:hover { background: var(--gold-dark) !important; transform: translateY(-1px); }
 
+/* Compact outlined Booking.com link, next to the Κράτηση button */
+.nav-booking-com {
+  margin-left: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(200, 169, 107, 0.55);
+  border-radius: 999px;
+  color: var(--gold-light) !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.nav-booking-com:hover {
+  border-color: var(--gold);
+  background: rgba(200, 169, 107, 0.12);
+  color: var(--white) !important;
+}
+
 /* Hamburger */
 .menu-button {
   display: none;
@@ -346,7 +363,7 @@ p  { color: var(--text-muted); line-height: 1.75; }
   position: relative;
   z-index: 2;
   /* Clears the fixed header + sticky booking bar sitting on top of the hero */
-  padding-top: 200px;
+  padding-top: 170px;
   padding-bottom: 80px;
   max-width: 860px;
 }
@@ -1297,26 +1314,26 @@ body.premium-lightbox-open { overflow: hidden; }
   color: #b03030;
 }
 
-/* ── STICKY BOOKING BAR ─────────────────────────────────────────── */
+/* ── STICKY BOOKING BAR (compact) ──────────────────────────────── */
 .sticky-booking-bar {
   position: fixed;
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 900;
-  width: min(1400px, 94vw);
-  margin-top: 14px;
+  width: min(1200px, 92vw);
+  margin-top: 10px;
   background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
   border: 1px solid rgba(200, 169, 107, 0.28);
-  border-radius: 20px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
 .sticky-booking-form {
   display: flex;
   align-items: stretch;
-  gap: 10px;
-  padding: 8px;
+  gap: 6px;
+  padding: 5px;
 }
 
 .sticky-booking-fields {
@@ -1332,18 +1349,18 @@ body.premium-lightbox-open { overflow: hidden; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 3px;
-  flex: 1 1 150px;
-  min-width: 128px;
-  padding: 8px 18px;
+  gap: 1px;
+  flex: 1 1 108px;
+  min-width: 96px;
+  padding: 5px 12px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 .sticky-booking-field:last-child { border-right: 0; }
 
 .sticky-booking-field span {
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold-light);
   opacity: 0.85;
@@ -1357,7 +1374,7 @@ body.premium-lightbox-open { overflow: hidden; }
   background: transparent;
   color: var(--white);
   font: inherit;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
 }
@@ -1373,13 +1390,16 @@ body.premium-lightbox-open { overflow: hidden; }
   flex: 0 0 auto;
   align-self: center;
   white-space: nowrap;
-  border-radius: 14px !important;
+  min-height: 38px !important;
+  padding: 0 20px !important;
+  font-size: 0.78rem !important;
+  border-radius: 10px !important;
 }
 
 .sticky-booking-summary {
-  padding: 0 20px 12px;
+  padding: 0 16px 8px;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   text-align: center;
 }
 
@@ -1899,8 +1919,6 @@ body.lightbox-open { overflow: hidden; }
   .reviews-grid { grid-template-columns: 1fr 1fr; }
   .reviews-placeholder { grid-column: span 2; }
 
-  .sticky-booking-field { flex-basis: 130px; min-width: 112px; padding: 8px 14px; }
-
   .location-grid { gap: 50px; }
   .contact-grid  { gap: 50px; }
 
@@ -1934,6 +1952,7 @@ body.lightbox-open { overflow: hidden; }
 
   .site-nav a { padding: 16px 24px; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
   .nav-cta { margin: 12px 24px; border-radius: 999px; text-align: center; }
+  .nav-booking-com { margin: 0 24px 12px; border-radius: 999px; text-align: center; }
 
   .about-grid { grid-template-columns: 1fr; }
   .about-image-col { order: -1; }
@@ -1982,13 +2001,26 @@ body.lightbox-open { overflow: hidden; }
 
   .review-form-wrapper { padding: 30px 20px; }
 
-  .sticky-booking-bar { top: 80px; margin-top: 10px; width: 96vw; border-radius: 16px; }
-  .sticky-booking-field { flex-basis: 118px; min-width: 104px; padding: 7px 12px; }
+  .sticky-booking-bar { top: 80px; margin-top: 8px; width: 94vw; border-radius: 12px; }
+  .sticky-booking-form { flex-direction: column; gap: 0; padding: 8px; }
+  .sticky-booking-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow-x: visible;
+  }
+  .sticky-booking-field {
+    flex: initial;
+    min-width: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 7px 8px;
+  }
+  .sticky-booking-field:nth-child(5) { grid-column: 1 / -1; border-bottom: 0; }
   .sticky-booking-field span { font-size: 0.6rem; }
   .sticky-booking-field input,
   .sticky-booking-field select { font-size: 0.8rem; }
-  .sticky-booking-submit { padding: 0 18px !important; font-size: 0.82rem !important; }
-  .sticky-booking-summary { font-size: 0.72rem; padding: 0 14px 10px; }
+  .sticky-booking-submit { width: 100%; margin-top: 8px; padding: 0 18px !important; font-size: 0.82rem !important; }
+  .sticky-booking-summary { font-size: 0.7rem; padding: 0 10px 8px; }
 
   .rooms-grid { grid-template-columns: 1fr; }
 
