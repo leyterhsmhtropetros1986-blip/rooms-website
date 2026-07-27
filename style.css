@@ -1933,6 +1933,18 @@ body.lightbox-open { overflow: hidden; }
 @media (max-width: 900px) {
   .menu-button { display: flex; }
 
+  /* Below tablet width, a fixed header + fixed booking bar stacked
+     together eat too much of the screen permanently. Let the bar
+     scroll away with the page instead — it still sits right below
+     the header on load, just not pinned there while scrolling. */
+  .sticky-booking-bar {
+    position: static;
+    transform: none;
+    width: 94vw;
+    margin: 90px auto 0;
+  }
+  .hero-content { padding-top: 90px; }
+
   .site-nav {
     position: absolute;
     top: 80px;
@@ -2001,7 +2013,7 @@ body.lightbox-open { overflow: hidden; }
 
   .review-form-wrapper { padding: 30px 20px; }
 
-  .sticky-booking-bar { top: 80px; margin-top: 8px; width: 94vw; border-radius: 12px; }
+  .sticky-booking-bar { border-radius: 12px; }
   .sticky-booking-form { flex-direction: column; gap: 0; padding: 8px; }
   .sticky-booking-fields {
     display: grid;
