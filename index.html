@@ -120,6 +120,58 @@
     </div>
   </header>
 
+  <!-- ═══════════ STICKY BOOKING BAR ═══════════════════════════ -->
+  <div class="sticky-booking-bar" id="booking">
+    <form class="sticky-booking-form" id="bookingForm" novalidate>
+      <div class="sticky-booking-fields">
+        <label class="sticky-booking-field">
+          <span data-i18n="booking.arrival">Άφιξη</span>
+          <input type="date" id="arrivalDate" name="arrival" required data-i18n="booking.arrivalAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία άφιξης">
+        </label>
+        <label class="sticky-booking-field">
+          <span data-i18n="booking.departure">Αναχώρηση</span>
+          <input type="date" id="departureDate" name="departure" required data-i18n="booking.departureAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία αναχώρησης">
+        </label>
+        <label class="sticky-booking-field">
+          <span data-i18n="booking.adults">Ενήλικες</span>
+          <select id="adultGuests" name="adults" data-i18n="booking.adultsAria" data-i18n-attr="aria-label" aria-label="Αριθμός ενηλίκων">
+            <option value="1" data-i18n="booking.adults.opt1">1 ενήλικας</option>
+            <option value="2" selected data-i18n="booking.adults.opt2">2 ενήλικες</option>
+            <option value="3" data-i18n="booking.adults.opt3">3 ενήλικες</option>
+            <option value="4" data-i18n="booking.adults.opt4">4 ενήλικες</option>
+            <option value="5" data-i18n="booking.adults.opt5">5 ενήλικες</option>
+            <option value="6" data-i18n="booking.adults.opt6">6 ενήλικες</option>
+          </select>
+        </label>
+        <label class="sticky-booking-field">
+          <span data-i18n="booking.children">Παιδιά</span>
+          <select id="childGuests" name="children" data-i18n="booking.childrenAria" data-i18n-attr="aria-label" aria-label="Αριθμός παιδιών">
+            <option value="0" selected data-i18n="booking.children.opt0">Χωρίς παιδιά</option>
+            <option value="1" data-i18n="booking.children.opt1">1 παιδί</option>
+            <option value="2" data-i18n="booking.children.opt2">2 παιδιά</option>
+            <option value="3" data-i18n="booking.children.opt3">3 παιδιά</option>
+            <option value="4" data-i18n="booking.children.opt4">4 παιδιά</option>
+          </select>
+        </label>
+        <label class="sticky-booking-field">
+          <span data-i18n="booking.room">Δωμάτιο</span>
+          <select id="roomType" name="room" data-i18n="booking.roomAria" data-i18n-attr="aria-label" aria-label="Τύπος δωματίου">
+            <option value="Δεν έχω προτίμηση" data-i18n="booking.room.none">Χωρίς προτίμηση</option>
+            <option value="Deluxe δίκλινο" data-i18n="room1.title">Deluxe δίκλινο</option>
+            <option value="Superior τρίκλινο" data-i18n="room2.title">Superior τρίκλινο</option>
+            <option value="Family δωμάτιο" data-i18n="room3.title">Family δωμάτιο</option>
+          </select>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary sticky-booking-submit" data-i18n="booking.submit">
+        Αποστολή αιτήματος →
+      </button>
+    </form>
+    <div class="sticky-booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true" data-i18n="booking.summaryDefault">
+      Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.
+    </div>
+  </div>
+
   <main id="main-content">
 
     <!-- ═══════════ HERO ════════════════════════════════════════ -->
@@ -739,72 +791,6 @@
       </div>
     </section>
 
-    <!-- ═══════════ BOOKING ════════════════════════════════════════ -->
-    <section class="booking-strip" id="booking" aria-labelledby="booking-title">
-      <div class="container">
-        <div class="booking-panel">
-
-          <div class="booking-panel-header">
-            <p class="section-label section-label-center" data-i18n="booking.kicker">Άμεσο αίτημα</p>
-            <h2 id="booking-title" data-i18n="booking.title">Ελέγξτε διαθεσιμότητα</h2>
-            <p data-i18n="booking.intro">Συμπληρώστε τις ημερομηνίες και στείλτε αίτημα μέσω WhatsApp.</p>
-          </div>
-
-          <form class="booking-form" id="bookingForm" novalidate>
-            <label class="booking-field">
-              <span data-i18n="booking.arrival">Άφιξη</span>
-              <input type="date" id="arrivalDate" name="arrival" required data-i18n="booking.arrivalAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία άφιξης">
-            </label>
-            <label class="booking-field">
-              <span data-i18n="booking.departure">Αναχώρηση</span>
-              <input type="date" id="departureDate" name="departure" required data-i18n="booking.departureAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία αναχώρησης">
-            </label>
-            <label class="booking-field">
-              <span data-i18n="booking.adults">Ενήλικες</span>
-              <select id="adultGuests" name="adults" data-i18n="booking.adultsAria" data-i18n-attr="aria-label" aria-label="Αριθμός ενηλίκων">
-                <option value="1" data-i18n="booking.adults.opt1">1 ενήλικας</option>
-                <option value="2" selected data-i18n="booking.adults.opt2">2 ενήλικες</option>
-                <option value="3" data-i18n="booking.adults.opt3">3 ενήλικες</option>
-                <option value="4" data-i18n="booking.adults.opt4">4 ενήλικες</option>
-                <option value="5" data-i18n="booking.adults.opt5">5 ενήλικες</option>
-                <option value="6" data-i18n="booking.adults.opt6">6 ενήλικες</option>
-              </select>
-            </label>
-            <label class="booking-field">
-              <span data-i18n="booking.children">Παιδιά</span>
-              <select id="childGuests" name="children" data-i18n="booking.childrenAria" data-i18n-attr="aria-label" aria-label="Αριθμός παιδιών">
-                <option value="0" selected data-i18n="booking.children.opt0">Χωρίς παιδιά</option>
-                <option value="1" data-i18n="booking.children.opt1">1 παιδί</option>
-                <option value="2" data-i18n="booking.children.opt2">2 παιδιά</option>
-                <option value="3" data-i18n="booking.children.opt3">3 παιδιά</option>
-                <option value="4" data-i18n="booking.children.opt4">4 παιδιά</option>
-              </select>
-            </label>
-            <label class="booking-field">
-              <span data-i18n="booking.room">Δωμάτιο</span>
-              <select id="roomType" name="room" data-i18n="booking.roomAria" data-i18n-attr="aria-label" aria-label="Τύπος δωματίου">
-                <option value="Δεν έχω προτίμηση" data-i18n="booking.room.none">Χωρίς προτίμηση</option>
-                <option value="Deluxe δίκλινο" data-i18n="room1.title">Deluxe δίκλινο</option>
-                <option value="Superior τρίκλινο" data-i18n="room2.title">Superior τρίκλινο</option>
-                <option value="Family δωμάτιο" data-i18n="room3.title">Family δωμάτιο</option>
-              </select>
-            </label>
-            <button type="submit" class="btn btn-primary booking-submit" data-i18n="booking.submit">
-              Αποστολή αιτήματος →
-            </button>
-          </form>
-
-          <div class="booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true" data-i18n="booking.summaryDefault">
-            Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.
-          </div>
-
-          <!-- Platform links — rendered by script.js from booking-config.js -->
-          <div class="booking-platforms" id="bookingPlatforms" data-i18n="booking.platformsAria" data-i18n-attr="aria-label" aria-label="Πλατφόρμες κράτησης"></div>
-
-        </div>
-      </div>
-    </section>
-
     <!-- ═══════════ LOCATION ══════════════════════════════════════ -->
     <section class="location-section section" id="location" aria-labelledby="location-title">
       <div class="container">
@@ -954,6 +940,9 @@
               >WhatsApp</a>
               <a href="viber://chat?number=%2B306936960328" class="btn btn-outline">Viber</a>
             </div>
+
+            <!-- Platform links — rendered by script.js from booking-config.js -->
+            <div class="booking-platforms" id="bookingPlatforms" data-i18n="booking.platformsAria" data-i18n-attr="aria-label" aria-label="Πλατφόρμες κράτησης"></div>
 
             <nav class="contact-links" data-i18n="contact.linksAria" data-i18n-attr="aria-label" aria-label="Τρόποι επικοινωνίας">
               <a href="tel:+306947883098" class="contact-link-row">
@@ -1340,9 +1329,6 @@
         "review.form.consent": "Συμφωνώ με την αποθήκευση των στοιχείων μου για σκοπούς επαλήθευσης και δημοσίευσης της κριτικής μου, σύμφωνα με την πολιτική απορρήτου.",
         "review.form.notice": "ℹ️ Οι κριτικές δεν δημοσιεύονται αυτόματα. Κάθε αξιολόγηση εξετάζεται από τον διαχειριστή πριν εμφανιστεί δημόσια.",
         "review.form.submit": "Αποστολή κριτικής",
-        "booking.kicker": "Άμεσο αίτημα",
-        "booking.title": "Ελέγξτε διαθεσιμότητα",
-        "booking.intro": "Συμπληρώστε τις ημερομηνίες και στείλτε αίτημα μέσω WhatsApp.",
         "booking.arrival": "Άφιξη",
         "booking.arrivalAria": "Ημερομηνία άφιξης",
         "booking.departure": "Αναχώρηση",
@@ -1610,9 +1596,6 @@
         "review.form.consent": "I agree to the storage of my information for verification and publishing purposes, in accordance with the privacy policy.",
         "review.form.notice": "ℹ️ Reviews are not published automatically. Every review is checked by the owner before it appears publicly.",
         "review.form.submit": "Submit review",
-        "booking.kicker": "Instant Request",
-        "booking.title": "Check Availability",
-        "booking.intro": "Fill in your dates and send a request via WhatsApp.",
         "booking.arrival": "Arrival",
         "booking.arrivalAria": "Arrival date",
         "booking.departure": "Departure",
