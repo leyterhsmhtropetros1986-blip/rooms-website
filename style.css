@@ -246,19 +246,35 @@ p  { color: var(--text-muted); line-height: 1.75; }
   gap: 24px;
 }
 
-/* Logo */
+/* Logo — allowed to shrink (unlike .header-controls) so on very
+   narrow screens the text truncates instead of pushing the hamburger/
+   language switch off-screen. */
 .logo {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
   color: var(--white);
   line-height: 1.1;
+}
+.logo-icon {
+  height: 44px;
+  width: auto;
   flex-shrink: 0;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 .logo-main {
   font-family: 'Playfair Display', serif;
   font-size: 1.22rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .logo-subtitle {
   font-size: 0.66rem;
@@ -1976,6 +1992,10 @@ body.lightbox-open { overflow: hidden; }
      around the logo on narrow screens. */
   .site-header { height: 72px; }
   html { scroll-padding-top: 72px; }
+  .header-inner { gap: 12px; }
+  .logo-icon { height: 34px; }
+  .logo-main { font-size: 1.02rem; }
+  .logo-subtitle { font-size: 0.58rem; }
 
   /* Hero now sits directly under the header in document order (the
      booking bar moved to right after it), so it just needs to clear
