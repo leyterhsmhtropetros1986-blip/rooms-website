@@ -1,37 +1,35 @@
-/* Booking form: night counter + WhatsApp submission */
+/* Booking form: night counter + email submission via /api/send-booking */
 (function () {
   "use strict";
 
-  var WHATSAPP_NUMBER =
-    (typeof SITE_CONFIG !== "undefined" && SITE_CONFIG.contact && SITE_CONFIG.contact.whatsapp)
-      ? SITE_CONFIG.contact.whatsapp
-      : "306936960328";
-  var MS_PER_DAY      = 86400000;
+  var MS_PER_DAY = 86400000;
 
   var form       = document.getElementById("bookingForm");
   var arrival    = document.getElementById("arrivalDate");
   var departure  = document.getElementById("departureDate");
   var summary    = document.getElementById("bookingSummary");
+  var submitBtn  = document.getElementById("bookingSubmit");
+  var nameField  = document.getElementById("guestName");
+  var emailField = document.getElementById("guestEmail");
+  var phoneField = document.getElementById("guestPhone");
 
-  if (!form || !arrival || !departure || !summary) return;
+  if (!form || !arrival || !departure || !summary || !submitBtn) return;
 
   function lang() {
     return document.documentElement.getAttribute("lang") === "en" ? "en" : "el";
   }
 
   var STRINGS = {
-    selectDates:            { el: "Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.", en: "Select dates to see the number of nights." },
-    departureAfterArrival:  { el: "Η ημερομηνία αναχώρησης πρέπει να είναι μετά την άφιξη.", en: "The departure date must be after the arrival date." },
-    oneNight:               { el: "1 διανυκτέρευση επιλεγμένη.", en: "1 night selected." },
-    nightsSuffix:           { el: " διανυκτερεύσεις επιλεγμένες.", en: " nights selected." },
-    selectBothDates:        { el: "Παρακαλούμε επιλέξτε ημερομηνίες άφιξης και αναχώρησης.", en: "Please select arrival and departure dates." },
-    greeting:               { el: "Καλησπέρα! Θα ήθελα να ρωτήσω για διαθεσιμότητα.", en: "Hello! I would like to ask about availability." },
-    arrivalLabel:           { el: "📅 Άφιξη: ", en: "📅 Arrival: " },
-    departureLabel:         { el: "📅 Αναχώρηση: ", en: "📅 Departure: " },
-    nightsLabel:            { el: "🌙 Διανυκτερεύσεις: ", en: "🌙 Nights: " },
-    adultsLabel:            { el: "👤 Ενήλικες: ", en: "👤 Adults: " },
-    childrenLabel:          { el: "👶 Παιδιά: ", en: "👶 Children: " },
-    roomLabel:              { el: "🛏️ Δωμάτιο: ", en: "🛏️ Room: " },
+    selectDates:           { el: "Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.", en: "Select dates to see the number of nights." },
+    departureAfterArrival: { el: "Η ημερομηνία αναχώρησης πρέπει να είναι μετά την άφιξη.", en: "The departure date must be after the arrival date." },
+    oneNight:              { el: "1 διανυκτέρευση επιλεγμένη.", en: "1 night selected." },
+    nightsSuffix:          { el: " διανυκτερεύσεις επιλεγμένες.", en: " nights selected." },
+    selectBothDates:       { el: "Παρακαλούμε επιλέξτε ημερομηνίες άφιξης και αναχώρησης.", en: "Please select arrival and departure dates." },
+    missingFields:         { el: "Συμπληρώστε ονοματεπώνυμο, email και τηλέφωνο.", en: "Please fill in your name, email and phone." },
+    invalidEmail:          { el: "Το email δεν φαίνεται έγκυρο.", en: "That email address doesn't look valid." },
+    sending:                { el: "Αποστολή...", en: "Sending..." },
+    success:                { el: "Το αίτημά σας στάλθηκε επιτυχώς. Θα επικοινωνήσουμε σύντομα μαζί σας.", en: "Your request has been sent successfully. We'll be in touch shortly." },
+    genericError:           { el: "Κάτι πήγε στραβά. Δοκιμάστε ξανά ή επικοινωνήστε μαζί μας τηλεφωνικά.", en: "Something went wrong. Please try again or call us directly." },
   };
 
   function t(key) {
@@ -49,6 +47,7 @@
   function updateSummary() {
     if (!arrival.value || !departure.value) {
       summary.textContent = t("selectDates");
+      summary.style.color = "";
       return;
     }
 
@@ -58,7 +57,7 @@
 
     if (nights <= 0) {
       summary.textContent = t("departureAfterArrival");
-      summary.style.color = "#b94040";
+      summary.style.color = "#e08080";
       return;
     }
 
@@ -93,13 +92,27 @@
     return parts[2] + "/" + parts[1] + "/" + parts[0];
   }
 
-  /* ── Form submission → WhatsApp message ────────────────────────── */
+  function showStatus(text, isError) {
+    summary.textContent = text;
+    summary.style.color = isError ? "#e08080" : "";
+  }
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  var isSubmitting = false;
+
+  /* ── Form submission → POST /api/send-booking ────────────────────
+     Sends the guest's request as a real email via a server-side
+     API route. No WhatsApp involved anywhere in this flow. */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
+    if (isSubmitting) return; // guards against double-clicks
+
     if (!arrival.value || !departure.value) {
-      summary.textContent = t("selectBothDates");
-      summary.style.color = "#b94040";
+      showStatus(t("selectBothDates"), true);
       arrival.focus();
       return;
     }
@@ -109,32 +122,76 @@
     var nights = Math.round((d - a) / MS_PER_DAY);
 
     if (nights <= 0) {
-      summary.textContent = t("departureAfterArrival");
-      summary.style.color = "#b94040";
+      showStatus(t("departureAfterArrival"), true);
       departure.focus();
       return;
     }
 
-    summary.style.color = "";
+    var name  = nameField  ? nameField.value.trim()  : "";
+    var email = emailField ? emailField.value.trim() : "";
+    var phone = phoneField ? phoneField.value.trim() : "";
+
+    if (!name || !email || !phone) {
+      showStatus(t("missingFields"), true);
+      (nameField && !name ? nameField : emailField && !email ? emailField : phoneField).focus();
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      showStatus(t("invalidEmail"), true);
+      emailField.focus();
+      return;
+    }
 
     var adults   = document.getElementById("adultGuests");
     var children = document.getElementById("childGuests");
     var room     = document.getElementById("roomType");
+    var message  = document.getElementById("guestMessage");
 
-    var lines = [
-      t("greeting"),
-      "",
-      t("arrivalLabel")   + fmtDate(arrival.value),
-      t("departureLabel") + fmtDate(departure.value),
-      t("nightsLabel")    + nights,
-      t("adultsLabel")    + (adults   ? adults.value   : "—"),
-      t("childrenLabel")  + (children ? children.value : "—"),
-      t("roomLabel")      + (room     ? room.value     : "—"),
-    ];
+    var payload = {
+      name:      name,
+      email:     email,
+      phone:     phone,
+      arrival:   fmtDate(arrival.value),
+      departure: fmtDate(departure.value),
+      nights:    nights,
+      adults:    adults   ? adults.value   : "",
+      children:  children ? children.value : "",
+      room:      room     ? room.value     : "",
+      message:   message  ? message.value.trim() : "",
+      lang:      lang(),
+    };
 
-    var message = encodeURIComponent(lines.join("\n"));
-    var url     = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + message;
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    var originalLabel = submitBtn.textContent;
+    submitBtn.textContent = t("sending");
+    showStatus(t("sending"), false);
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    fetch("/api/send-booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok) throw new Error((data && data.error) || "request_failed");
+          return data;
+        });
+      })
+      .then(function () {
+        showStatus(t("success"), false);
+        form.reset();
+        updateSummary();
+        submitBtn.textContent = originalLabel;
+        submitBtn.disabled = false;
+        isSubmitting = false;
+      })
+      .catch(function () {
+        showStatus(t("genericError"), true);
+        submitBtn.textContent = originalLabel;
+        submitBtn.disabled = false;
+        isSubmitting = false;
+      });
   });
 })();

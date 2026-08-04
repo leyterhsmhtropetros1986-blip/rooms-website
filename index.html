@@ -222,7 +222,28 @@
             </select>
           </label>
         </div>
-        <button type="submit" class="btn btn-primary sticky-booking-submit" data-i18n="booking.submit">
+
+        <div class="sticky-booking-fields sticky-booking-contact-fields">
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.name">Ονοματεπώνυμο</span>
+            <input type="text" id="guestName" name="name" required autocomplete="name" data-i18n="booking.nameAria" data-i18n-attr="aria-label" aria-label="Ονοματεπώνυμο">
+          </label>
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.email">Email</span>
+            <input type="email" id="guestEmail" name="email" required autocomplete="email" data-i18n="booking.emailAria" data-i18n-attr="aria-label" aria-label="Email">
+          </label>
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.phone">Τηλέφωνο</span>
+            <input type="tel" id="guestPhone" name="phone" required autocomplete="tel" data-i18n="booking.phoneAria" data-i18n-attr="aria-label" aria-label="Τηλέφωνο">
+          </label>
+        </div>
+
+        <label class="sticky-booking-field sticky-booking-message">
+          <span data-i18n="booking.message">Μήνυμα (προαιρετικό)</span>
+          <textarea id="guestMessage" name="message" rows="2" data-i18n="booking.messageAria" data-i18n-attr="aria-label" aria-label="Μήνυμα ή παρατηρήσεις"></textarea>
+        </label>
+
+        <button type="submit" class="btn btn-primary sticky-booking-submit" id="bookingSubmit" data-i18n="booking.submit">
           Αποστολή αιτήματος →
         </button>
       </form>
@@ -1374,6 +1395,14 @@
         "booking.room": "Δωμάτιο",
         "booking.roomAria": "Τύπος δωματίου",
         "booking.room.none": "Χωρίς προτίμηση",
+        "booking.name": "Ονοματεπώνυμο",
+        "booking.nameAria": "Ονοματεπώνυμο",
+        "booking.email": "Email",
+        "booking.emailAria": "Email",
+        "booking.phone": "Τηλέφωνο",
+        "booking.phoneAria": "Τηλέφωνο",
+        "booking.message": "Μήνυμα (προαιρετικό)",
+        "booking.messageAria": "Μήνυμα ή παρατηρήσεις",
         "booking.submit": "Αποστολή αιτήματος →",
         "booking.summaryDefault": "Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.",
         "location.kicker": "Τοποθεσία",
@@ -1640,6 +1669,14 @@
         "booking.room": "Room",
         "booking.roomAria": "Room type",
         "booking.room.none": "No preference",
+        "booking.name": "Full name",
+        "booking.nameAria": "Full name",
+        "booking.email": "Email",
+        "booking.emailAria": "Email",
+        "booking.phone": "Phone",
+        "booking.phoneAria": "Phone",
+        "booking.message": "Message (optional)",
+        "booking.messageAria": "Message or notes",
         "booking.submit": "Send Request →",
         "booking.summaryDefault": "Select dates to see the number of nights.",
         "location.kicker": "Location",

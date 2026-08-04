@@ -1387,14 +1387,14 @@ body.premium-lightbox-open { overflow: hidden; }
 
 .sticky-booking-form {
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
   gap: 6px;
   padding: 5px;
 }
 
 .sticky-booking-fields {
   display: flex;
-  flex: 1;
+  flex: 0 0 auto;
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -1423,7 +1423,8 @@ body.premium-lightbox-open { overflow: hidden; }
 }
 
 .sticky-booking-field input,
-.sticky-booking-field select {
+.sticky-booking-field select,
+.sticky-booking-field textarea {
   width: 100%;
   border: 0;
   padding: 0;
@@ -1432,24 +1433,45 @@ body.premium-lightbox-open { overflow: hidden; }
   font: inherit;
   font-size: 0.78rem;
   font-weight: 700;
-  cursor: pointer;
 }
+.sticky-booking-field select { cursor: pointer; }
 .sticky-booking-field input:focus,
-.sticky-booking-field select:focus { outline: none; }
+.sticky-booking-field select:focus,
+.sticky-booking-field textarea:focus { outline: none; }
 .sticky-booking-field input::-webkit-calendar-picker-indicator {
   filter: invert(1) brightness(1.7);
   cursor: pointer;
 }
 .sticky-booking-field select option { background: var(--forest); color: var(--white); }
+.sticky-booking-field input::placeholder,
+.sticky-booking-field textarea::placeholder { color: rgba(255, 255, 255, 0.35); }
+
+/* Contact-details row (name/email/phone) reuses the same field
+   component as the dates/guests row above it. */
+.sticky-booking-contact-fields { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+.sticky-booking-message {
+  border-right: 0;
+  padding: 6px 12px;
+}
+.sticky-booking-message textarea {
+  resize: none;
+  font-weight: 500;
+  line-height: 1.4;
+}
 
 .sticky-booking-submit {
   flex: 0 0 auto;
-  align-self: center;
   white-space: nowrap;
-  min-height: 38px !important;
+  min-height: 40px !important;
   padding: 0 20px !important;
-  font-size: 0.78rem !important;
+  font-size: 0.8rem !important;
   border-radius: 10px !important;
+}
+.sticky-booking-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
 .sticky-booking-summary {
@@ -2134,9 +2156,13 @@ body.lightbox-open { overflow: hidden; }
     padding: 6px 8px;
   }
   .sticky-booking-field:nth-child(5) { grid-column: 1 / -1; border-bottom: 0; }
+  .sticky-booking-contact-fields { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .sticky-booking-contact-fields .sticky-booking-field:nth-child(3) { grid-column: 1 / -1; border-bottom: 0; }
   .sticky-booking-field span { font-size: 0.6rem; }
   .sticky-booking-field input,
-  .sticky-booking-field select { font-size: 0.8rem; }
+  .sticky-booking-field select,
+  .sticky-booking-field textarea { font-size: 0.8rem; }
+  .sticky-booking-message { border-bottom: 0; padding: 6px 8px; }
   .sticky-booking-submit {
     width: 100%;
     min-height: 44px;
