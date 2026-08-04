@@ -1702,19 +1702,24 @@ body.premium-lightbox-open { overflow: hidden; }
 .footer-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(4, 12, 8, 0.95);
+  background: linear-gradient(180deg, rgba(7, 18, 13, 0.82) 0%, rgba(4, 11, 8, 0.93) 100%);
 }
 .footer-inner {
   position: relative;
   z-index: 2;
-  padding: var(--section-pad) 0 0;
+  /* Deliberately NOT var(--section-pad) — the section above the
+     footer already ends with that much bottom padding, so reusing
+     it here stacked into a large empty gap before any real content
+     (read as "something didn't load"). Footer just needs its own
+     modest breathing room. */
+  padding: 52px 0 0;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.8fr 1fr 1fr 1.5fr;
-  gap: 56px;
-  padding-bottom: 56px;
+  gap: 48px;
+  padding-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -1803,7 +1808,7 @@ body.premium-lightbox-open { overflow: hidden; }
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 22px 0;
+  padding: 18px 0;
   color: rgba(255, 255, 255, 0.38);
   font-size: 0.8rem;
 }
@@ -2125,8 +2130,9 @@ body.lightbox-open { overflow: hidden; }
 
   .nearby-grid { grid-template-columns: 1fr; }
 
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-inner { padding-top: 40px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; padding: 16px 0; }
   .footer-legal { justify-content: center; }
 
   .contact-actions { flex-direction: column; }
