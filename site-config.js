@@ -123,10 +123,10 @@ var SITE_CONFIG = {
     /* Digits only, no spaces/plus — used raw in wa.me URLs by the
      * booking form (premium-features.js). A formatted value here
      * (e.g. "+30 693 ...") breaks the WhatsApp deep link. */
-    whatsapp:     "306932069632",
-    whatsappHref: "https://wa.me/306932069632",
-    viber:        "+30 693 206 9632",
-    viberHref:    "viber://chat?number=%2B306932069632",
+    whatsapp:     "306936960328",
+    whatsappHref: "https://wa.me/306936960328",
+    viber:        "+30 693 696 0328",
+    viberHref:    "viber://chat?number=%2B306936960328",
     email:        "info@asteriaapartments.gr",
     location:     "Νιμπορειό Ευβοίας, Νότια Εύβοια",
     hours:        "Καθημερινά 09:00–21:00",

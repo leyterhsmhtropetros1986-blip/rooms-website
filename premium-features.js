@@ -5,7 +5,7 @@
   var WHATSAPP_NUMBER =
     (typeof SITE_CONFIG !== "undefined" && SITE_CONFIG.contact && SITE_CONFIG.contact.whatsapp)
       ? SITE_CONFIG.contact.whatsapp
-      : "306932069632";
+      : "306936960328";
   var MS_PER_DAY      = 86400000;
 
   var form       = document.getElementById("bookingForm");
