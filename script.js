@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { threshold: 0.1 });
 
     document.querySelectorAll(
-      ".room-card, .amenity, .offer-card, .review-card, .nearby-card, .about-feature"
+      ".room-card, .amenity, .offer-card, .review-card, .nearby-card, .about-feature, .location-highlight"
     ).forEach(function (el) {
       el.style.opacity   = "0";
       el.style.transform = "translateY(24px)";

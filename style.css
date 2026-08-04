@@ -63,6 +63,18 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* Respect OS-level "reduce motion" — kills the hero zoom, scroll cue,
+   card-lift hovers and scroll-triggered fade-ups without removing them
+   outright (content still appears, just without the animation). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto !important; }
+}
+
 body {
   font-family: 'Manrope', system-ui, Arial, sans-serif;
   line-height: 1.7;
@@ -271,6 +283,7 @@ p  { color: var(--text-muted); line-height: 1.75; }
   transition: color 0.2s, background 0.2s;
 }
 .site-nav a:hover { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+.site-nav a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 .nav-cta {
   margin-left: 8px;
@@ -314,7 +327,9 @@ p  { color: var(--text-muted); line-height: 1.75; }
   cursor: pointer;
   padding: 6px;
   flex-shrink: 0;
+  border-radius: var(--r-sm);
 }
+.menu-button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .menu-button span {
   display: block;
   width: 100%;
