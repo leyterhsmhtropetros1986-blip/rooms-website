@@ -48,6 +48,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  /* ── Floating contact dock: single FAB on mobile, expands to
+     reveal phone/WhatsApp/Viber (desktop shows all three already,
+     this toggle is simply hidden there via CSS) ────────────────── */
+  var contactDock       = document.getElementById("contactDock");
+  var contactDockToggle = document.getElementById("contactDockToggle");
+
+  if (contactDock && contactDockToggle) {
+    contactDockToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var isOpen = contactDock.classList.toggle("is-open");
+      contactDockToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!contactDock.contains(e.target)) {
+        contactDock.classList.remove("is-open");
+        contactDockToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
   /* ── Scroll: header appearance + scroll-to-top button ───────── */
   var header    = document.getElementById("site-header");
   var scrollBtn = document.getElementById("scrollTop");

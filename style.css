@@ -61,6 +61,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Respect OS-level "reduce motion" — kills the hero zoom, scroll cue,
@@ -265,6 +267,16 @@ p  { color: var(--text-muted); line-height: 1.75; }
   text-transform: uppercase;
   color: var(--gold-light);
   opacity: 0.82;
+}
+
+/* Groups the language switch + hamburger together on the right, so on
+   mobile (where .site-nav becomes an absolute dropdown, out of flow)
+   the header still reads as "logo left / controls right" in one row. */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 /* Navigation */
@@ -1853,8 +1865,15 @@ body.lightbox-open { overflow: hidden; }
   right: 20px;
   bottom: 20px;
   z-index: 9500;
+}
+.contact-dock-menu {
   display: grid;
   gap: 10px;
+}
+/* Mobile-only FAB toggle — hidden on desktop, where all three
+   contact icons are already visible without it. */
+.contact-dock-toggle {
+  display: none;
 }
 .contact-dock a {
   display: grid;
@@ -1948,21 +1967,30 @@ body.lightbox-open { overflow: hidden; }
 @media (max-width: 900px) {
   .menu-button { display: flex; }
 
-  /* Below tablet width, a fixed header + fixed booking bar stacked
-     together eat too much of the screen permanently. Let the bar
-     scroll away with the page instead — it still sits right below
-     the header on load, just not pinned there while scrolling. */
+  /* Compact header — the fixed 80px desktop height left a large gap
+     around the logo on narrow screens. */
+  .site-header { height: 72px; }
+  html { scroll-padding-top: 72px; }
+
+  /* Hero now sits directly under the header in document order (the
+     booking bar moved to right after it), so it just needs to clear
+     the header height, not a stacked header+bar combo like before. */
+  .hero { min-height: clamp(560px, 70svh, 720px); }
+  .hero-content { padding-top: 100px; padding-bottom: 40px; }
+  .hero h1 { font-size: clamp(42px, 12vw, 64px); }
+
+  /* Booking bar: normal document flow right after the hero, not
+     pinned/fixed and not overlapping anything above it. */
   .sticky-booking-bar {
     position: static;
     transform: none;
-    width: 94vw;
-    margin: 90px auto 0;
+    width: calc(100% - 32px);
+    margin: 20px 16px;
   }
-  .hero-content { padding-top: 90px; }
 
   .site-nav {
     position: absolute;
-    top: 80px;
+    top: 72px;
     left: 0;
     right: 0;
     flex-direction: column;
@@ -2029,7 +2057,7 @@ body.lightbox-open { overflow: hidden; }
   .review-form-wrapper { padding: 30px 20px; }
 
   .sticky-booking-bar { border-radius: 12px; }
-  .sticky-booking-form { flex-direction: column; gap: 0; padding: 8px; }
+  .sticky-booking-form { flex-direction: column; gap: 0; padding: 6px; }
   .sticky-booking-fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2040,14 +2068,20 @@ body.lightbox-open { overflow: hidden; }
     min-width: 0;
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 7px 8px;
+    padding: 6px 8px;
   }
   .sticky-booking-field:nth-child(5) { grid-column: 1 / -1; border-bottom: 0; }
   .sticky-booking-field span { font-size: 0.6rem; }
   .sticky-booking-field input,
   .sticky-booking-field select { font-size: 0.8rem; }
-  .sticky-booking-submit { width: 100%; margin-top: 8px; padding: 0 18px !important; font-size: 0.82rem !important; }
-  .sticky-booking-summary { font-size: 0.7rem; padding: 0 10px 8px; }
+  .sticky-booking-submit {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 6px;
+    padding: 0 18px !important;
+    font-size: 0.82rem !important;
+  }
+  .sticky-booking-summary { font-size: 0.7rem; padding: 0 10px 6px; }
 
   .rooms-grid { grid-template-columns: 1fr; }
 
@@ -2060,11 +2094,49 @@ body.lightbox-open { overflow: hidden; }
   .contact-actions { flex-direction: column; }
   .contact-actions .btn { width: 100%; }
 
-  .contact-dock { right: 12px; bottom: 12px; }
+  /* Single FAB that expands into the phone/WhatsApp/Viber menu,
+     instead of three permanently-visible buttons eating screen
+     space and covering content underneath them. */
+  .contact-dock {
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 10px;
+  }
   .contact-dock a { width: 46px; height: 46px; }
   .contact-dock svg { width: 20px; height: 20px; }
 
-  .scroll-top { right: 12px; bottom: 190px; }
+  .contact-dock-menu {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+  .contact-dock.is-open .contact-dock-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .contact-dock-toggle {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--forest);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s var(--ease);
+  }
+  .contact-dock-toggle svg { width: 22px; height: 22px; fill: currentColor; }
+  .contact-dock.is-open .contact-dock-toggle { transform: rotate(90deg); }
+
+  .scroll-top { right: 12px; bottom: 76px; }
 
   .lightbox { padding: 70px 12px 62px; }
   .lightbox-nav {

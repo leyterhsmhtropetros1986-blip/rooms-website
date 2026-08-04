@@ -89,21 +89,6 @@
         <span class="logo-subtitle">Rooms &amp; Hospitality</span>
       </a>
 
-      <button
-        class="menu-button"
-        id="menuButton"
-        type="button"
-        data-i18n="header.menu.aria"
-        data-i18n-attr="aria-label"
-        aria-label="Άνοιγμα μενού πλοήγησης"
-        aria-controls="navigation"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
       <nav class="site-nav" id="navigation" data-i18n="header.nav.aria" data-i18n-attr="aria-label" aria-label="Κύριο μενού">
         <a href="#about" data-i18n="nav.about">Το κατάλυμα</a>
         <a href="#rooms" data-i18n="nav.rooms">Δωμάτια</a>
@@ -114,65 +99,30 @@
         <a href="https://www.booking.com/hotel/gr/asteria-rooms.en-gb.html" class="nav-booking-com" target="_blank" rel="noopener noreferrer" data-i18n="nav.bookingCom">Booking.com</a>
       </nav>
 
-      <div class="language-switch" aria-label="Language switcher">
-        <button type="button" data-lang-switch="el" class="is-active" aria-pressed="true">ΕΛ</button>
-        <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      <div class="header-controls">
+        <div class="language-switch" aria-label="Language switcher">
+          <button type="button" data-lang-switch="el" class="is-active" aria-pressed="true">ΕΛ</button>
+          <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+        </div>
+
+        <button
+          class="menu-button"
+          id="menuButton"
+          type="button"
+          data-i18n="header.menu.aria"
+          data-i18n-attr="aria-label"
+          aria-label="Άνοιγμα μενού πλοήγησης"
+          aria-controls="navigation"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
 
     </div>
   </header>
-
-  <!-- ═══════════ STICKY BOOKING BAR ═══════════════════════════ -->
-  <div class="sticky-booking-bar" id="booking">
-    <form class="sticky-booking-form" id="bookingForm" novalidate>
-      <div class="sticky-booking-fields">
-        <label class="sticky-booking-field">
-          <span data-i18n="booking.arrival">Άφιξη</span>
-          <input type="date" id="arrivalDate" name="arrival" required data-i18n="booking.arrivalAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία άφιξης">
-        </label>
-        <label class="sticky-booking-field">
-          <span data-i18n="booking.departure">Αναχώρηση</span>
-          <input type="date" id="departureDate" name="departure" required data-i18n="booking.departureAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία αναχώρησης">
-        </label>
-        <label class="sticky-booking-field">
-          <span data-i18n="booking.adults">Ενήλικες</span>
-          <select id="adultGuests" name="adults" data-i18n="booking.adultsAria" data-i18n-attr="aria-label" aria-label="Αριθμός ενηλίκων">
-            <option value="1" data-i18n="booking.adults.opt1">1 ενήλικας</option>
-            <option value="2" selected data-i18n="booking.adults.opt2">2 ενήλικες</option>
-            <option value="3" data-i18n="booking.adults.opt3">3 ενήλικες</option>
-            <option value="4" data-i18n="booking.adults.opt4">4 ενήλικες</option>
-            <option value="5" data-i18n="booking.adults.opt5">5 ενήλικες</option>
-            <option value="6" data-i18n="booking.adults.opt6">6 ενήλικες</option>
-          </select>
-        </label>
-        <label class="sticky-booking-field">
-          <span data-i18n="booking.children">Παιδιά</span>
-          <select id="childGuests" name="children" data-i18n="booking.childrenAria" data-i18n-attr="aria-label" aria-label="Αριθμός παιδιών">
-            <option value="0" selected data-i18n="booking.children.opt0">Χωρίς παιδιά</option>
-            <option value="1" data-i18n="booking.children.opt1">1 παιδί</option>
-            <option value="2" data-i18n="booking.children.opt2">2 παιδιά</option>
-            <option value="3" data-i18n="booking.children.opt3">3 παιδιά</option>
-            <option value="4" data-i18n="booking.children.opt4">4 παιδιά</option>
-          </select>
-        </label>
-        <label class="sticky-booking-field">
-          <span data-i18n="booking.room">Δωμάτιο</span>
-          <select id="roomType" name="room" data-i18n="booking.roomAria" data-i18n-attr="aria-label" aria-label="Τύπος δωματίου">
-            <option value="Δεν έχω προτίμηση" data-i18n="booking.room.none">Χωρίς προτίμηση</option>
-            <option value="Deluxe δίκλινο" data-i18n="room1.title">Deluxe δίκλινο</option>
-            <option value="Superior τρίκλινο" data-i18n="room2.title">Superior τρίκλινο</option>
-            <option value="Family δωμάτιο" data-i18n="room3.title">Family δωμάτιο</option>
-          </select>
-        </label>
-      </div>
-      <button type="submit" class="btn btn-primary sticky-booking-submit" data-i18n="booking.submit">
-        Αποστολή αιτήματος →
-      </button>
-    </form>
-    <div class="sticky-booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true" data-i18n="booking.summaryDefault">
-      Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.
-    </div>
-  </div>
 
   <main id="main-content">
 
@@ -222,6 +172,61 @@
         <span data-i18n="hero.scroll">Ανακαλύψτε</span>
       </a>
     </section>
+
+    <!-- ═══════════ STICKY BOOKING BAR ═══════════════════════════
+         Fixed under the header on desktop (position comes from CSS,
+         not DOM order). On mobile it drops into normal flow here —
+         right after the hero, before the rest of the page. -->
+    <div class="sticky-booking-bar" id="booking">
+      <form class="sticky-booking-form" id="bookingForm" novalidate>
+        <div class="sticky-booking-fields">
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.arrival">Άφιξη</span>
+            <input type="date" id="arrivalDate" name="arrival" required data-i18n="booking.arrivalAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία άφιξης">
+          </label>
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.departure">Αναχώρηση</span>
+            <input type="date" id="departureDate" name="departure" required data-i18n="booking.departureAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία αναχώρησης">
+          </label>
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.adults">Ενήλικες</span>
+            <select id="adultGuests" name="adults" data-i18n="booking.adultsAria" data-i18n-attr="aria-label" aria-label="Αριθμός ενηλίκων">
+              <option value="1" data-i18n="booking.adults.opt1">1 ενήλικας</option>
+              <option value="2" selected data-i18n="booking.adults.opt2">2 ενήλικες</option>
+              <option value="3" data-i18n="booking.adults.opt3">3 ενήλικες</option>
+              <option value="4" data-i18n="booking.adults.opt4">4 ενήλικες</option>
+              <option value="5" data-i18n="booking.adults.opt5">5 ενήλικες</option>
+              <option value="6" data-i18n="booking.adults.opt6">6 ενήλικες</option>
+            </select>
+          </label>
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.children">Παιδιά</span>
+            <select id="childGuests" name="children" data-i18n="booking.childrenAria" data-i18n-attr="aria-label" aria-label="Αριθμός παιδιών">
+              <option value="0" selected data-i18n="booking.children.opt0">Χωρίς παιδιά</option>
+              <option value="1" data-i18n="booking.children.opt1">1 παιδί</option>
+              <option value="2" data-i18n="booking.children.opt2">2 παιδιά</option>
+              <option value="3" data-i18n="booking.children.opt3">3 παιδιά</option>
+              <option value="4" data-i18n="booking.children.opt4">4 παιδιά</option>
+            </select>
+          </label>
+          <label class="sticky-booking-field">
+            <span data-i18n="booking.room">Δωμάτιο</span>
+            <select id="roomType" name="room" data-i18n="booking.roomAria" data-i18n-attr="aria-label" aria-label="Τύπος δωματίου">
+              <option value="Δεν έχω προτίμηση" data-i18n="booking.room.none">Χωρίς προτίμηση</option>
+              <option value="Deluxe δίκλινο" data-i18n="room1.title">Deluxe δίκλινο</option>
+              <option value="Superior τρίκλινο" data-i18n="room2.title">Superior τρίκλινο</option>
+              <option value="Family δωμάτιο" data-i18n="room3.title">Family δωμάτιο</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary sticky-booking-submit" data-i18n="booking.submit">
+          Αποστολή αιτήματος →
+        </button>
+      </form>
+      <div class="sticky-booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true" data-i18n="booking.summaryDefault">
+        Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.
+      </div>
+    </div>
 
     <!-- ═══════════ ABOUT ════════════════════════════════════════ -->
     <section class="about-section section" id="about" aria-labelledby="about-title">
@@ -1089,28 +1094,44 @@
   </footer>
 
   <!-- ═══════════ FLOATING CONTACT DOCK ════════════════════════ -->
-  <nav class="contact-dock" aria-label="Γρήγορη επικοινωνία">
-    <a href="tel:+306947883098" data-i18n="dock.phoneAria" data-i18n-attr="aria-label" aria-label="Τηλεφωνική κλήση" title="Τηλέφωνο">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.55 3.5.55a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.19 2.4.55 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/>
-      </svg>
-    </a>
-    <a
-      href="https://wa.me/306936960328?text=Καλησπέρα!%20Θα%20ήθελα%20να%20ρωτήσω%20για%20διαθεσιμότητα."
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="WhatsApp"
-      title="WhatsApp"
+  <nav class="contact-dock" id="contactDock" aria-label="Γρήγορη επικοινωνία">
+    <div class="contact-dock-menu" id="contactDockMenu">
+      <a href="tel:+306947883098" data-i18n="dock.phoneAria" data-i18n-attr="aria-label" aria-label="Τηλεφωνική κλήση" title="Τηλέφωνο">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.36 2.3.55 3.5.55a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.19 2.4.55 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/>
+        </svg>
+      </a>
+      <a
+        href="https://wa.me/306936960328?text=Καλησπέρα!%20Θα%20ήθελα%20να%20ρωτήσω%20για%20διαθεσιμότητα."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        title="WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a9.6 9.6 0 0 0-8.2 14.6L2.5 21.5l5-1.3A9.7 9.7 0 1 0 12 2Zm0 17.5a7.8 7.8 0 0 1-4-1.1l-.3-.2-3 .8.8-2.9-.2-.3A7.8 7.8 0 1 1 12 19.5Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.5l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.2.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/>
+        </svg>
+      </a>
+      <a href="viber://chat?number=%2B306936960328" aria-label="Viber" title="Viber">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19.2 4.4C17.4 2.7 14.5 2 12 2S6.6 2.7 4.8 4.4C3.2 5.9 2.4 8 2.4 10.8c0 4.1 1.8 6.7 5.4 8.1v2.7c0 .3.4.5.6.3l3.2-2.5h.4c2.5 0 5.4-.7 7.2-2.4 1.6-1.5 2.4-3.6 2.4-6.4 0-2.7-.8-4.7-2.4-6.2Zm-2 9.4c-.2.6-1.1 1.2-1.7 1.3-.5.1-1.1.2-3.7-.9-3.1-1.3-5.1-4.5-5.3-4.8-.2-.3-1.2-1.6-1.2-3.1 0-1.5.8-2.2 1.1-2.5.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6l.9 2.2c.1.3.1.5 0 .7l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.9-.2l1-1.2c.2-.3.5-.3.8-.2l2 .9c.3.1.5.2.6.4.1.1.1.7-.1 1.3Z"/>
+        </svg>
+      </a>
+    </div>
+    <button
+      type="button"
+      class="contact-dock-toggle"
+      id="contactDockToggle"
+      aria-expanded="false"
+      aria-controls="contactDockMenu"
+      data-i18n="dock.toggleAria"
+      data-i18n-attr="aria-label"
+      aria-label="Επιλογές επικοινωνίας"
     >
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 2a9.6 9.6 0 0 0-8.2 14.6L2.5 21.5l5-1.3A9.7 9.7 0 1 0 12 2Zm0 17.5a7.8 7.8 0 0 1-4-1.1l-.3-.2-3 .8.8-2.9-.2-.3A7.8 7.8 0 1 1 12 19.5Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.5l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.2.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/>
+        <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.2 3.3a.5.5 0 0 1-.8-.4V15h-.5A1.5 1.5 0 0 1 2 13.5v-8A1.5 1.5 0 0 1 4 4Z"/>
       </svg>
-    </a>
-    <a href="viber://chat?number=%2B306936960328" aria-label="Viber" title="Viber">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M19.2 4.4C17.4 2.7 14.5 2 12 2S6.6 2.7 4.8 4.4C3.2 5.9 2.4 8 2.4 10.8c0 4.1 1.8 6.7 5.4 8.1v2.7c0 .3.4.5.6.3l3.2-2.5h.4c2.5 0 5.4-.7 7.2-2.4 1.6-1.5 2.4-3.6 2.4-6.4 0-2.7-.8-4.7-2.4-6.2Zm-2 9.4c-.2.6-1.1 1.2-1.7 1.3-.5.1-1.1.2-3.7-.9-3.1-1.3-5.1-4.5-5.3-4.8-.2-.3-1.2-1.6-1.2-3.1 0-1.5.8-2.2 1.1-2.5.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6l.9 2.2c.1.3.1.5 0 .7l-.4.6-.6.6c-.2.2-.4.4-.2.8.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.9-.2l1-1.2c.2-.3.5-.3.8-.2l2 .9c.3.1.5.2.6.4.1.1.1.7-.1 1.3Z"/>
-      </svg>
-    </a>
+    </button>
   </nav>
 
   <!-- Scroll to top -->
@@ -1396,6 +1417,7 @@
         "contact.hoursAlwaysOn": "Πάντα διαθέσιμοι",
         "contact.sendEmail": "Αποστολή email",
         "dock.phoneAria": "Τηλεφωνική κλήση",
+        "dock.toggleAria": "Επιλογές επικοινωνίας",
         "dock.scrollTop": "Επιστροφή στην κορυφή",
         "lightbox.dialogAria": "Προβολή φωτογραφίας",
         "lightbox.close": "Κλείσιμο",
@@ -1661,6 +1683,7 @@
         "contact.hoursAlwaysOn": "Always available",
         "contact.sendEmail": "Send Email",
         "dock.phoneAria": "Phone call",
+        "dock.toggleAria": "Contact options",
         "dock.scrollTop": "Back to top",
         "lightbox.dialogAria": "Photo viewer",
         "lightbox.close": "Close",
