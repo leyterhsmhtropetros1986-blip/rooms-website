@@ -319,7 +319,7 @@ function renderSocialLinks() {
      header nav link. Always shown (not gated by config). */
   html +=
     '<a href="https://www.booking.com/hotel/gr/asteria-rooms.en-gb.html" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Booking.com" title="Booking.com">' +
-      '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M3 18v2M21 18v2"/><path d="M3 13h18"/><circle cx="7" cy="10" r="1.4" fill="currentColor" stroke="none"/></svg>' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 16h18"/><path d="M3 19v2M21 19v2"/><path d="M6 11V8a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3"/></svg>' +
     "</a>";
 
   container.innerHTML = html;
