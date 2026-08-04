@@ -127,7 +127,7 @@ var SITE_CONFIG = {
     whatsappHref: "https://wa.me/306936960328",
     viber:        "+30 693 696 0328",
     viberHref:    "viber://chat?number=%2B306936960328",
-    email:        "info@example.gr",
+    email:        "info@asteriaapartments.gr",
     location:     "Νιμπορειό Ευβοίας, Νότια Εύβοια",
     hours:        "Καθημερινά 09:00–21:00",
     mapsUrl:      "https://www.google.com/maps/search/?api=1&query=38.123177,24.215265",

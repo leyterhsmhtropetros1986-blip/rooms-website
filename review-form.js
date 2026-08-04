@@ -125,7 +125,7 @@
     var ownerEmail =
       (typeof SITE_CONFIG !== "undefined" && SITE_CONFIG.contact && SITE_CONFIG.contact.email)
         ? SITE_CONFIG.contact.email
-        : "info@example.gr";
+        : "info@asteriaapartments.gr";
 
     window.location.href =
       "mailto:" + ownerEmail + "?subject=" + subject + "&body=" + body;
