@@ -28,6 +28,39 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ── Room card photo carousels ─────────────────────────────── */
   initRoomCarousels();
 
+  /* ── "Κράτηση" / "Έλεγχος διαθεσιμότητας" buttons ─────────────
+     These all point at #booking, but the booking bar is
+     position:fixed on desktop — always on-screen already, so a
+     plain anchor jump computes zero scroll distance and looks dead.
+     Handle the click directly instead: pre-select the room (when
+     the button names one), scroll if there's actually somewhere to
+     scroll to (mobile, where the bar is in normal flow), flash a
+     highlight since desktop can't show movement, and focus the
+     first empty field so the click visibly did something either way. */
+  var bookingBar = document.getElementById("booking");
+  document.querySelectorAll(".js-book-room").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      var roomValue = btn.getAttribute("data-room-select");
+      var roomSelect = document.getElementById("roomType");
+      if (roomValue && roomSelect) roomSelect.value = roomValue;
+
+      if (bookingBar) {
+        bookingBar.scrollIntoView({ behavior: "smooth", block: "start" });
+        bookingBar.classList.add("is-highlighted");
+        setTimeout(function () {
+          bookingBar.classList.remove("is-highlighted");
+        }, 1500);
+      }
+
+      var arrivalInput = document.getElementById("arrivalDate");
+      if (arrivalInput) {
+        setTimeout(function () { arrivalInput.focus(); }, 350);
+      }
+    });
+  });
+
   /* ── Mobile menu ─────────────────────────────────────────────── */
   var menuButton = document.getElementById("menuButton");
   var navigation = document.getElementById("navigation");
