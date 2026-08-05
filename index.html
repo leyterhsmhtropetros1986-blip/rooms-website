@@ -154,21 +154,6 @@
           <a href="#booking" class="btn btn-outline js-book-room" data-i18n="cta.checkAvailability">Έλεγχος διαθεσιμότητας</a>
         </div>
 
-        <div class="hero-stats" aria-label="Στατιστικά καταλύματος">
-          <div class="hero-stat">
-            <strong>3</strong>
-            <small data-i18n="hero.stat1">Τύποι δωματίων</small>
-          </div>
-          <div class="hero-stat">
-            <strong>100%</strong>
-            <small data-i18n="hero.stat2">Ιδιωτικά μπάνια</small>
-          </div>
-          <div class="hero-stat">
-            <strong>24/7</strong>
-            <small data-i18n="hero.stat3">Επικοινωνία</small>
-          </div>
-        </div>
-
       </div>
 
       <a href="#about" class="scroll-cue" data-i18n="aria.scrollNext" data-i18n-attr="aria-label" aria-label="Μετάβαση στην επόμενη ενότητα">
@@ -176,22 +161,24 @@
       </a>
     </section>
 
-    <!-- ═══════════ STICKY BOOKING BAR ═══════════════════════════
-         Fixed under the header on desktop (position comes from CSS,
-         not DOM order). On mobile it drops into normal flow here —
-         right after the hero, before the rest of the page. -->
-    <div class="sticky-booking-bar" id="booking">
-      <form class="sticky-booking-form" id="bookingForm" novalidate>
-        <div class="sticky-booking-fields">
-          <label class="sticky-booking-field">
+    <!-- ═══════════ BOOKING BAR ═══════════════════════════════════
+         A compact card that overlaps the bottom of the hero photo,
+         then scrolls away with the page like normal content (not
+         fixed) — the first screen needs room for the hero AND the
+         start of the rooms section, not a permanently pinned bar. -->
+    <div class="booking-bar" id="booking">
+      <form id="bookingForm" novalidate>
+
+        <div class="booking-row" id="bookingStep1">
+          <label class="booking-field">
             <span data-i18n="booking.arrival">Άφιξη</span>
             <input type="date" id="arrivalDate" name="arrival" required data-i18n="booking.arrivalAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία άφιξης">
           </label>
-          <label class="sticky-booking-field">
+          <label class="booking-field">
             <span data-i18n="booking.departure">Αναχώρηση</span>
             <input type="date" id="departureDate" name="departure" required data-i18n="booking.departureAria" data-i18n-attr="aria-label" aria-label="Ημερομηνία αναχώρησης">
           </label>
-          <label class="sticky-booking-field">
+          <label class="booking-field">
             <span data-i18n="booking.adults">Ενήλικες</span>
             <select id="adultGuests" name="adults" data-i18n="booking.adultsAria" data-i18n-attr="aria-label" aria-label="Αριθμός ενηλίκων">
               <option value="1" data-i18n="booking.adults.opt1">1 ενήλικας</option>
@@ -202,7 +189,7 @@
               <option value="6" data-i18n="booking.adults.opt6">6 ενήλικες</option>
             </select>
           </label>
-          <label class="sticky-booking-field">
+          <label class="booking-field">
             <span data-i18n="booking.children">Παιδιά</span>
             <select id="childGuests" name="children" data-i18n="booking.childrenAria" data-i18n-attr="aria-label" aria-label="Αριθμός παιδιών">
               <option value="0" selected data-i18n="booking.children.opt0">Χωρίς παιδιά</option>
@@ -212,7 +199,7 @@
               <option value="4" data-i18n="booking.children.opt4">4 παιδιά</option>
             </select>
           </label>
-          <label class="sticky-booking-field">
+          <label class="booking-field">
             <span data-i18n="booking.room">Δωμάτιο</span>
             <select id="roomType" name="room" data-i18n="booking.roomAria" data-i18n-attr="aria-label" aria-label="Τύπος δωματίου">
               <option value="Δεν έχω προτίμηση" data-i18n="booking.room.none">Χωρίς προτίμηση</option>
@@ -221,33 +208,37 @@
               <option value="Family δωμάτιο" data-i18n="room3.title">Family δωμάτιο</option>
             </select>
           </label>
+          <button type="button" class="btn btn-primary booking-continue" id="bookingContinue" data-i18n="booking.continue">
+            Αναζήτηση →
+          </button>
         </div>
 
-        <div class="sticky-booking-fields sticky-booking-contact-fields">
-          <label class="sticky-booking-field">
-            <span data-i18n="booking.name">Ονοματεπώνυμο</span>
-            <input type="text" id="guestName" name="name" required autocomplete="name" data-i18n="booking.nameAria" data-i18n-attr="aria-label" aria-label="Ονοματεπώνυμο">
+        <div class="booking-step2" id="bookingStep2" hidden>
+          <div class="booking-row">
+            <label class="booking-field">
+              <span data-i18n="booking.name">Ονοματεπώνυμο</span>
+              <input type="text" id="guestName" name="name" required autocomplete="name" data-i18n="booking.nameAria" data-i18n-attr="aria-label" aria-label="Ονοματεπώνυμο">
+            </label>
+            <label class="booking-field">
+              <span data-i18n="booking.email">Email</span>
+              <input type="email" id="guestEmail" name="email" required autocomplete="email" data-i18n="booking.emailAria" data-i18n-attr="aria-label" aria-label="Email">
+            </label>
+            <label class="booking-field">
+              <span data-i18n="booking.phone">Τηλέφωνο</span>
+              <input type="tel" id="guestPhone" name="phone" required autocomplete="tel" data-i18n="booking.phoneAria" data-i18n-attr="aria-label" aria-label="Τηλέφωνο">
+            </label>
+          </div>
+          <label class="booking-field booking-message">
+            <span data-i18n="booking.message">Μήνυμα (προαιρετικό)</span>
+            <textarea id="guestMessage" name="message" rows="2" data-i18n="booking.messageAria" data-i18n-attr="aria-label" aria-label="Μήνυμα ή παρατηρήσεις"></textarea>
           </label>
-          <label class="sticky-booking-field">
-            <span data-i18n="booking.email">Email</span>
-            <input type="email" id="guestEmail" name="email" required autocomplete="email" data-i18n="booking.emailAria" data-i18n-attr="aria-label" aria-label="Email">
-          </label>
-          <label class="sticky-booking-field">
-            <span data-i18n="booking.phone">Τηλέφωνο</span>
-            <input type="tel" id="guestPhone" name="phone" required autocomplete="tel" data-i18n="booking.phoneAria" data-i18n-attr="aria-label" aria-label="Τηλέφωνο">
-          </label>
+          <button type="submit" class="btn btn-primary booking-submit" id="bookingSubmit" data-i18n="booking.submit">
+            Αποστολή αιτήματος →
+          </button>
         </div>
 
-        <label class="sticky-booking-field sticky-booking-message">
-          <span data-i18n="booking.message">Μήνυμα (προαιρετικό)</span>
-          <textarea id="guestMessage" name="message" rows="2" data-i18n="booking.messageAria" data-i18n-attr="aria-label" aria-label="Μήνυμα ή παρατηρήσεις"></textarea>
-        </label>
-
-        <button type="submit" class="btn btn-primary sticky-booking-submit" id="bookingSubmit" data-i18n="booking.submit">
-          Αποστολή αιτήματος →
-        </button>
       </form>
-      <div class="sticky-booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true" data-i18n="booking.summaryDefault">
+      <div class="booking-summary" id="bookingSummary" aria-live="polite" aria-atomic="true" data-i18n="booking.summaryDefault">
         Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.
       </div>
     </div>
@@ -965,11 +956,11 @@
               <a href="tel:+306947883098" class="btn btn-primary" data-i18n="contact.callBtn">📞 Καλέστε μας</a>
               <a
                 href="https://wa.me/306936960328?text=Καλησπέρα!%20Θα%20ήθελα%20να%20ρωτήσω%20για%20διαθεσιμότητα."
-                class="btn btn-outline"
+                class="btn btn-ghost"
                 target="_blank"
                 rel="noopener noreferrer"
               >WhatsApp</a>
-              <a href="viber://chat?number=%2B306936960328" class="btn btn-outline">Viber</a>
+              <a href="viber://chat?number=%2B306936960328" class="btn btn-ghost">Viber</a>
             </div>
 
             <nav class="contact-links" data-i18n="contact.linksAria" data-i18n-attr="aria-label" aria-label="Τρόποι επικοινωνίας">
@@ -1193,9 +1184,6 @@
         "hero.title.3": "αξέχαστες στιγμές",
         "hero.lead": "Boutique κατάλυμα στο Νιμπορειό Ευβοίας — προσεγμένα δωμάτια, ζεστή φιλοξενία και ιδανική τοποθεσία για ξεκούραστες διακοπές.",
         "hero.cta1": "Ανακαλύψτε τα δωμάτια",
-        "hero.stat1": "Τύποι δωματίων",
-        "hero.stat2": "Ιδιωτικά μπάνια",
-        "hero.stat3": "Επικοινωνία",
         "hero.scroll": "Ανακαλύψτε",
         "aria.scrollNext": "Μετάβαση στην επόμενη ενότητα",
         "about.kicker": "Το κατάλυμα",
@@ -1403,6 +1391,7 @@
         "booking.phoneAria": "Τηλέφωνο",
         "booking.message": "Μήνυμα (προαιρετικό)",
         "booking.messageAria": "Μήνυμα ή παρατηρήσεις",
+        "booking.continue": "Αναζήτηση →",
         "booking.submit": "Αποστολή αιτήματος →",
         "booking.summaryDefault": "Επιλέξτε ημερομηνίες για να εμφανιστούν οι διανυκτερεύσεις.",
         "location.kicker": "Τοποθεσία",
@@ -1467,9 +1456,6 @@
         "hero.title.3": "unforgettable moments",
         "hero.lead": "Boutique accommodation in Niborio, Evia — carefully finished rooms, warm hospitality and an ideal location for a relaxing holiday.",
         "hero.cta1": "Discover our rooms",
-        "hero.stat1": "Room types",
-        "hero.stat2": "Private bathrooms",
-        "hero.stat3": "Support",
         "hero.scroll": "Discover",
         "aria.scrollNext": "Go to next section",
         "about.kicker": "The Property",
@@ -1677,6 +1663,7 @@
         "booking.phoneAria": "Phone",
         "booking.message": "Message (optional)",
         "booking.messageAria": "Message or notes",
+        "booking.continue": "Search →",
         "booking.submit": "Send Request →",
         "booking.summaryDefault": "Select dates to see the number of nights.",
         "location.kicker": "Location",

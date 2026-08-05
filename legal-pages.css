@@ -3,10 +3,34 @@
    it stays transparent and the white logo/nav text is unreadable
    against the light .legal-main background. */
 body[data-legal-page] .site-header {
-  background: rgba(13, 30, 22, 0.94);
+  background: rgba(29, 59, 43, 0.94);
   border-bottom-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+}
+/* style.css's .site-header.scrolled rules flip header text to dark
+   once scrolled, assuming a light page behind it — legal pages keep
+   the header dark unconditionally (no hero photo to fade from), so
+   re-force the light-on-dark text regardless of scroll position. */
+body[data-legal-page] .site-header.scrolled .logo,
+body[data-legal-page] .site-header.scrolled .menu-button {
+  color: var(--white);
+}
+body[data-legal-page] .site-header.scrolled .logo-subtitle { color: var(--gold-light); }
+body[data-legal-page] .site-header.scrolled .site-nav a { color: rgba(255, 255, 255, 0.86); }
+body[data-legal-page] .site-header.scrolled .site-nav a:hover { color: var(--white); background: rgba(255, 255, 255, 0.09); }
+body[data-legal-page] .site-header.scrolled .nav-booking-com { color: var(--gold-light) !important; }
+body[data-legal-page] .site-header.scrolled .nav-booking-com:hover { color: var(--white) !important; }
+body[data-legal-page] .site-header.scrolled .language-switch button {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+}
+body[data-legal-page] .site-header.scrolled .language-switch button.is-active,
+body[data-legal-page] .site-header.scrolled .language-switch button:hover,
+body[data-legal-page] .site-header.scrolled .language-switch button:focus-visible {
+  background: rgba(200, 169, 107, 0.18);
+  border-color: rgba(200, 169, 107, 0.75);
 }
 
 .language-switch {

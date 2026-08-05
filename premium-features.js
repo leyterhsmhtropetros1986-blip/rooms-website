@@ -4,14 +4,16 @@
 
   var MS_PER_DAY = 86400000;
 
-  var form       = document.getElementById("bookingForm");
-  var arrival    = document.getElementById("arrivalDate");
-  var departure  = document.getElementById("departureDate");
-  var summary    = document.getElementById("bookingSummary");
-  var submitBtn  = document.getElementById("bookingSubmit");
-  var nameField  = document.getElementById("guestName");
-  var emailField = document.getElementById("guestEmail");
-  var phoneField = document.getElementById("guestPhone");
+  var form         = document.getElementById("bookingForm");
+  var arrival      = document.getElementById("arrivalDate");
+  var departure    = document.getElementById("departureDate");
+  var summary      = document.getElementById("bookingSummary");
+  var submitBtn    = document.getElementById("bookingSubmit");
+  var continueBtn  = document.getElementById("bookingContinue");
+  var step2        = document.getElementById("bookingStep2");
+  var nameField    = document.getElementById("guestName");
+  var emailField   = document.getElementById("guestEmail");
+  var phoneField   = document.getElementById("guestPhone");
 
   if (!form || !arrival || !departure || !summary || !submitBtn) return;
 
@@ -101,6 +103,43 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   }
 
+  /* ── Step 1 → Step 2: reveal the contact-details fields ─────────── */
+  function datesAreValid() {
+    if (!arrival.value || !departure.value) {
+      showStatus(t("selectBothDates"), true);
+      arrival.focus();
+      return false;
+    }
+    var nights = Math.round((new Date(departure.value) - new Date(arrival.value)) / MS_PER_DAY);
+    if (nights <= 0) {
+      showStatus(t("departureAfterArrival"), true);
+      departure.focus();
+      return false;
+    }
+    return true;
+  }
+
+  if (continueBtn && step2) {
+    continueBtn.addEventListener("click", function () {
+      if (!datesAreValid()) return;
+
+      if (step2.hasAttribute("hidden")) {
+        step2.removeAttribute("hidden");
+        /* One frame between un-hiding and adding the class that
+           animates max-height, so the transition actually runs
+           instead of jumping straight to its end state. */
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            step2.classList.add("is-open");
+          });
+        });
+      }
+
+      updateSummary();
+      if (nameField) setTimeout(function () { nameField.focus(); }, 300);
+    });
+  }
+
   var isSubmitting = false;
 
   /* ── Form submission → POST /api/send-booking ────────────────────
@@ -111,21 +150,9 @@
 
     if (isSubmitting) return; // guards against double-clicks
 
-    if (!arrival.value || !departure.value) {
-      showStatus(t("selectBothDates"), true);
-      arrival.focus();
-      return;
-    }
+    if (!datesAreValid()) return;
 
-    var a      = new Date(arrival.value);
-    var d      = new Date(departure.value);
-    var nights = Math.round((d - a) / MS_PER_DAY);
-
-    if (nights <= 0) {
-      showStatus(t("departureAfterArrival"), true);
-      departure.focus();
-      return;
-    }
+    var nights = Math.round((new Date(departure.value) - new Date(arrival.value)) / MS_PER_DAY);
 
     var name  = nameField  ? nameField.value.trim()  : "";
     var email = emailField ? emailField.value.trim() : "";

@@ -11,21 +11,26 @@
   --gold-light:     #e5d4aa;
   --gold-dark:      #9a7040;
 
-  /* Dark palette */
-  --forest:         #0d1e16;
-  --forest-mid:     #152b1f;
-  --forest-light:   #1e3c2b;
+  /* Deep green — now an ACCENT/text color (headlines, icon fills,
+     the footer, the hero photo overlay) rather than a full-page
+     background. Softened from the old near-black to a true forest
+     green that still reads dark enough for white text on top of it. */
+  --forest:         #1d3b2b;
+  --forest-mid:     #24462f;
+  --forest-light:   #2f5a3d;
 
-  /* Light palette */
+  /* Light palette — the primary site background now */
   --ivory:          #faf8f4;
   --cream:          #f2ede4;
+  --sage:           #eef2ec;
+  --sage-line:      #dde6da;
   --white:          #ffffff;
 
   /* Text */
   --text-dark:      #1a2520;
   --text-muted:     #5a6860;
-  --text-light:     rgba(255, 255, 255, 0.88);
-  --text-faint:     rgba(255, 255, 255, 0.55);
+  --text-light:     rgba(255, 255, 255, 0.92);
+  --text-faint:     rgba(255, 255, 255, 0.62);
 
   /* Borders */
   --border-light:   #e0dbd2;
@@ -33,7 +38,7 @@
   --border-gold:    rgba(200, 169, 107, 0.42);
 
   /* Spacing */
-  --section-pad:    clamp(80px, 10vw, 130px);
+  --section-pad:    clamp(64px, 8vw, 100px);
   --container:      min(1200px, 90%);
 
   /* Radii */
@@ -42,10 +47,10 @@
   --r-lg:   24px;
   --r-xl:   32px;
 
-  /* Shadows */
-  --shadow-sm:  0 4px 16px rgba(13, 30, 22, 0.08);
-  --shadow-md:  0 12px 40px rgba(13, 30, 22, 0.13);
-  --shadow-lg:  0 28px 80px rgba(13, 30, 22, 0.20);
+  /* Shadows — soft, for a light background instead of heavy borders */
+  --shadow-sm:  0 4px 16px rgba(29, 59, 43, 0.06);
+  --shadow-md:  0 12px 32px rgba(29, 59, 43, 0.10);
+  --shadow-lg:  0 24px 60px rgba(29, 59, 43, 0.14);
 
   /* Easing */
   --ease:     cubic-bezier(0.4, 0, 0.2, 1);
@@ -231,10 +236,46 @@ p  { color: var(--text-muted); line-height: 1.75; }
     backdrop-filter 0.35s var(--ease);
 }
 .site-header.scrolled {
-  background: rgba(13, 30, 22, 0.94);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.96);
+  border-color: var(--sage-line);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-sm);
+}
+/* Header text/icons are white for legibility over the hero photo;
+   once scrolled past it, the page behind the header is light, so
+   everything flips to dark + gold instead. */
+.site-header.scrolled .logo,
+.site-header.scrolled .menu-button {
+  color: var(--text-dark);
+}
+.site-header.scrolled .logo-icon,
+.site-header.scrolled .logo-main,
+.site-header.scrolled .logo-subtitle {
+  text-shadow: none;
+  filter: none;
+}
+.site-header.scrolled .logo-subtitle { color: var(--gold-dark); }
+.site-header.scrolled .site-nav a { color: var(--text-dark); }
+.site-header.scrolled .site-nav a:hover { color: var(--text-dark); background: var(--sage); }
+.site-header.scrolled .nav-booking-com {
+  border-color: var(--border-gold);
+  color: var(--gold-dark) !important;
+}
+.site-header.scrolled .nav-booking-com:hover {
+  background: rgba(200, 169, 107, 0.12);
+  color: var(--forest) !important;
+}
+.site-header.scrolled .language-switch button {
+  border-color: var(--sage-line);
+  background: var(--sage);
+  color: var(--text-dark);
+}
+.site-header.scrolled .language-switch button.is-active,
+.site-header.scrolled .language-switch button:hover,
+.site-header.scrolled .language-switch button:focus-visible {
+  background: rgba(200, 169, 107, 0.16);
+  border-color: var(--border-gold);
 }
 
 .header-inner {
@@ -387,7 +428,10 @@ p  { color: var(--text-muted); line-height: 1.75; }
 /* ── HERO ───────────────────────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100vh;
+  /* Shorter than a full viewport on purpose — the goal is for the
+     first screen to show the hero AND the start of the rooms
+     section, not have the hero alone fill the whole screen. */
+  min-height: 66vh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -409,89 +453,66 @@ p  { color: var(--text-muted); line-height: 1.75; }
   inset: 0;
   background: linear-gradient(
     108deg,
-    rgba(8, 22, 16, 0.93) 0%,
-    rgba(8, 22, 16, 0.72) 45%,
-    rgba(8, 22, 16, 0.34) 100%
+    rgba(20, 36, 27, 0.82) 0%,
+    rgba(20, 36, 27, 0.58) 45%,
+    rgba(20, 36, 27, 0.22) 100%
   );
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  /* Clears the fixed header + sticky booking bar sitting on top of the hero */
-  padding-top: 170px;
-  padding-bottom: 80px;
-  max-width: 860px;
+  padding-top: 128px;
+  padding-bottom: 48px;
+  max-width: 780px;
 }
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-light);
 }
 .hero-eyebrow::before {
   content: '';
   display: block;
   width: 44px;
   height: 1px;
-  background: var(--gold);
+  background: var(--gold-light);
   flex-shrink: 0;
 }
 
 .hero h1 {
   color: var(--white);
   letter-spacing: -0.03em;
-  line-height: 0.97;
-  margin-bottom: 28px;
+  line-height: 1.02;
+  margin-bottom: 18px;
   text-wrap: balance;
+  font-size: clamp(2.4rem, 5.2vw, 4.6rem);
 }
 
 .hero-lead {
-  font-size: clamp(1rem, 1.5vw, 1.18rem);
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.82;
-  margin-bottom: 40px;
-  max-width: 580px;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 560px;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 64px;
-}
-
-.hero-stats {
-  display: flex;
-  gap: 44px;
-  padding-top: 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-}
-.hero-stat strong {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 2.3rem;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 5px;
-}
-.hero-stat small {
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.52);
 }
 
 .scroll-cue {
   position: absolute;
-  bottom: 34px;
+  bottom: 22px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
@@ -546,16 +567,16 @@ p  { color: var(--text-muted); line-height: 1.75; }
   margin-top: 30px;
 }
 .about-feature {
-  padding: 24px 20px;
-  border: 1px solid rgba(200, 169, 107, 0.22);
+  padding: 22px 20px;
+  border: 1px solid var(--sage-line);
   border-radius: var(--r-lg);
-  background: var(--forest);
-  box-shadow: 0 10px 26px rgba(13, 30, 22, 0.16);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 .about-feature:hover {
-  border-color: var(--gold);
-  box-shadow: 0 16px 34px rgba(13, 30, 22, 0.28);
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-md);
   transform: translateY(-4px);
 }
 
@@ -565,10 +586,11 @@ p  { color: var(--text-muted); line-height: 1.75; }
   justify-content: center;
   width: 40px;
   height: 40px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   border-radius: 999px;
-  background: var(--gold);
-  color: var(--forest);
+  background: var(--sage);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-dark);
   font-size: 1.1rem;
 }
 .about-feature strong {
@@ -576,10 +598,10 @@ p  { color: var(--text-muted); line-height: 1.75; }
   font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--text-dark);
   margin-bottom: 6px;
 }
-.about-feature span { font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); line-height: 1.6; }
+.about-feature span { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
 
 /* About image column */
 .about-image-col { position: relative; }
@@ -625,18 +647,18 @@ p  { color: var(--text-muted); line-height: 1.75; }
 }
 
 /* ── ROOMS ──────────────────────────────────────────────────────── */
-.rooms-section { background: var(--forest); }
-.rooms-section .section-label { color: var(--gold); }
+.rooms-section { background: var(--ivory); }
+.rooms-section .section-label { color: var(--gold-dark); }
 
 .rooms-section-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 40px;
-  margin-bottom: 54px;
+  margin-bottom: 36px;
 }
-.rooms-section-header h2 { color: var(--white); }
-.rooms-section-header > p { max-width: 400px; color: rgba(255, 255, 255, 0.62); }
+.rooms-section-header h2 { color: var(--text-dark); }
+.rooms-section-header > p { max-width: 400px; color: var(--text-muted); }
 
 .rooms-grid {
   display: grid;
@@ -646,23 +668,24 @@ p  { color: var(--text-muted); line-height: 1.75; }
 
 .room-card {
   border-radius: var(--r-lg);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--white);
+  border: 1px solid var(--sage-line);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s;
 }
 .room-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.36);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
   border-color: var(--border-gold);
 }
 .room-card.featured { border-color: var(--border-gold); }
 
 .room-image-wrapper {
   position: relative;
-  height: 260px;
+  height: 180px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -719,90 +742,104 @@ p  { color: var(--text-muted); line-height: 1.75; }
 
 .room-badge {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   padding: 5px 12px;
   border-radius: 999px;
   background: var(--gold);
   color: var(--forest);
-  font-size: 0.71rem;
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .room-card-content {
-  padding: 26px;
+  padding: 18px 20px 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 .room-capacity {
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 800;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 7px;
+  color: var(--gold-dark);
+  margin-bottom: 4px;
 }
 .room-card-content h3 {
-  color: var(--white);
-  font-size: 1.55rem;
-  margin-bottom: 10px;
+  color: var(--text-dark);
+  font-size: 1.28rem;
+  margin-bottom: 6px;
 }
 .room-card-content > p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.88rem;
-  line-height: 1.65;
-  margin-bottom: 18px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin-bottom: 12px;
+  /* One line only — the room's own page-level description covers
+     the detail; the card just needs to orient, not explain. */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+/* Trimmed to the 3 most decision-relevant amenities per room instead
+   of a 6-tag wall — the rest live on in the room's alt text / full
+   description, this is just a fast scan. */
 .room-features {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .room-tag {
-  padding: 4px 10px;
+  padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.73rem;
+  border: 1px solid var(--sage-line);
+  background: var(--sage);
+  color: var(--text-muted);
+  font-size: 0.71rem;
   font-weight: 600;
 }
+/* Show only the 3 most decision-relevant tags per card — A/C, Wi-Fi
+   etc. are already covered site-wide in the Amenities section, no
+   need to repeat all 6 on every card. */
+.room-tag:nth-child(n + 4) { display: none; }
 
 .room-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 14px;
+  border-top: 1px solid var(--sage-line);
   margin-top: auto;
 }
 .room-price small {
   display: block;
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 2px;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-bottom: 1px;
 }
 .room-price strong,
 .room-price a {
   font-family: 'Playfair Display', serif;
-  font-size: 1.45rem;
-  color: var(--gold);
+  font-size: 1.3rem;
+  color: var(--gold-dark);
   font-weight: 700;
 }
 .room-price a {
   text-decoration: underline;
-  text-decoration-color: rgba(200, 169, 107, 0.4);
+  text-decoration-color: rgba(154, 112, 64, 0.35);
   text-underline-offset: 3px;
   transition: color 0.2s, text-decoration-color 0.2s;
 }
 .room-price a:hover {
-  color: var(--gold-light);
-  text-decoration-color: var(--gold-light);
+  color: var(--gold);
+  text-decoration-color: var(--gold);
 }
 .room-actions { display: flex; gap: 8px; }
 
@@ -822,17 +859,17 @@ p  { color: var(--text-muted); line-height: 1.75; }
   gap: 18px;
 }
 .amenity {
-  padding: 30px 22px;
+  padding: 26px 22px;
   border-radius: var(--r-lg);
-  background: var(--forest);
-  border: 1px solid rgba(200, 169, 107, 0.22);
-  box-shadow: 0 10px 26px rgba(13, 30, 22, 0.16);
+  background: var(--white);
+  border: 1px solid var(--sage-line);
+  box-shadow: var(--shadow-sm);
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s;
 }
 .amenity:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 34px rgba(13, 30, 22, 0.28);
-  border-color: var(--gold);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-gold);
 }
 .amenity-icon {
   display: grid;
@@ -840,10 +877,11 @@ p  { color: var(--text-muted); line-height: 1.75; }
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(200, 169, 107, 0.28);
+  background: var(--sage);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-dark);
   font-size: 1.15rem;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   transition: background 0.22s, border-color 0.22s;
 }
 .amenity:hover .amenity-icon { border-color: var(--gold); }
@@ -851,10 +889,10 @@ p  { color: var(--text-muted); line-height: 1.75; }
   font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--white);
-  margin-bottom: 7px;
+  color: var(--text-dark);
+  margin-bottom: 6px;
 }
-.amenity p { font-size: 0.85rem; margin: 0; color: rgba(255, 255, 255, 0.65); line-height: 1.6; }
+.amenity p { font-size: 0.85rem; margin: 0; color: var(--text-muted); line-height: 1.6; }
 
 /* ── GALLERY ────────────────────────────────────────────────────── */
 .gallery-section { background: var(--ivory); }
@@ -1097,33 +1135,26 @@ body.premium-lightbox-open { overflow: hidden; }
 .offers-section {
   position: relative;
   overflow: hidden;
+  background: var(--sage);
 }
-.offers-bg {
-  position: absolute;
-  inset: 0;
-  background: url('images/exterior-01.jpg') center/cover no-repeat;
-}
-.offers-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(8, 22, 16, 0.96) 0%,
-    rgba(14, 34, 24, 0.9) 100%
-  );
-}
+/* The photo backdrop + dark overlay this section used to have made
+   it read as another "heavy black block" — a promo section doesn't
+   need a moody photo behind it the way the hero does, so it's a
+   plain light section now like everything around it. */
+.offers-bg,
+.offers-overlay { display: none; }
 .offers-inner {
   position: relative;
   z-index: 2;
 }
-.offers-inner .section-label { color: var(--gold); }
+.offers-inner .section-label { color: var(--gold-dark); }
 
 .offers-header {
   text-align: center;
-  margin-bottom: 52px;
+  margin-bottom: 40px;
 }
-.offers-header h2 { color: var(--white); }
-.offers-header p  { color: rgba(255, 255, 255, 0.65); max-width: 500px; margin: 12px auto 0; }
+.offers-header h2 { color: var(--text-dark); }
+.offers-header p  { color: var(--text-muted); max-width: 500px; margin: 12px auto 0; }
 
 .offers-grid {
   display: grid;
@@ -1132,16 +1163,16 @@ body.premium-lightbox-open { overflow: hidden; }
 }
 
 .offer-card {
-  padding: 30px 26px;
-  border: 1px solid rgba(200, 169, 107, 0.22);
+  padding: 26px 24px;
+  border: 1px solid var(--sage-line);
   border-radius: var(--r-lg);
-  background: rgba(255, 255, 255, 0.055);
-  backdrop-filter: blur(8px);
-  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 .offer-card:hover {
   border-color: var(--border-gold);
-  background: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
   transform: translateY(-4px);
 }
 .offer-badge {
@@ -1154,19 +1185,19 @@ body.premium-lightbox-open { overflow: hidden; }
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
-.offer-card h3 { font-size: 1.3rem; color: var(--white); margin-bottom: 10px; }
-.offer-card > p { color: rgba(255, 255, 255, 0.63); font-size: 0.87rem; line-height: 1.7; margin-bottom: 22px; }
-.offer-card ul { margin-bottom: 26px; }
+.offer-card h3 { font-size: 1.25rem; color: var(--text-dark); margin-bottom: 8px; }
+.offer-card > p { color: var(--text-muted); font-size: 0.87rem; line-height: 1.7; margin-bottom: 18px; }
+.offer-card ul { margin-bottom: 22px; }
 .offer-card li {
   font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--text-dark);
   padding: 4px 0;
   display: flex;
   gap: 8px;
 }
-.offer-card li::before { content: '✓'; color: var(--gold); font-weight: 800; flex-shrink: 0; }
+.offer-card li::before { content: '✓'; color: var(--gold-dark); font-weight: 800; flex-shrink: 0; }
 
 /* ── REVIEWS ────────────────────────────────────────────────────── */
 .reviews-section { background: var(--white); }
@@ -1370,124 +1401,135 @@ body.premium-lightbox-open { overflow: hidden; }
   color: #b03030;
 }
 
-/* ── STICKY BOOKING BAR (compact) ──────────────────────────────── */
-.sticky-booking-bar {
-  position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 900;
-  width: min(1200px, 92vw);
-  margin-top: 10px;
-  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
-  border: 1px solid rgba(200, 169, 107, 0.28);
-  border-radius: 14px;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
-  transition: box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+/* ── BOOKING BAR — compact, Booking.com-style single row ─────────
+   Not fixed: sits as a card overlapping the hero's bottom edge via
+   negative margin, then scrolls with the page like any other
+   content. Light card on the new light theme, gold accents only. */
+.booking-bar {
+  position: relative;
+  z-index: 5;
+  width: min(1080px, 92vw);
+  margin: -46px auto 0;
+  /* So scrollIntoView() from the room-card "Κράτηση" buttons doesn't
+     tuck the top of the bar under the fixed header. */
+  scroll-margin-top: 96px;
+  background: var(--white);
+  border: 1px solid var(--sage-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow 0.4s var(--ease);
 }
 /* Momentary attention cue for "Κράτηση" buttons elsewhere on the
-   page: since the bar is already always visible (fixed) on desktop,
-   clicking those does nothing to scroll — this gives visible
-   feedback that something happened instead. */
-.sticky-booking-bar.is-highlighted {
-  border-color: var(--gold);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28), 0 0 0 4px rgba(200, 169, 107, 0.35);
+   page that jump here — gives visible feedback on click even when
+   there's nowhere further to scroll. */
+.booking-bar.is-highlighted {
+  box-shadow: var(--shadow-lg), 0 0 0 4px rgba(200, 169, 107, 0.35);
 }
 
-.sticky-booking-form {
+.booking-row {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 5px;
+  align-items: stretch;
+  flex-wrap: wrap;
 }
 
-.sticky-booking-fields {
-  display: flex;
-  flex: 0 0 auto;
-  min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.sticky-booking-fields::-webkit-scrollbar { display: none; }
-
-.sticky-booking-field {
+.booking-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1px;
-  flex: 1 1 108px;
-  min-width: 96px;
-  padding: 5px 12px;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 2px;
+  flex: 1 1 118px;
+  min-width: 100px;
+  padding: 12px 18px;
+  border-right: 1px solid var(--sage-line);
 }
-.sticky-booking-field:last-child { border-right: 0; }
+.booking-row .booking-field:last-of-type { border-right: 0; }
 
-.sticky-booking-field span {
-  font-size: 0.58rem;
+.booking-field span {
+  font-size: 0.62rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--gold-light);
-  opacity: 0.85;
+  color: var(--gold-dark);
 }
 
-.sticky-booking-field input,
-.sticky-booking-field select,
-.sticky-booking-field textarea {
+.booking-field input,
+.booking-field select,
+.booking-field textarea {
   width: 100%;
   border: 0;
   padding: 0;
   background: transparent;
-  color: var(--white);
+  color: var(--text-dark);
   font: inherit;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 700;
 }
-.sticky-booking-field select { cursor: pointer; }
-.sticky-booking-field input:focus,
-.sticky-booking-field select:focus,
-.sticky-booking-field textarea:focus { outline: none; }
-.sticky-booking-field input::-webkit-calendar-picker-indicator {
-  filter: invert(1) brightness(1.7);
-  cursor: pointer;
-}
-.sticky-booking-field select option { background: var(--forest); color: var(--white); }
-.sticky-booking-field input::placeholder,
-.sticky-booking-field textarea::placeholder { color: rgba(255, 255, 255, 0.35); }
+.booking-field select { cursor: pointer; }
+.booking-field input:focus,
+.booking-field select:focus,
+.booking-field textarea:focus { outline: none; }
+.booking-field select option { background: var(--white); color: var(--text-dark); }
+.booking-field input::placeholder,
+.booking-field textarea::placeholder { color: var(--text-muted); }
 
-/* Contact-details row (name/email/phone) reuses the same field
-   component as the dates/guests row above it. */
-.sticky-booking-contact-fields { border-top: 1px solid rgba(255, 255, 255, 0.1); }
-
-.sticky-booking-message {
-  border-right: 0;
-  padding: 6px 12px;
-}
-.sticky-booking-message textarea {
-  resize: none;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.sticky-booking-submit {
+.booking-continue {
   flex: 0 0 auto;
+  align-self: center;
+  margin: 10px 14px;
   white-space: nowrap;
-  min-height: 40px !important;
-  padding: 0 20px !important;
-  font-size: 0.8rem !important;
+  min-height: 46px !important;
+  padding: 0 26px !important;
+  font-size: 0.82rem !important;
   border-radius: 10px !important;
 }
-.sticky-booking-submit:disabled {
+
+/* Step 2 — collapsed by default; JS removes [hidden] then adds
+   .is-open a frame later so this can transition in smoothly instead
+   of popping open. */
+.booking-step2 {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  border-top: 1px solid var(--sage-line);
+  transition: max-height 0.45s var(--ease), opacity 0.35s var(--ease);
+}
+.booking-step2.is-open {
+  max-height: 400px;
+  opacity: 1;
+}
+.booking-step2 .booking-field { padding: 10px 18px; }
+
+.booking-message {
+  border-right: 0;
+  border-top: 1px solid var(--sage-line);
+  padding: 10px 18px !important;
+}
+.booking-message textarea {
+  resize: none;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.booking-submit {
+  display: block;
+  width: calc(100% - 28px);
+  margin: 6px 14px 14px;
+  min-height: 46px !important;
+  font-size: 0.82rem !important;
+  border-radius: 10px !important;
+}
+.booking-submit:disabled {
   opacity: 0.7;
   cursor: not-allowed;
   transform: none !important;
 }
 
-.sticky-booking-summary {
-  padding: 0 16px 8px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.7rem;
+.booking-summary {
+  padding: 10px 18px 16px;
+  color: var(--text-muted);
+  font-size: 0.76rem;
   text-align: center;
+  border-top: 1px solid var(--sage-line);
 }
 
 /* Booking platform links (now shown in the Contact section) */
@@ -1543,16 +1585,15 @@ body.premium-lightbox-open { overflow: hidden; }
   align-items: flex-start;
   gap: 12px;
   padding: 16px;
-  border: 1px solid rgba(200, 169, 107, 0.22);
+  border: 1px solid var(--sage-line);
   border-radius: var(--r-md);
-  background: var(--forest);
-  box-shadow: 0 10px 24px rgba(13, 30, 22, 0.14);
+  background: var(--sage);
   transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
 }
 .location-highlight:hover {
-  border-color: var(--gold);
+  border-color: var(--border-gold);
   transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(13, 30, 22, 0.22);
+  box-shadow: var(--shadow-sm);
 }
 .location-highlight-icon {
   display: grid;
@@ -1560,13 +1601,14 @@ body.premium-lightbox-open { overflow: hidden; }
   width: 36px;
   height: 36px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(200, 169, 107, 0.28);
+  background: var(--white);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-dark);
   font-size: 1.05rem;
   flex-shrink: 0;
 }
-.location-highlight-text strong { display: block; font-size: 0.88rem; font-weight: 800; color: var(--white); margin-bottom: 2px; }
-.location-highlight-text span  { font-size: 0.8rem; color: rgba(255, 255, 255, 0.65); }
+.location-highlight-text strong { display: block; font-size: 0.88rem; font-weight: 800; color: var(--text-dark); margin-bottom: 2px; }
+.location-highlight-text span  { font-size: 0.8rem; color: var(--text-muted); }
 
 .location-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -1655,8 +1697,8 @@ body.premium-lightbox-open { overflow: hidden; }
 .nearby-card-links:empty { display: none; }
 
 /* ── CONTACT ────────────────────────────────────────────────────── */
-.contact-section { background: var(--forest); }
-.contact-section .section-label { color: var(--gold); }
+.contact-section { background: var(--cream); }
+.contact-section .section-label { color: var(--gold-dark); }
 
 .contact-grid {
   display: grid;
@@ -1665,8 +1707,8 @@ body.premium-lightbox-open { overflow: hidden; }
   align-items: start;
 }
 
-.contact-content h2 { color: var(--white); margin-bottom: 14px; }
-.contact-content > p { color: rgba(255, 255, 255, 0.65); margin-bottom: 34px; }
+.contact-content h2 { color: var(--text-dark); margin-bottom: 14px; }
+.contact-content > p { color: var(--text-muted); margin-bottom: 34px; }
 
 .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
 
@@ -1676,15 +1718,15 @@ body.premium-lightbox-open { overflow: hidden; }
   align-items: center;
   gap: 14px;
   padding: 16px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--sage-line);
   border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--white);
-  transition: border-color 0.2s, background 0.2s;
+  background: var(--white);
+  color: var(--text-dark);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .contact-link-row:hover {
   border-color: var(--border-gold);
-  background: rgba(255, 255, 255, 0.09);
+  box-shadow: var(--shadow-sm);
 }
 .contact-link-icon { font-size: 1.2rem; flex-shrink: 0; }
 .contact-link-info strong {
@@ -1693,20 +1735,21 @@ body.premium-lightbox-open { overflow: hidden; }
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-muted);
   margin-bottom: 2px;
 }
-.contact-link-info span { font-size: 0.95rem; font-weight: 600; color: var(--white); }
+.contact-link-info span { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); }
 
 /* Contact info card */
 .contact-info-card {
   padding: 34px;
   border: 1px solid var(--border-gold);
   border-radius: var(--r-xl);
-  background: rgba(200, 169, 107, 0.05);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
 }
-.contact-info-card h3 { font-size: 1.5rem; color: var(--white); margin-bottom: 6px; }
-.contact-info-card > p { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; margin-bottom: 26px; }
+.contact-info-card h3 { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 6px; }
+.contact-info-card > p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 26px; }
 
 .contact-info-list { display: grid; gap: 0; margin-bottom: 28px; }
 .contact-info-list li {
@@ -1714,11 +1757,11 @@ body.premium-lightbox-open { overflow: hidden; }
   justify-content: space-between;
   gap: 16px;
   padding: 11px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--sage-line);
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--text-muted);
 }
-.contact-info-list li strong { color: var(--white); font-weight: 700; text-align: right; }
+.contact-info-list li strong { color: var(--text-dark); font-weight: 700; text-align: right; }
 
 /* ── FOOTER ─────────────────────────────────────────────────────── */
 .site-footer {
@@ -1733,7 +1776,11 @@ body.premium-lightbox-open { overflow: hidden; }
 .footer-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7, 18, 13, 0.82) 0%, rgba(4, 11, 8, 0.93) 100%);
+  /* Deliberately kept dark — a dark footer as a "frame" beneath an
+     otherwise light page is the same move Aman/Domes-style sites
+     make; it's a small proportion of the page, not another big
+     heavy block, and bookends nicely against the hero above. */
+  background: linear-gradient(180deg, rgba(29, 59, 43, 0.86) 0%, rgba(19, 39, 29, 0.95) 100%);
 }
 .footer-inner {
   position: relative;
@@ -2049,8 +2096,6 @@ body.lightbox-open { overflow: hidden; }
   .nearby-grid { grid-template-columns: repeat(2, 1fr); }
 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-
-  .hero-stats { gap: 28px; }
 }
 
 /* ── Tablet-small / Mobile nav (≤900px) ───────────────────────── */
@@ -2073,15 +2118,39 @@ body.lightbox-open { overflow: hidden; }
   .hero-content { padding-top: 100px; padding-bottom: 40px; }
   .hero h1 { font-size: clamp(42px, 12vw, 64px); }
 
-  /* Booking bar: normal document flow right after the hero, not
-     pinned/fixed and not overlapping anything above it. */
-  .sticky-booking-bar {
-    position: static;
-    transform: none;
+  /* Booking bar: smaller overlap than desktop (fields are taller
+     here, so less of the hero should be covered), still floating
+     rather than flush against the hero. Fields go 2-per-row instead
+     of one long single-column stack, which was tall enough to bring
+     back the "wall of form" problem on its own. */
+  .booking-bar {
     width: calc(100% - 32px);
-    margin: 20px 16px;
+    margin: -20px auto 0;
+  }
+  #bookingStep1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .booking-field {
+    border-right: 1px solid var(--sage-line);
+    border-bottom: 1px solid var(--sage-line);
+  }
+  #bookingStep1 .booking-field:nth-child(2n) { border-right: 0; }
+  #bookingStep1 .booking-field:nth-child(5) { grid-column: 1 / -1; border-right: 0; border-bottom: 0; }
+  .booking-continue {
+    grid-column: 1 / -1;
+    width: calc(100% - 28px);
+    margin: 10px 14px 14px;
   }
 
+  .booking-step2 .booking-row { flex-direction: column; }
+  .booking-step2 .booking-field { border-right: 0; }
+  .booking-step2 .booking-row .booking-field:last-of-type { border-bottom: 0; }
+
+  /* Light dropdown regardless of whether the header itself has
+     scrolled yet — the hamburger is reachable immediately at the
+     top too, and a light panel with white-on-white text from the
+     unscrolled header state would be unreadable. */
   .site-nav {
     position: absolute;
     top: 72px;
@@ -2091,17 +2160,31 @@ body.lightbox-open { overflow: hidden; }
     align-items: stretch;
     gap: 0;
     overflow: hidden;
-    background: rgba(11, 24, 18, 0.98);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(22px);
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    border-top: 1px solid var(--sage-line);
+    box-shadow: var(--shadow-md);
     max-height: 0;
     transition: max-height 0.4s var(--ease);
   }
   .site-nav.open { max-height: 520px; }
 
-  .site-nav a { padding: 16px 24px; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .site-nav a,
+  .site-header.scrolled .site-nav a {
+    color: var(--text-dark);
+    padding: 16px 24px;
+    border-radius: 0;
+    border-bottom: 1px solid var(--sage-line);
+  }
+  .site-nav a:hover,
+  .site-header.scrolled .site-nav a:hover { background: var(--sage); }
   .nav-cta { margin: 12px 24px; border-radius: 999px; text-align: center; }
-  .nav-booking-com { margin: 0 24px 12px; border-radius: 999px; text-align: center; }
+  .nav-booking-com {
+    margin: 0 24px 12px;
+    border-radius: 999px;
+    text-align: center;
+    color: var(--gold-dark) !important;
+  }
 
   .about-grid { grid-template-columns: 1fr; }
   .about-image-col { order: -1; }
@@ -2117,9 +2200,8 @@ body.lightbox-open { overflow: hidden; }
 
 /* ── Mobile (≤640px) ───────────────────────────────────────────── */
 @media (max-width: 640px) {
-  :root { --section-pad: clamp(60px, 9vw, 90px); }
+  :root { --section-pad: clamp(48px, 8vw, 72px); }
 
-  .hero-stats  { display: none; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; }
 
@@ -2150,36 +2232,13 @@ body.lightbox-open { overflow: hidden; }
 
   .review-form-wrapper { padding: 30px 20px; }
 
-  .sticky-booking-bar { border-radius: 12px; }
-  .sticky-booking-form { flex-direction: column; gap: 0; padding: 6px; }
-  .sticky-booking-fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow-x: visible;
-  }
-  .sticky-booking-field {
-    flex: initial;
-    min-width: 0;
-    border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 6px 8px;
-  }
-  .sticky-booking-field:nth-child(5) { grid-column: 1 / -1; border-bottom: 0; }
-  .sticky-booking-contact-fields { border-top: 1px solid rgba(255, 255, 255, 0.08); }
-  .sticky-booking-contact-fields .sticky-booking-field:nth-child(3) { grid-column: 1 / -1; border-bottom: 0; }
-  .sticky-booking-field span { font-size: 0.6rem; }
-  .sticky-booking-field input,
-  .sticky-booking-field select,
-  .sticky-booking-field textarea { font-size: 0.8rem; }
-  .sticky-booking-message { border-bottom: 0; padding: 6px 8px; }
-  .sticky-booking-submit {
-    width: 100%;
-    min-height: 44px;
-    margin-top: 6px;
-    padding: 0 18px !important;
-    font-size: 0.82rem !important;
-  }
-  .sticky-booking-summary { font-size: 0.7rem; padding: 0 10px 6px; }
+  .booking-bar { border-radius: var(--r-md); margin-top: -14px; }
+  .booking-field { padding: 10px 14px; }
+  .booking-field span { font-size: 0.6rem; }
+  .booking-field input,
+  .booking-field select,
+  .booking-field textarea { font-size: 0.82rem; }
+  .booking-summary { font-size: 0.72rem; padding: 8px 14px 14px; }
 
   .rooms-grid { grid-template-columns: 1fr; }
 
@@ -2268,6 +2327,6 @@ body.lightbox-open { overflow: hidden; }
 
 /* ── Print ──────────────────────────────────────────────────────── */
 @media print {
-  .site-header, .sticky-booking-bar, .contact-dock, .scroll-top, .lightbox { display: none; }
+  .site-header, .booking-bar, .contact-dock, .scroll-top, .lightbox { display: none; }
   .hero { min-height: auto; }
 }
